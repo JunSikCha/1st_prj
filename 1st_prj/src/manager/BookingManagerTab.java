@@ -16,27 +16,41 @@ import javax.swing.table.JTableHeader;
 
 public class BookingManagerTab extends JPanel{
 	
-	private 
+	private JLabel bMName;
+	private JTable jtbOrderInfoTable;
+	private JScrollPane scrollPane;
+	
+	private JLabel omMiddle;
+	private JTextField jtfStartDate;
+	private JTextField jtfEndDate;
+	private JButton jbDateSearch;
+	
+	
+	private JButton jbAccept;
+	private JButton jbRefusal;
+	private JButton jbHistory;
+	
 	
 	public BookingManagerTab() {
-setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		
-		String[] columnNames = {"발주번호", "발주일", "시리얼넘버", "부품명", "발주수량", "단위", "단가"};
+		String[] columnNames = {"예약번호", "예약시간", "모델명", "증상", "아이디", "이름", "수락/거절", "☑" };
 		
 		String [][] data = { //확인용 데이터. 추후 자료 받기
-				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"},
-				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"},
-				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"},
-				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"},
-				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"},
-				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"},
-				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"}
+				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
+				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
+				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
+				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
+				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
+				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
+				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"}
+				
 		};
-	//jtfPartNo, jtfPartName, jtfPartCost, jtfLaborCost
+	//bookingNo, bookingDay + bookingTime, carName, faultDetail, clientId, clientName, bookingBoolean
 	
 		//페이지 이름
-		bMName = new JLabel("부품 발주 관리");
-		Font ㅐmNameFont = new Font(null, Font.BOLD, 20);
+		bMName = new JLabel("예약 관리");
+		Font bmNameFont = new Font(null, Font.BOLD, 20);
 		bMName.setFont(bmNameFont);
 
 		//재고 게시판
@@ -62,13 +76,15 @@ setLayout(new BorderLayout());
       	jtfEndDate = new JTextField();
       	jbDateSearch = new JButton("검색");
       		
-      	jbOrder = new JButton("발주");
+      	jbAccept = new JButton("수락");
+      	jbRefusal = new JButton("거절");
+      	jbHistory = new JButton("이력조회");
       	
 
 		//추가
 		setLayout(null);
 
-		add("North", oMName);
+		add("North", bMName);
 		add("Center", scrollPane);
 
 		add("Center", omMiddle);
@@ -76,12 +92,14 @@ setLayout(new BorderLayout());
 		add("Center", jtfEndDate);
 		add("Center", jbDateSearch);
 
-		add("Center", jbOrder);
+		add("Center", jbAccept);
+		add("Center", jbRefusal);
+		add("Center", jbHistory);
 
 
 
 	//크기 조정 및 배치
-	oMName.setBounds(10, 6, 140, 20);
+	bMName.setBounds(10, 6, 140, 20);
 	scrollPane.setBounds(80, 50, 800, 400); 
 
 	jtfStartDate.setBounds(190, 500, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
@@ -89,7 +107,9 @@ setLayout(new BorderLayout());
 	jtfEndDate.setBounds(360, 500, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
 	jbDateSearch.setBounds(520, 500, 70, 30); // 검색 버튼의 위치와 크기 설정
 
-	jbOrder.setBounds(620, 500, 120, 30);
+	jbAccept.setBounds(620, 500, 120, 30);
+	jbRefusal.setBounds(620, 500, 120, 30);
+	jbHistory.setBounds(620, 500, 120, 30);
 
 	scrollPane.setVisible(true);
 	setVisible(true);

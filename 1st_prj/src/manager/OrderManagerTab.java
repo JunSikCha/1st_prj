@@ -43,7 +43,7 @@ public class OrderManagerTab extends JPanel{
 				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"},
 				{"123455", "2023-09-23", "K12da", "핸들", "5", "개", "123,000"}
 		};
-	//jtfPartNo, jtfPartName, jtfPartCost, jtfLaborCost
+	//orderNo, orderDate, partNo, PartName, orderQuantity, partUnit, partCost
 	
 		//페이지 이름
 		oMName = new JLabel("부품 발주 관리");
