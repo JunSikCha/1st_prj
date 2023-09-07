@@ -18,11 +18,11 @@ public class CarManager extends JFrame {//
       
       //상단 탭
       CarManagerTab cmt1=new CarManagerTab(); 
-      InventoryManagerTap cmt2=new InventoryManagerTap(); 
-      OrderManagerTap cmt3=new OrderManagerTap(); 
-      BookingManagerTap cmt4=new BookingManagerTap(); 
-      CalculateTap cmt5=new CalculateTap(); 
-      MyInformationTap cmt6=new MyInformationTap(); 
+      InventoryManagerTab cmt2=new InventoryManagerTab(); 
+      OrderManagerTab cmt3=new OrderManagerTab(); 
+      BookingManagerTab cmt4=new BookingManagerTab(); 
+      CalculateTab cmt5=new CalculateTab(); 
+      MyInformationTab cmt6=new MyInformationTab(); 
       
       
       
@@ -54,7 +54,7 @@ public class CarManager extends JFrame {//
       
       
       
-   }//CarManager 
+   }//CarManager
    
    
    public static void main(String[] args) {
