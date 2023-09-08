@@ -1,4 +1,4 @@
-package clientDesign;
+package kr.co.sist.user.design;
 
 import java.awt.Font;
 
@@ -8,9 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import kr.co.sist.user.event.JoinDesignEvt;
+
 
 public class JoinDesign extends JFrame {
-//	private JoinDesignEvt jdEvt;
+	private JoinDesignEvt jdEvt;
 	
 	private JTextField jtfId;
 	private JPasswordField jpwPass;
@@ -64,12 +66,12 @@ public class JoinDesign extends JFrame {
         Font labelFont = new Font("SansSerif", Font.BOLD, 16);
         jlTitle.setFont(labelFont);
         
-//        jdEvt = new JoinDesignEvt(this);
-//        		
-//        
-//        jbtldCheck.addActionListener(jdEvt);
-//        jbtOk.addActionListener(jdEvt);
-//        jbtCancel.addActionListener(jdEvt);
+        jdEvt = new JoinDesignEvt(this);
+        		
+        
+        jbtldCheck.addActionListener(jdEvt);
+        jbtOk.addActionListener(jdEvt);
+        jbtCancel.addActionListener(jdEvt);
         
 	    setLayout(null);
 	    add(jlTitle);
@@ -131,9 +133,9 @@ public class JoinDesign extends JFrame {
 		return jbtCancel;
 	}
 
-//	public JoinDesignEvt getJdEvt() {
-//		return jdEvt;
-//	}
+	public JoinDesignEvt getJdEvt() {
+		return jdEvt;
+	}
 
 	public static void main(String[] args) {
 		new JoinDesign();

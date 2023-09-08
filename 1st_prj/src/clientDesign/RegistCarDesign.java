@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class RegistCarDesign extends JFrame {
 	
-	private  RegistCarEvt rcEvt;
+//	private  RegistCarEvt rcEvt;
 	private JLabel jtfModel;
 	private JLabel jtfCarNum;
 	private JLabel jtfDistance;
@@ -37,8 +37,8 @@ public class RegistCarDesign extends JFrame {
 		jtRegisterCarDesign = new JTable(dtmRegisterCarDesign);
 		jspRegisterCarDesign = new JScrollPane();
 		
-		RegistCarEvt rce = new RegistCarEvt(this);
-		jcbRegisterCarDesign.addActionListener(rce);
+//		RegistCarEvt rce = new RegistCarEvt(this);
+//		jcbRegisterCarDesign.addActionListener(rce);
 		JPanel jpNorth = new JPanel();
 		jpNorth.add(jcbRegisterCarDesign);
 		
@@ -51,13 +51,13 @@ public class RegistCarDesign extends JFrame {
 		
 	}//RegistCarDesign
 
-	public RegistCarEvt getRcEvt() {
-		return rcEvt;
-	}
-
-	public void setRcEvt(RegistCarEvt rcEvt) {
-		this.rcEvt = rcEvt;
-	}
+//	public RegistCarEvt getRcEvt() {
+//		return rcEvt;
+//	}
+//
+//	public void setRcEvt(RegistCarEvt rcEvt) {
+//		this.rcEvt = rcEvt;
+//	}
 
 	public JLabel getJtfModel() {
 		return jtfModel;

@@ -1,18 +1,25 @@
-package clientDesign;
+package kr.co.sist.user.design;
 
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import kr.co.sist.user.dao.ClientMainDAO;
+import kr.co.sist.user.event.ClientMainEvt;
+import kr.co.sist.user.vo.ClientMainVO;
 
 @SuppressWarnings("serial")
 public class ClientMainDesign extends JFrame {
 	
-//	private ClientMainEvt cmEvt;
+	private ClientMainEvt cmEvt;
 	
 	private JLabel jlCarname;
 	private JLabel jlCarNo;
@@ -26,10 +33,24 @@ public class ClientMainDesign extends JFrame {
 	private JButton jbtRecall;
 	private JButton jbtNotify;
 
-	public ClientMainDesign()
-	{
+	public ClientMainDesign( String id ){
 		super("메인화면");
+		
+		String userCarName=null;
+		String userCarNo=null;
+		
+		try {
+		ClientMainDAO cmDAO = ClientMainDAO.getInstance();
+		
+			ClientMainVO cmVO = cmDAO.selectCarInfo(id);
 			
+				userCarName=cmVO.getUserCarName();
+				userCarNo=cmVO.getUserCarNo();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//end catch
+		
 		//타이틀
 		JLabel jlTitle = new JLabel("마이카 관리");
 		Font titleFont = new Font(null, Font.BOLD, 20);
@@ -38,11 +59,11 @@ public class ClientMainDesign extends JFrame {
 		ImageIcon logoImg = new ImageIcon("E:/dev/workspace/first_project/src/kr/co/sist/image/logo.png");
 		JLabel jlLogo = new JLabel(logoImg); //로고
 		
-		jlCarname = new JLabel("My Car's Name"); //차량 이름
+		jlCarname = new JLabel(userCarName);//차량 이름
 		Font carnameFont = new Font(null, Font.BOLD, 25);
 		jlCarname.setFont(carnameFont);
 		
-		jlCarNo = new JLabel("My Car's Number"); //차량 번호
+		jlCarNo = new JLabel(userCarNo); //차량 번호
 		
 		//차량이미지
 		ImageIcon dft = new ImageIcon("E:/dev/workspace/first_project/src/kr/co/sist/image/default.png");
@@ -87,18 +108,17 @@ public class ClientMainDesign extends JFrame {
 		add(jbtBook);
 		add(jbtBookCheck); 
 		
-//		cmEvt = new ClientMainEvt(this);
-//        jbtRegist.addActionListener(cmEvt);
-//        jbtModify.addActionListener(cmEvt);
-//        jbtHistory.addActionListener(cmEvt);
-//        jbtBook.addActionListener(cmEvt);
-//        jbtBookCheck.addActionListener(cmEvt);
-//        jbtRecall.addActionListener(cmEvt);
-//        jbtNotify.addActionListener(cmEvt);
-			
+		cmEvt = new ClientMainEvt(this);
+        jbtRegist.addActionListener(cmEvt);
+        jbtModify.addActionListener(cmEvt);
+        jbtHistory.addActionListener(cmEvt);
+        jbtBook.addActionListener(cmEvt);
+        jbtBookCheck.addActionListener(cmEvt);
+        jbtRecall.addActionListener(cmEvt);
+        jbtNotify.addActionListener(cmEvt);
+        			
 		setBounds(300,150,1200,700);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}//ClientMainDesign
 	

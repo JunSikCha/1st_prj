@@ -1,24 +1,26 @@
-package clientDesign;
+package kr.co.sist.user.design;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import kr.co.sist.user.event.LoginEvt;
+
 import java.awt.Color;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
-public class LoginForm extends JFrame {
+public class LoginDesign extends JFrame {
 	
-//	private LoginFrmEvt lfEvt;
+	private LoginEvt lgEvt;
 	private JTextField  jtfId;
 	private JPasswordField jpwPass; 
 	private JButton jbLogin; 
 	private JButton jbjoin;
-	private JLabel jlblOutput;
 	
-    public LoginForm() {
+    public LoginDesign() {
         super("로그인 화면");
 
         // 라벨 생성
@@ -31,7 +33,6 @@ public class LoginForm extends JFrame {
         // 버튼 생성
         jbLogin = new JButton("확인");
         jbjoin = new JButton("회원가입");
-        jlblOutput = new JLabel(); 
      
         
 
@@ -62,7 +63,7 @@ public class LoginForm extends JFrame {
 
         // 이미지 아이콘으로 마이카
         JLabel imgLabel = new JLabel();
-        ImageIcon icon = new ImageIcon(LoginForm.class.getResource("/project/car.JPG"));
+        ImageIcon icon = new ImageIcon("E:/dev/workspace/first_project/src/kr/co/sist/image/mycarlogo.png");
         imgLabel.setIcon(icon);
 
         imgLabel.setBounds(240, 50, 500, 200);
@@ -72,9 +73,9 @@ public class LoginForm extends JFrame {
         add(jbLogin);
         add(jbjoin);
         
-//        lfEvt = new LoginFrmEvt(this);
-//        jbLogin.addActionListener(lfEvt);
-//        jbjoin.addActionListener(lfEvt);
+        lgEvt = new LoginEvt(this);
+        jbLogin.addActionListener(lgEvt);
+        jbjoin.addActionListener(lgEvt);
 
         setBounds(500, 300, 1000, 700);
         setVisible(true);
@@ -100,12 +101,5 @@ public class LoginForm extends JFrame {
 	public JButton getJbjoin() {
 		return jbjoin;
 	}
-
-
-	public JLabel getJlblOutput() {
-		return jlblOutput;
-	}
-
-
 
 }
