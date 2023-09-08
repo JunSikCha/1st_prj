@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
-public class BookingManagerTab extends JPanel{
+public class BookingManagerTab extends JPanel{ //
 	
 	private JLabel bMName;
 	private JTable jtbOrderInfoTable;
