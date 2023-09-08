@@ -39,7 +39,7 @@ public class InventoryManagerTab extends JPanel{
 				{"123456", "핸들", "5", "개", "365,000", "120,000"},
 				{"123456", "핸들", "5", "개", "365,000", "120,000"}
 		};
-		//jtfPartNo, jtfPartName, jtfPartStock, jtfPartUnit, jtfPartCost, jtfLaborCost
+		//partNo,partName, partStock, partUnit, partCost, laborCost
 		
 		
 		//페이지 이름

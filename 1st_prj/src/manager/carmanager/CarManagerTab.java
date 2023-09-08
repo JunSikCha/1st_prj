@@ -1,8 +1,11 @@
 package manager.carmanager;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,7 +16,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class CarManagerTab extends JPanel { //차량관리탭
+public class CarManagerTab extends JPanel implements ActionListener{ //차량관리탭
 	
 	private CarManagerTabEvt cmtEvt;
 	
@@ -41,11 +44,10 @@ public class CarManagerTab extends JPanel { //차량관리탭
         Font cmNameFont = new Font(null, Font.BOLD, 20);
         cMName.setFont(cmNameFont);
         
-        dtm=new DefaultTableModel();
+        dtm = new DefaultTableModel();
         
         
         //정보 게시판
-//        jtbCarInfoTable = new JTable(data, columnNames);
         jtbCarInfoTable = new JTable(dtm);
         scrollPane = new JScrollPane(jtbCarInfoTable);
         //컬럼네임 크기 조절
@@ -104,16 +106,16 @@ public class CarManagerTab extends JPanel { //차량관리탭
 		
 		//크기 조정 및 배치
 		cMName.setBounds(10, 6, 140, 20);
-		scrollPane.setBounds(80, 50, 800, 400); // 테이블의 위치와 크기 설정
+		scrollPane.setBounds(60, 50, 800, 400); // 테이블의 위치와 크기 설정
 		
-		jtfStartDate.setBounds(280, 500, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
-		cmMiddle.setBounds(430, 500, 20, 20);
-		jtfEndDate.setBounds(450, 500, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
-		jbDateSearch.setBounds(610, 500, 70, 30); // 검색 버튼의 위치와 크기 설정
+		jtfStartDate.setBounds(65, 520, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
+		cmMiddle.setBounds(215, 520, 20, 20);
+		jtfEndDate.setBounds(235, 520, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
+		jbDateSearch.setBounds(385, 520, 70, 30); // 검색 버튼의 위치와 크기 설정
 
-		jbCarInfo.setBounds(250, 550, 120, 30); // "차량 정보" 버튼의 위치와 크기 설정
-		jbCarAdd.setBounds(420, 550, 120, 30); // "차량 추가" 버튼의 위치와 크기 설정
-		jbCarInfoModify.setBounds(590, 550, 120, 30); // "정보 수정" 버튼의 위치와 크기 설정
+		jbCarInfo.setBounds(485, 520, 120, 30); // "차량 정보" 버튼의 위치와 크기 설정
+		jbCarAdd.setBounds(610, 520, 120, 30); // "차량 추가" 버튼의 위치와 크기 설정
+		jbCarInfoModify.setBounds(735, 520, 120, 30); // "정보 수정" 버튼의 위치와 크기 설정
 		
 		scrollPane.setVisible(true);
 		setVisible(true);
@@ -171,5 +173,12 @@ public class CarManagerTab extends JPanel { //차량관리탭
 		return jbCarInfoModify;
 	}
     
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
     	
 } //class

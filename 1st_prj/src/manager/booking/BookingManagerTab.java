@@ -100,21 +100,75 @@ public class BookingManagerTab extends JPanel{
 
 	//크기 조정 및 배치
 	bMName.setBounds(10, 6, 140, 20);
-	scrollPane.setBounds(80, 50, 800, 400); 
+	scrollPane.setBounds(65, 50, 800, 400); 
 
-	jtfStartDate.setBounds(190, 500, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
-	omMiddle.setBounds(340, 500, 20, 20);
-	jtfEndDate.setBounds(360, 500, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
-	jbDateSearch.setBounds(520, 500, 70, 30); // 검색 버튼의 위치와 크기 설정
+	jtfStartDate.setBounds(65, 520, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
+	omMiddle.setBounds(215, 520, 20, 20);
+	jtfEndDate.setBounds(235, 520, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
+	jbDateSearch.setBounds(385, 520, 70, 30); // 검색 버튼의 위치와 크기 설정
 
-	jbAccept.setBounds(620, 500, 120, 30);
-	jbRefusal.setBounds(620, 500, 120, 30);
-	jbHistory.setBounds(620, 500, 120, 30);
+	jbAccept.setBounds(485, 520, 120, 30);
+	jbRefusal.setBounds(610, 520, 120, 30);
+	jbHistory.setBounds(735, 520, 120, 30);
 
 	scrollPane.setVisible(true);
 	setVisible(true);
 
 
 	} //BookingManagerTab
+
+
+	//getter
+	public JLabel getbMName() {
+		return bMName;
+	}
+
+
+	public JTable getJtbOrderInfoTable() {
+		return jtbOrderInfoTable;
+	}
+
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+
+	public JLabel getOmMiddle() {
+		return omMiddle;
+	}
+
+
+	public JTextField getJtfStartDate() {
+		return jtfStartDate;
+	}
+
+
+	public JTextField getJtfEndDate() {
+		return jtfEndDate;
+	}
+
+
+	public JButton getJbDateSearch() {
+		return jbDateSearch;
+	}
+
+
+	public JButton getJbAccept() {
+		return jbAccept;
+	}
+
+
+	public JButton getJbRefusal() {
+		return jbRefusal;
+	}
+
+
+	public JButton getJbHistory() {
+		return jbHistory;
+	}
+	
+	
+	
 	
 } //class

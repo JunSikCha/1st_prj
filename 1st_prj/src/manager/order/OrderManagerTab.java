@@ -95,17 +95,60 @@ public class OrderManagerTab extends JPanel{
 	oMName.setBounds(10, 6, 140, 20);
 	scrollPane.setBounds(80, 50, 800, 400); 
 
-	jtfStartDate.setBounds(190, 500, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
-	omMiddle.setBounds(340, 500, 20, 20);
-	jtfEndDate.setBounds(360, 500, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
-	jbDateSearch.setBounds(520, 500, 70, 30); // 검색 버튼의 위치와 크기 설정
+	jtfStartDate.setBounds(190, 520, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
+	omMiddle.setBounds(340, 520, 20, 20);
+	jtfEndDate.setBounds(360, 520, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
+	jbDateSearch.setBounds(520, 520, 70, 30); // 검색 버튼의 위치와 크기 설정
 
-	jbOrder.setBounds(620, 500, 120, 30);
+	jbOrder.setBounds(620, 520, 120, 30);
 
 	scrollPane.setVisible(true);
 	setVisible(true);
 
 
 	} //OrderManagerTab
+
+	
+	//getter
+	public JLabel getoMName() {
+		return oMName;
+	}
+
+
+	public JTable getJtbOrderInfoTable() {
+		return jtbOrderInfoTable;
+	}
+
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+
+	public JLabel getOmMiddle() {
+		return omMiddle;
+	}
+
+
+	public JTextField getJtfStartDate() {
+		return jtfStartDate;
+	}
+
+
+	public JTextField getJtfEndDate() {
+		return jtfEndDate;
+	}
+
+
+	public JButton getJbDateSearch() {
+		return jbDateSearch;
+	}
+
+
+	public JButton getJbOrder() {
+		return jbOrder;
+	}
+	
+	
 	
 }//class

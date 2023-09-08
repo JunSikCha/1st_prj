@@ -5,12 +5,6 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import manager.MyInformation.MyInformationTab;
-import manager.booking.BookingManagerTab;
-import manager.calculate.CalculateTab;
-import manager.inventory.InventoryManagerTab;
-import manager.order.OrderManagerTab;
-
 public class CarManager extends JFrame {//
 
     
@@ -28,7 +22,7 @@ public class CarManager extends JFrame {//
       OrderManagerTab cmt3=new OrderManagerTab(); 
       BookingManagerTab cmt4=new BookingManagerTab(); 
       CalculateTab cmt5=new CalculateTab(); 
-      MyInformationTab cmt6=new MyInformationTab(); 
+      MyInformationTap cmt6= new MyInformationTap(); 
       
       
       
@@ -54,7 +48,7 @@ public class CarManager extends JFrame {//
       
         
       //크기 조정 및 배치  
-      setBounds(300, 300, 1000, 740);
+      setBounds(400, 150, 950, 740);
       setVisible(true);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
