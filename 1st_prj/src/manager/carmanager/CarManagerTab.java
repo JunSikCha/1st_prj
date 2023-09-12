@@ -23,7 +23,6 @@ public class CarManagerTab extends JPanel implements ActionListener{ //차량관
 	    private JTable jtbCarInfoTable;
 	    private JScrollPane scrollPane;
 		
-	    private JLabel cmMiddle;
 		private JTextField jtfStartDate;
 		private JTextField jtfEndDate;
 		private JButton jbDateSearch;
@@ -37,13 +36,14 @@ public class CarManagerTab extends JPanel implements ActionListener{ //차량관
 	
 	    
 	    public CarManagerTab() {
+	    	
+	    dtm = new DefaultTableModel();
         
         //페이지 이름
     	jlCMName = new JLabel("입고 차량 관리");
         Font cmNameFont = new Font(null, Font.BOLD, 20);
         jlCMName.setFont(cmNameFont);
         
-        dtm = new DefaultTableModel();
         
         
         //정보 게시판
@@ -61,7 +61,7 @@ public class CarManagerTab extends JPanel implements ActionListener{ //차량관
         
         
         //날짜, 검색
-        cmMiddle = new JLabel("~");
+        JLabel cmMiddle = new JLabel("~");
         Font cmMiddleFont = new Font(null,Font.BOLD, 14);
         cmMiddle.setFont(cmMiddleFont);
         

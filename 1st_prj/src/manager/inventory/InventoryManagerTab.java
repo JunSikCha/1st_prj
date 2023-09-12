@@ -31,7 +31,9 @@ public class InventoryManagerTab extends JPanel implements ActionListener{
 	private DefaultTableModel dtm;
 	
 	public InventoryManagerTab() {
+		
 		dtm = new DefaultTableModel();
+		
 		
 		//페이지 이름
 		iMName = new JLabel("재고 부품 관리");
@@ -58,6 +60,7 @@ public class InventoryManagerTab extends JPanel implements ActionListener{
 		
         jbAdd = new JButton("추가");
         
+        
         //추가
         setLayout(null);
         
@@ -69,12 +72,12 @@ public class InventoryManagerTab extends JPanel implements ActionListener{
         
         add("Center", jbAdd);
         
+        imtEvt = new InventoryManagerTabEvt(this);
         
         //클릭 이벤트
         jbPartNameSearch.addActionListener(imtEvt);
         jbAdd.addActionListener(imtEvt);
         
-        imtEvt = new InventoryManagerTabEvt(this);
         
         //크기 조정 및 배치
         iMName.setBounds(10, 6, 140, 20);

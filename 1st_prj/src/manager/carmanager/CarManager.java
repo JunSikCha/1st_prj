@@ -5,7 +5,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import manager.MyInformation.MyInformationTab;
+import manager.MyInfomation.MyInformationTab;
 import manager.booking.BookingManagerTab;
 import manager.calculate.CalculateTab;
 import manager.inventory.InventoryManagerTab;
