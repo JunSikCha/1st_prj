@@ -1,8 +1,9 @@
 package manager.calculate;
 
 
-import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,10 +13,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class CalculateTab extends JPanel{
+public class CalculateTab extends JPanel implements ActionListener{
 	
+	private CalculateTabEvt ctEvt;
 	private JLabel iMName;
 	private JTable jtbInventoryInfoTable;
 	private JScrollPane scrollPane;
@@ -24,25 +27,10 @@ public class CalculateTab extends JPanel{
 	private JButton jbPartNameSearch;
 	
 	private JButton jbAdd;
+	private DefaultTableModel dtm;
 	
 	public CalculateTab() {
-		
-setLayout(new BorderLayout());
-		
-		String[] columnNames = { "정산기간", "부품비", "공임비", "총액" };
-		
-		String[][] data = { //확인용 데이터. 추후 자료 받기
-				{"23-08-29", "5,000,000", "3,000,000", "8,000,000"},
-				{"23-08-29", "5,000,000", "3,000,000", "8,000,000"},
-				{"23-08-29", "5,000,000", "3,000,000", "8,000,000"},
-				{"23-08-29", "5,000,000", "3,000,000", "8,000,000"},
-				{"23-08-29", "5,000,000", "3,000,000", "8,000,000"},
-				{"23-08-29", "5,000,000", "3,000,000", "8,000,000"},
-				{"23-08-29", "5,000,000", "3,000,000", "8,000,000"},
-				{"23-08-29", "5,000,000", "3,000,000", "8,000,000"}
-		};
-		//
-		
+		dtm = new DefaultTableModel();
 		
 		//페이지 이름
 		iMName = new JLabel("재고 부품 관리");
@@ -50,7 +38,7 @@ setLayout(new BorderLayout());
         iMName.setFont(imNameFont);
         
         //재고 게시판
-        jtbInventoryInfoTable = new JTable(data, columnNames);
+        jtbInventoryInfoTable = new JTable(dtm);
 		scrollPane = new JScrollPane(jtbInventoryInfoTable);
 		//컬럼네임 크기 조절
         JTableHeader tableHeader = jtbInventoryInfoTable.getTableHeader();
@@ -82,8 +70,8 @@ setLayout(new BorderLayout());
         
         
         //클릭 이벤트
-//        jtfPartName.addActionListener(imtEvt);
-//        jbPartNameSearch.addActionListener(imtEvt);
+        jtfPartName.addActionListener(ctEvt);
+        jbPartNameSearch.addActionListener(ctEvt);
         
         //크기 조정 및 배치
         iMName.setBounds(10, 6, 140, 20);
@@ -100,5 +88,40 @@ setLayout(new BorderLayout());
         
 	} //InventoryManagerTap
 
+	public JLabel getiMName() {
+		return iMName;
+	}
+
+	public JTable getJtbInventoryInfoTable() {
+		return jtbInventoryInfoTable;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public JTextField getJtfPartName() {
+		return jtfPartName;
+	}
+
+	public JButton getJbPartNameSearch() {
+		return jbPartNameSearch;
+	}
+
+	public JButton getJbAdd() {
+		return jbAdd;
+	}
+
+	public DefaultTableModel getDtm() {
+		return dtm;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }

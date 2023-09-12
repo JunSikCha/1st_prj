@@ -1,7 +1,8 @@
 package manager.inventory;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,10 +12,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class InventoryManagerTab extends JPanel{
+public class InventoryManagerTab extends JPanel implements ActionListener{
 
+	private InventoryManagerTabEvt imtEvt;
+	
 	private JLabel iMName;
 	private JTable jtbInventoryInfoTable;
 	private JScrollPane scrollPane;
@@ -24,23 +28,10 @@ public class InventoryManagerTab extends JPanel{
 	
 	private JButton jbAdd;
 	
+	private DefaultTableModel dtm;
+	
 	public InventoryManagerTab() {
-		
-		setLayout(new BorderLayout());
-		
-		String[] columnNames = { "시리얼넘버", "부품명", "재고", "단위", "단가", "공임비" };
-		
-		String[][] data = { //확인용 데이터. 추후 자료 받기
-				{"123456", "핸들", "5", "개", "365,000", "120,000"},
-				{"123456", "핸들", "5", "개", "365,000", "120,000"},
-				{"123456", "핸들", "5", "개", "365,000", "120,000"},
-				{"123456", "핸들", "5", "개", "365,000", "120,000"},
-				{"123456", "핸들", "5", "개", "365,000", "120,000"},
-				{"123456", "핸들", "5", "개", "365,000", "120,000"},
-				{"123456", "핸들", "5", "개", "365,000", "120,000"}
-		};
-		//partNo,partName, partStock, partUnit, partCost, laborCost
-		
+		dtm = new DefaultTableModel();
 		
 		//페이지 이름
 		iMName = new JLabel("재고 부품 관리");
@@ -48,7 +39,7 @@ public class InventoryManagerTab extends JPanel{
         iMName.setFont(imNameFont);
         
         //재고 게시판
-        jtbInventoryInfoTable = new JTable(data, columnNames);
+        jtbInventoryInfoTable = new JTable(dtm);
 		scrollPane = new JScrollPane(jtbInventoryInfoTable);
 		//컬럼네임 크기 조절
         JTableHeader tableHeader = jtbInventoryInfoTable.getTableHeader();
@@ -80,8 +71,10 @@ public class InventoryManagerTab extends JPanel{
         
         
         //클릭 이벤트
-//        jtfPartName.addActionListener(imtEvt);
-//        jbPartNameSearch.addActionListener(imtEvt);
+        jbPartNameSearch.addActionListener(imtEvt);
+        jbAdd.addActionListener(imtEvt);
+        
+        imtEvt = new InventoryManagerTabEvt(this);
         
         //크기 조정 및 배치
         iMName.setBounds(10, 6, 140, 20);
@@ -99,6 +92,10 @@ public class InventoryManagerTab extends JPanel{
 	} //InventoryManagerTap
 
 	//getter method
+	public DefaultTableModel getDtm() {
+        return dtm;
+     }
+	
 	public JLabel getiMName() {
 		return iMName;
 	}
@@ -121,6 +118,12 @@ public class InventoryManagerTab extends JPanel{
 
 	public JButton getJbAdd() {
 		return jbAdd;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

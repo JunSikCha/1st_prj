@@ -1,8 +1,8 @@
 package manager.booking;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,11 +12,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class BookingManagerTab extends JPanel{ //
+public class BookingManagerTab extends JPanel implements ActionListener{
+	private BookingManagerEvt bmtEvt;
 	
-	private JLabel bMName;
+	private JLabel jlBMName;
 	private JTable jtbOrderInfoTable;
 	private JScrollPane scrollPane;
 	
@@ -30,31 +32,20 @@ public class BookingManagerTab extends JPanel{ //
 	private JButton jbRefusal;
 	private JButton jbHistory;
 	
+	private DefaultTableModel dtm;
+	
 	
 	public BookingManagerTab() {
-		setLayout(new BorderLayout());
-		
-		String[] columnNames = {"예약번호", "예약시간", "모델명", "증상", "아이디", "이름", "수락/거절", "☑" };
-		
-		String [][] data = { //확인용 데이터. 추후 자료 받기
-				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
-				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
-				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
-				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
-				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
-				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"},
-				{"0001", "2023-09-23 15:37", "K12da", "삐용이가 이상해요", "zum-in", "김줌인", "수락" , "☑"}
-				
-		};
-	//bookingNo, bookingDay + bookingTime, carName, faultDetail, clientId, clientName, bookingBoolean
 	
 		//페이지 이름
-		bMName = new JLabel("예약 관리");
+		jlBMName = new JLabel("예약 관리");
 		Font bmNameFont = new Font(null, Font.BOLD, 20);
-		bMName.setFont(bmNameFont);
+		jlBMName.setFont(bmNameFont);
 
+		dtm = new DefaultTableModel();
+		
 		//재고 게시판
-		jtbOrderInfoTable = new JTable(data, columnNames);
+		jtbOrderInfoTable = new JTable(dtm);
 		scrollPane = new JScrollPane(jtbOrderInfoTable);
 		//컬럼네임 크기 조절
 		JTableHeader tableHeader = jtbOrderInfoTable.getTableHeader();
@@ -84,7 +75,7 @@ public class BookingManagerTab extends JPanel{ //
 		//추가
 		setLayout(null);
 
-		add("North", bMName);
+		add("North", jlBMName);
 		add("Center", scrollPane);
 
 		add("Center", omMiddle);
@@ -95,80 +86,95 @@ public class BookingManagerTab extends JPanel{ //
 		add("Center", jbAccept);
 		add("Center", jbRefusal);
 		add("Center", jbHistory);
+		
+		//클릭 이벤트
+		jtfStartDate.addActionListener(bmtEvt);
+		jtfEndDate.addActionListener(bmtEvt);
+		jbDateSearch.addActionListener(bmtEvt);
 
 
 
-	//크기 조정 및 배치
-	bMName.setBounds(10, 6, 140, 20);
-	scrollPane.setBounds(65, 50, 800, 400); 
-
-	jtfStartDate.setBounds(65, 520, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
-	omMiddle.setBounds(215, 520, 20, 20);
-	jtfEndDate.setBounds(235, 520, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
-	jbDateSearch.setBounds(385, 520, 70, 30); // 검색 버튼의 위치와 크기 설정
-
-	jbAccept.setBounds(485, 520, 120, 30);
-	jbRefusal.setBounds(610, 520, 120, 30);
-	jbHistory.setBounds(735, 520, 120, 30);
-
-	scrollPane.setVisible(true);
-	setVisible(true);
-
-
-	} //BookingManagerTab
-
-
-	//getter
-	public JLabel getbMName() {
-		return bMName;
-	}
-
-
-	public JTable getJtbOrderInfoTable() {
-		return jtbOrderInfoTable;
-	}
-
-
-	public JScrollPane getScrollPane() {
-		return scrollPane;
-	}
-
-
-	public JLabel getOmMiddle() {
-		return omMiddle;
-	}
-
-
-	public JTextField getJtfStartDate() {
-		return jtfStartDate;
-	}
-
-
-	public JTextField getJtfEndDate() {
-		return jtfEndDate;
-	}
-
-
-	public JButton getJbDateSearch() {
-		return jbDateSearch;
-	}
-
-
-	public JButton getJbAccept() {
-		return jbAccept;
-	}
-
-
-	public JButton getJbRefusal() {
-		return jbRefusal;
-	}
-
-
-	public JButton getJbHistory() {
-		return jbHistory;
-	}
+		//크기 조정 및 배치
+		jlBMName.setBounds(10, 6, 140, 20);
+		scrollPane.setBounds(65, 50, 800, 400); 
+	
+		jtfStartDate.setBounds(65, 520, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
+		omMiddle.setBounds(215, 520, 20, 20);
+		jtfEndDate.setBounds(235, 520, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
+		jbDateSearch.setBounds(385, 520, 70, 30); // 검색 버튼의 위치와 크기 설정
+	
+		jbAccept.setBounds(485, 520, 120, 30);
+		jbRefusal.setBounds(610, 520, 120, 30);
+		jbHistory.setBounds(735, 520, 120, 30);
+	
+		scrollPane.setVisible(true);
+		setVisible(true);
 	
 	
+		} //BookingManagerTab
+	
+		public DefaultTableModel getDtm() {
+			return dtm;
+		}
+	
+		//getter
+		public JLabel getbMName() {
+			return jlBMName;
+		}
 	
 	
+		public JTable getJtbOrderInfoTable() {
+			return jtbOrderInfoTable;
+		}
+	
+	
+		public JScrollPane getScrollPane() {
+			return scrollPane;
+		}
+	
+	
+		public JLabel getOmMiddle() {
+			return omMiddle;
+		}
+	
+	
+		public JTextField getJtfStartDate() {
+			return jtfStartDate;
+		}
+	
+	
+		public JTextField getJtfEndDate() {
+			return jtfEndDate;
+		}
+	
+	
+		public JButton getJbDateSearch() {
+			return jbDateSearch;
+		}
+	
+	
+		public JButton getJbAccept() {
+			return jbAccept;
+		}
+	
+	
+		public JButton getJbRefusal() {
+			return jbRefusal;
+		}
+	
+	
+		public JButton getJbHistory() {
+			return jbHistory;
+		}
+	
+	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
+		
+		
 } //class

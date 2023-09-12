@@ -1,9 +1,12 @@
 package manager.order;
 
-public class OrderManagerEvt {
-	private OrderManagerTap omt;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class OrderManagerEvt implements ActionListener {
+	private OrderManagerTab omt;
 	
-	public OrderManagerEvt(OrderManagerTap omt) {
+	public OrderManagerEvt(OrderManagerTab omt) {
 		this.omt = omt;
 	}
 	
@@ -12,6 +15,12 @@ public class OrderManagerEvt {
 	}
 	
 	public void dateSerch() {
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	

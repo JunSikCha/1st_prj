@@ -7,9 +7,9 @@ import java.util.List;
 
 public class InventoryManagerTabEvt implements ActionListener {
 	
-	private InventoryManagerTap imt;
+	private InventoryManagerTab imt;
 	
-	public InventoryManagerTabEvt( InventoryManagerTap imt) {
+	public InventoryManagerTabEvt( InventoryManagerTab imt) {
 		this.imt=imt;
 		setInventoryTable();
 	}
