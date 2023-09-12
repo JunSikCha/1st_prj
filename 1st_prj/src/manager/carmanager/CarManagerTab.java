@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 public class CarManagerTab extends JPanel implements ActionListener{ //차량관리탭
-	
+	//아오 다영시치
 		private CarManagerTabEvt cmtEvt;
 		
 		private JLabel jlCMName;

@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class InventoryManagerSubWindow extends JDialog{
-	
+	//임시주석
 	private JLabel jlTitle;
 	
 	private JTextField jtfPartName;

@@ -75,7 +75,7 @@ public class CarManagerSubWindow extends JDialog {
 	
 		
 	public CarManagerSubWindow(CarManagerTab cmt) {
-		this.cmt=cmt;
+		this.cmt=cmt;//cmt
 		
 		setLayout(null);
 		

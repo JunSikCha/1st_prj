@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 public class InventoryManagerTab extends JPanel implements ActionListener{
-
+	//주석은 시진핑
 	private InventoryManagerTabEvt imtEvt;
 	
 	private JLabel iMName;
