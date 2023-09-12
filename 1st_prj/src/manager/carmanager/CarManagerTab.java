@@ -37,7 +37,13 @@ public class CarManagerTab extends JPanel implements ActionListener{ //차량관
 	    
 	    public CarManagerTab() {
 	    	
-	    dtm = new DefaultTableModel();
+	    dtm = new DefaultTableModel() {
+	    	// 테이블 읽기전용으로 설정
+	    	@Override
+	    	public boolean isCellEditable(int row, int column) {
+	    		return false;
+	    	}
+	    };
         
         //페이지 이름
     	jlCMName = new JLabel("입고 차량 관리");
@@ -49,6 +55,12 @@ public class CarManagerTab extends JPanel implements ActionListener{ //차량관
         //정보 게시판
         jtbCarInfoTable = new JTable(dtm);
         scrollPane = new JScrollPane(jtbCarInfoTable);
+        
+        //////////////////////////////////////////////////////
+        jtbCarInfoTable.getTableHeader().setReorderingAllowed(false);
+        
+        //////////////////////////////////////////////////////
+        
         //컬럼네임 크기 조절
         JTableHeader tableHeader = jtbCarInfoTable.getTableHeader();
         Font headerFont = new Font(null, Font.BOLD, 14);

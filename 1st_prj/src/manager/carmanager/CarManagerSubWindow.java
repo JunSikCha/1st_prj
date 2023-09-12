@@ -185,6 +185,7 @@ public class CarManagerSubWindow extends JDialog {
 		
         
         //부품 게시판
+		dtm = new DefaultTableModel();
 		jtPartTable = new JTable(dtm);
         scrollPane = new JScrollPane(jtPartTable);
 
@@ -198,7 +199,6 @@ public class CarManagerSubWindow extends JDialog {
         renderer.setFont(dataFont);
         renderer.setHorizontalAlignment(SwingConstants.CENTER); //데이터 가운데 정렬
 		
-        dtm = new DefaultTableModel();
 	       
 		CarManagerSubWindowEvt cmswe = new CarManagerSubWindowEvt(cmt,this);
 		jbFunction.addActionListener(cmswe);
@@ -233,7 +233,8 @@ public class CarManagerSubWindow extends JDialog {
 		
 		add("Center", pFaultDetail);
 		
-		add("Center", jtPartTable);
+//		add("Center", jtPartTable);
+		add("Center", scrollPane);
 		add("Center", pMaintenanceDetail);
 		add("Center", pNote);
 		add("Center", pTotal);
@@ -278,7 +279,8 @@ public class CarManagerSubWindow extends JDialog {
 		pFaultDetail.setBounds(50, 200, 580, 30);
 		
 		pMaintenanceDetail.setBounds(50, 230, 290, 30);
-		jtPartTable.setBounds(50, 270, 575, 100);
+//		jtPartTable.setBounds(50, 270, 575, 100);
+		scrollPane.setBounds(50, 270, 575, 100);
 		pNote.setBounds(50, 380, 290, 30);
 		pTotal.setBounds(50, 410, 290, 30);
 		jtfMaintenanceDetail.setBounds(340, 230, 290, 30);

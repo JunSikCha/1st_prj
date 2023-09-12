@@ -5,7 +5,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import manager.MyInfomation.MyInformationTab;
+import manager.MyInformation.MyInformationTab;
 import manager.booking.BookingManagerTab;
 import manager.calculate.CalculateTab;
 import manager.inventory.InventoryManagerTab;
@@ -29,8 +29,6 @@ public class CarManager extends JFrame {//
       BookingManagerTab cmt4=new BookingManagerTab(); 
       CalculateTab cmt5=new CalculateTab(); 
       MyInformationTab cmt6= new MyInformationTab(); 
-      
-      
       
 //      setLayout(null);
       
