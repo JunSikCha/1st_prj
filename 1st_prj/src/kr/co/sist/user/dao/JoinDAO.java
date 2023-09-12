@@ -12,6 +12,7 @@ import kr.co.sist.user.vo.JoinVO;
 public class JoinDAO {
 	
 	public boolean IdCheck(String id) throws SQLException {
+		//id 중복체크 메소드
 		boolean check;
 		
 		Connection con = null;
@@ -34,6 +35,7 @@ public class JoinDAO {
 	}//IdCheck
 	
 	public boolean createId(JoinVO jVO) throws SQLException {
+		//id 생성 메소드
 		boolean check;
 		
 		Connection con = null;
