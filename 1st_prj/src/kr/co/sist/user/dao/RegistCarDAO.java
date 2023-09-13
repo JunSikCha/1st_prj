@@ -22,6 +22,8 @@ public class RegistCarDAO {
 		return rDAO;
 	}//getInstance
 	
+	
+	
 	public void insertCarinfo(RegistCarVO rcVO) throws SQLException {
 		
 		Connection con = null;

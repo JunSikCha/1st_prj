@@ -53,7 +53,7 @@ public class ClientMainDAO {
 			if(rs.next()) {
 				cmVO = new ClientMainVO(rs.getString("carno"),rs.getString("mName"));
 //				cmList.add(cmVO);
-			}//end while
+			}//end if
 			
 		}finally {
 			db.dbClose(rs, pstmt, con);
@@ -61,14 +61,5 @@ public class ClientMainDAO {
 		
 		return cmVO;
 	}//selectCarInfo
-	
-	public static void main(String[] args) {
-		ClientMainDAO cmDAO = new ClientMainDAO();
-		try {
-			System.out.println(cmDAO.selectCarInfo("cha"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 }//class
