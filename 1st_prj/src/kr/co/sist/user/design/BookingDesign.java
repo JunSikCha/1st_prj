@@ -15,8 +15,11 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
+import kr.co.sist.user.event.BookingEvt;
+
 public class BookingDesign extends JFrame {
 	
+	private BookingEvt bdEvt;
 	private JLabel jlTitle;
 	private JLabel jlBranch;
 	private JLabel jlBookdate;
@@ -80,6 +83,11 @@ public class BookingDesign extends JFrame {
 		 jtaDetail.setBackground(java.awt.Color.WHITE);
 		 jtaDetail.setText("내용을 입력해주세요");
 		 
+		 jcbBranch.addActionListener(bdEvt);
+		 jcbBookdate.addActionListener(bdEvt);
+		 jcbBookTime.addActionListener(bdEvt);
+		 jbtComplete.addActionListener(bdEvt);
+		 jbtCancel.addActionListener(bdEvt);
 		
 		 JPanel jpNorth = new JPanel();
 		 JPanel jpMiddle = new JPanel();
@@ -126,6 +134,9 @@ public class BookingDesign extends JFrame {
 	      add(jbtCancel);
 	      add(jbtX);
 	      
+	      bdEvt = new  BookingEvt (this);
+	      jbtComplete.addActionListener(bdEvt);
+		  jbtCancel.addActionListener(bdEvt);
 		 
 		setBounds(700,280,400,500);
 		setVisible(true);
@@ -146,6 +157,9 @@ public class BookingDesign extends JFrame {
 	}
 
 
+	public BookingEvt getBdEvt() {
+		return bdEvt;
+	}
 
 
 	public JLabel getJlTitle() {

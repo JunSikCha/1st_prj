@@ -5,12 +5,18 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import kr.co.sist.user.dao.BookingDAO;
+import kr.co.sist.user.design.BookingDesign;
 import kr.co.sist.user.vo.BookingVO;
 
 public class BookingEvt implements ActionListener{
 	
+	private BookingDesign bd;
+	
 	private BookingVO bVO;
 
+	public BookingEvt(BookingDesign bd) {
+		this.bd=bd;
+	}
 	
 	private void addBooking(String carno, String modelno, String issue, String centername ,String bdate) {
 		
@@ -46,8 +52,5 @@ public class BookingEvt implements ActionListener{
 		
 	}
 	
-	public static void main(String[] args) {
-		new BookingEvt().addBooking("testc", "testc", "testc", "교대점","2023");
-	}
 
 }
