@@ -12,10 +12,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import kr.co.sist.user.event.HistoryEvt;
+
 @SuppressWarnings("serial")
 public class HistoryDesign extends JFrame {
 	
-	private HistoryDesignEvt hdEvt;
+	private HistoryEvt hEvt;
 	
 	private JLabel jlTitle;
 	private JLabel jlHistoryPeriod;
@@ -75,8 +77,8 @@ public class HistoryDesign extends JFrame {
 		dtmHistoryDesign = new DefaultTableModel();
 		jtHistoryDesign = new JTable(dtmHistoryDesign);
 		jspHistoryDesign = new JScrollPane(jtHistoryDesign);
-	    jcbStartDate.addActionListener(hdEvt);
-	    jcbEndDate.addActionListener(hdEvt);
+	    jcbStartDate.addActionListener(hEvt);
+	    jcbEndDate.addActionListener(hEvt);
 	    
 	    JPanel jpNorth = new JPanel();
 	    JPanel jpSouth = new JPanel();
@@ -126,14 +128,14 @@ public class HistoryDesign extends JFrame {
 		add(jbtChk);
 		add(jbtMain);
 		
-	    hdEvt = new HistoryDesignEvt(this);
-		jbtToday.addActionListener(hdEvt);
-		jbt7days.addActionListener(hdEvt);
-		jbt1month.addActionListener(hdEvt);
-		jbt3month.addActionListener(hdEvt);
-		jbtMonthlyChk.addActionListener(hdEvt);
-		jbtChk.addActionListener(hdEvt);
-		jbtMain.addActionListener(hdEvt);
+	    hEvt = new HistoryEvt(this);
+		jbtToday.addActionListener(hEvt);
+		jbt7days.addActionListener(hEvt);
+		jbt1month.addActionListener(hEvt);
+		jbt3month.addActionListener(hEvt);
+		jbtMonthlyChk.addActionListener(hEvt);
+		jbtChk.addActionListener(hEvt);
+		jbtMain.addActionListener(hEvt);
 		
 		
 	    

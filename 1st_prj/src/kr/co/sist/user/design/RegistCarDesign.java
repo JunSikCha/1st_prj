@@ -16,10 +16,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import kr.co.sist.user.event.RegistCarEvt;
+
 @SuppressWarnings("serial")
 public class RegistCarDesign extends JFrame {
 	
-	private  RegistCarDesignEvt rcEvt;
+	private  RegistCarEvt rcEvt;
 	private JLabel jlModel;
 	private JLabel jlCarNum;
 	private JLabel jlDistance;
@@ -90,7 +92,7 @@ public class RegistCarDesign extends JFrame {
 		 add(jbtComplete);
 		 add(jbtCancel);
 		 
-		 rcEvt= new RegistCarDesignEvt(this);
+		 rcEvt= new RegistCarEvt(this);
 		 jbtComplete.addActionListener(rcEvt);
 		 jbtCancel.addActionListener(rcEvt);
 		
@@ -107,12 +109,12 @@ public class RegistCarDesign extends JFrame {
 		
 	}//RegistCarDesign
 	
-	public RegistCarDesignEvt getRcEvt() {
+	public RegistCarEvt getRcEvt() {
 		return rcEvt;
 	}
 
 
-	public void setRcEvt(RegistCarDesignEvt rcEvt) {
+	public void setRcEvt(RegistCarEvt rcEvt) {
 		this.rcEvt = rcEvt;
 	}
 

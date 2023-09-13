@@ -8,10 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import kr.co.sist.user.event.ModifyEvt;
+
 public class ModifyDesign extends JFrame {
 	
 	
-	private ModifyDesignEvt mdEvt;
+	private ModifyEvt mdEvt;
 	private JLabel jlModify;
 	private JButton jbtCancel;
 	private JButton jbtModifyUserDesign;
@@ -24,7 +26,7 @@ public class ModifyDesign extends JFrame {
 		jbtModifyPassDesign = new JButton("비밀번호변경");
 		jbtCancel = new JButton("X");
 		
-		ModifyDesignEvt mde = new ModifyDesignEvt(this);
+		ModifyEvt mde = new ModifyEvt(this);
 		
 		jlModify.setBounds(240, 40, 150, 100);
 		jbtModifyUserDesign.setBounds(110, 140, 150, 100);
@@ -38,7 +40,7 @@ public class ModifyDesign extends JFrame {
 	      jbtModifyPassDesign.setFont(btnFont);
 	      jbtModifyUserDesign.setFont(btnFont);
 	      
-	      mdEvt= new ModifyDesignEvt(this);
+	      mdEvt= new ModifyEvt(this);
 	      jbtModifyPassDesign.addActionListener(mdEvt);
 	      jbtModifyUserDesign.addActionListener(mdEvt);
 	      jbtCancel.addActionListener(mdEvt);
@@ -59,7 +61,7 @@ public class ModifyDesign extends JFrame {
 		});
 	}//ModifyDesign
 
-	public ModifyDesignEvt getMdEvt() {
+	public ModifyEvt getMdEvt() {
 		return mdEvt;
 	}
 

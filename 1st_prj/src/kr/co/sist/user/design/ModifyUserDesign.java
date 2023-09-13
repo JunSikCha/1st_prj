@@ -10,10 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import kr.co.sist.user.event.ModifyUserEvt;
+
 @SuppressWarnings("serial")
 public class ModifyUserDesign extends JFrame {
 
-	private ModifyUserDesignEvt mudEvt;
+	private ModifyUserEvt mudEvt;
 	private JLabel jlUserModfiy;
 	private JLabel jlName;
 	private JTextField jtfName;
@@ -68,7 +70,7 @@ public class ModifyUserDesign extends JFrame {
 		add(jbtComplete);
 		add(jbtCancel);
 		
-		mudEvt = new ModifyUserDesignEvt(this);
+		mudEvt = new ModifyUserEvt(this);
 		jbtComplete.addActionListener(mudEvt);
 		jbtCancel.addActionListener(mudEvt);
 		
@@ -83,7 +85,7 @@ public class ModifyUserDesign extends JFrame {
 		
 	}
 
-	public ModifyUserDesignEvt getMudEvt() {
+	public ModifyUserEvt getMudEvt() {
 		return mudEvt;
 	}
 

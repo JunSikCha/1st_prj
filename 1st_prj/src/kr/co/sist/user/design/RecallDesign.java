@@ -8,14 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 
-import project.db용.RecallDesignEvt3;
+import kr.co.sist.user.event.RecallEvt;
 
 @SuppressWarnings("serial")
 public class RecallDesign extends JFrame {
-	private RecallDesignEvt rdEvt;
+	private RecallEvt rEvt;
 	private JLabel jlTitle;
 	private JLabel jlSubTitle;
 	private JLabel jlCarModel;
@@ -71,21 +70,21 @@ public class RecallDesign extends JFrame {
         add( jbtCancel);
         
         JLabel imgLabel = new JLabel();
-        ImageIcon icon = new ImageIcon(RecallDesign.class.getResource("/project/bmw.JPG"));
-        imgLabel.setIcon(icon);
+//        ImageIcon icon = new ImageIcon(RecallDesign.class.getResource("/project/bmw.JPG"));
+//        imgLabel.setIcon(icon);
         imgLabel.setBounds(150, 150, 300, 200);
         imgLabel.setHorizontalAlignment(JLabel.LEFT);
         getContentPane().add(imgLabel);
 
         JLabel imgLabel2 = new JLabel(); // imgLabel2 생성
-        ImageIcon icon2 = new ImageIcon(RecallDesign.class.getResource("/project/recall.JPG"));
-        imgLabel2.setIcon(icon2); // imgLabel2에 이미지 아이콘 설정
+//        ImageIcon icon2 = new ImageIcon(RecallDesign.class.getResource("/project/recall.JPG"));
+//        imgLabel2.setIcon(icon2); // imgLabel2에 이미지 아이콘 설정
         imgLabel2.setBounds(600, 150, 300, 200); // 두 번째 이미지의 위치 설정
         imgLabel2.setHorizontalAlignment(JLabel.RIGHT); // 두 번째 이미지의 가로 정렬 설정
         getContentPane().add(imgLabel2);
         
-        rdEvt = new RecallDesignEvt(this);
-        jbtCancel.addActionListener(rdEvt);
+        rEvt = new RecallEvt(this);
+        jbtCancel.addActionListener(rEvt);
         
         jlTitle.setBounds(430, 15, 180, 50);
         Font titleFont = new Font("SansSerif", Font.BOLD, 28);
@@ -147,8 +146,8 @@ public class RecallDesign extends JFrame {
 
 
 
-	public RecallDesignEvt getRdEvt() {
-		return rdEvt;
+	public RecallEvt getRdEvt() {
+		return rEvt;
 	}
 
 

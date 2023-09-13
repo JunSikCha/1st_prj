@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import kr.co.sist.user.event.ModifyPassEvt;
+
 @SuppressWarnings("serial")
 public class ModifyPassDesign extends JFrame{
 	
-	private ModifyPassDesignEvt mpdEvt;
+	private ModifyPassEvt mpdEvt;
 	
 	private JLabel jlModifyPass;
 	private JLabel jlcurPwd;
@@ -64,7 +66,7 @@ public class ModifyPassDesign extends JFrame{
 		add(jbtComplete);
 		add(jbtCancel);
 		
-		mpdEvt = new ModifyPassDesignEvt(this);
+		mpdEvt = new ModifyPassEvt(this);
 		jbtComplete.addActionListener(mpdEvt);
 		jbtCancel.addActionListener(mpdEvt);
 		
@@ -73,7 +75,7 @@ public class ModifyPassDesign extends JFrame{
 		 
 	}
 
-	public ModifyPassDesignEvt getMpdEvt() {
+	public ModifyPassEvt getMpdEvt() {
 		return mpdEvt;
 	}
 

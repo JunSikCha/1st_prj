@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.swing.JOptionPane;
 
 import kr.co.sist.user.dao.JoinDAO;
@@ -25,11 +26,11 @@ public class JoinDesignEvt extends WindowAdapter implements ActionListener {
 	}
 	
 	public JoinVO newMemberInfo() {
-		String id = jd.getJtfId().getText().trim();
+		String id = jd.getJtfId().getText();
 		String pw = String.valueOf(jd.getJpwPass().getPassword());
-		String name = jd.getJtfName().getText().trim();
-		String tel = jd.getJtfPhNum().getText().trim();
-		String email = jd.getJtfEmail().getText().trim();
+		String name = jd.getJtfName().getText();
+		String tel = jd.getJtfPhNum().getText();
+		String email = jd.getJtfEmail().getText();
 		JoinVO jVO = new JoinVO(id, pw, name, tel, email);
 		
 		return jVO; 
@@ -157,7 +158,7 @@ public class JoinDesignEvt extends WindowAdapter implements ActionListener {
 				return;
 			}
 			
-						
+			//DAO 메소드 사용
 			JoinDAO jDAO = new JoinDAO();
 			try {
 				boolean memberJoin = jDAO.createId(newMemberInfo());
