@@ -3,6 +3,7 @@ package manager.inventory;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -17,7 +18,7 @@ public class InventoryManagerSubWindow extends JDialog{
 	//임시주석
 	private JLabel jlTitle;
 	
-	private JTextField jtfPartName;
+	private JComboBox jtfPartName;
 	private JTextField jtfPartNo;
 	private JTextField jtfAddNumber;
 	private JTextField jlAddNumber;
@@ -56,7 +57,6 @@ public class InventoryManagerSubWindow extends JDialog{
         JLabel jlLaborCost = new JLabel("공임비");
         
         //수정 가능
-        jtfPartName = new JTextField();
         jtfAddNumber = new JTextField();
         //수정 불가능
         jtfPartNo = new JTextField();
@@ -87,6 +87,12 @@ public class InventoryManagerSubWindow extends JDialog{
 		add("Center",jlPartUnit);
 		add("Center",jlPartCost);
 		add("Center",jlLaborCost);
+		add("Center", jtfPartName);
+		add("Center",jtfPartNo);
+		add("Center",jtfAddNumber);
+		add("Center",jtfPartUnit);
+		add("Center",jtfPartCost);
+		add("Center",jtfLaborCost);
 		
 		add("Center", jbCancle);
 		add("Center",jbOk);
@@ -97,16 +103,30 @@ public class InventoryManagerSubWindow extends JDialog{
 		jbOk.addActionListener(imswe);
 		
 		
+		
+		
 		//크기 조정 및 배치
 		jlTitle.setBounds(10, 6, 140, 20);
 		scrollPane.setBounds(60, 50, 800, 770); 
 		
-//		jlPartName.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
-//		jlPartNo.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
-//		jlAddNumber.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
-//		jlPartUnit.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
-//		jlPartCost.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
-//		jlLaborCost.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
+		jlPartName.setBounds(70, 40, 80, 30);
+		jtfPartName.setBounds(70, 70, 240, 30);
+		
+		jlPartNo.setBounds(70, 110, 80, 30);
+		jtfPartNo.setBounds(70, 140, 240, 30);
+		
+		jlAddNumber.setBounds(70, 180, 80, 30);
+		jtfAddNumber.setBounds(70, 210, 240, 30);
+		
+		jlPartUnit.setBounds(70, 250, 80, 30);
+		jtfPartUnit.setBounds(70, 280, 240, 30);
+		
+		jlPartCost.setBounds(70, 320, 80, 30);
+		jtfPartCost.setBounds(70, 350, 240, 30);
+		
+		jlLaborCost.setBounds(70, 390, 80, 30);
+		jtfLaborCost.setBounds(70, 420, 240, 30);
+		
 		
 		jbCancle.setBounds(60, 500, 120, 30);
 		jbOk.setBounds(200, 500, 120, 30);
@@ -124,9 +144,63 @@ public class InventoryManagerSubWindow extends JDialog{
 		
 	}
 	
-	public static void main(String[] args) {
-		InventoryManagerTab imt = new InventoryManagerTab();
-	      new InventoryManagerSubWindow(imt);
-	   }//main
+//	public static void main(String[] args) {
+//		InventoryManagerTab imt = new InventoryManagerTab();
+//	      new InventoryManagerSubWindow(imt);
+//	   }//main //배치 확인용 메인
 
+	public JLabel getJlTitle() {
+		return jlTitle;
+	}
+
+
+	public JTextField getJtfPartNo() {
+		return jtfPartNo;
+	}
+
+	public JTextField getJtfAddNumber() {
+		return jtfAddNumber;
+	}
+
+	public JTextField getJlAddNumber() {
+		return jlAddNumber;
+	}
+
+	public JTextField getJtfPartUnit() {
+		return jtfPartUnit;
+	}
+
+	public JTextField getJtfPartCost() {
+		return jtfPartCost;
+	}
+
+	public JTextField getJtfLaborCost() {
+		return jtfLaborCost;
+	}
+
+	public JButton getJbCancle() {
+		return jbCancle;
+	}
+
+	public JButton getJbOk() {
+		return jbOk;
+	}
+
+	public InventoryManagerTab getImt() {
+		return imt;
+	}
+
+	public JComponent getScrollPane() {
+		return scrollPane;
+	}
+
+	public DefaultTableModel getDtm() {
+		return dtm;
+	}
+
+	public InventoryManagerSubWindowEvt getImswEvt() {
+		return imswEvt;
+	}
+
+	
 } //class
