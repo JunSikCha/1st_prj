@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -87,54 +88,50 @@ public class CarManagerTabEvt implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//날짜검색 클릭 이벤트
 		if (e.getSource() == cmt.getJbDateSearch()) {
 			setCarInfoTable();
 		} // end if
+		
+		//차량정보 클릭 이벤트
 		if (e.getSource() == cmt.getJbtCarInfo()) {
-//			oneCarInfo();
-			new CarManagerSubWindow(cmt);
+			String str = "차량정보";
+			// 테이블 미 선택시 예외처리
+			try {
+				new CarManagerSubWindow(cmt, str);
+			}catch (ArrayIndexOutOfBoundsException ae) {
+				JOptionPane.showMessageDialog(null, "조회할 차량을 선택하세요");
+			}//end catch
 		} // end if
+		
+		//차량추가 클릭 이벤트
+		if (e.getSource() == cmt.getJbtCarAdd()) {
+			String str = "차량추가";
+			// 테이블 미 선택시 예외처리
+			try {
+				new CarManagerSubWindow(cmt, str);
+			}catch (ArrayIndexOutOfBoundsException ae) {
+				JOptionPane.showMessageDialog(null, "조회할 차량을 선택하세요");
+			}//end catch
+		} // end if
+		
+		//정보수정 클릭 이벤트
+		if (e.getSource() == cmt.getJbtCarInfoModify()) {
+			String str = "정보수정";
+			// 테이블 미 선택시 예외처리
+			try {
+				new CarManagerSubWindow(cmt, str);
+			}catch (ArrayIndexOutOfBoundsException ae) {
+				JOptionPane.showMessageDialog(null, "수정할 차량을 선택하세요");
+			}//end catch
+		} // end if
+		
+		
+		
+		
+		
+		
 	}// actionPerformed
 
-//	public void oneCarInfo() {
-//		CarManagerDAO cmDAO = CarManagerDAO.getInstance();
-//		CarManagerVO cmVO = new CarManagerVO();
-//		List<PartInfoVO> listPiVO = new ArrayList<PartInfoVO>();
-//		
-//		
-//		int historyno = Integer.parseInt(cmt.getJtbCarInfoTable().getValueAt(cmt.getJtbCarInfoTable().getSelectedRow(),0).toString());
-//		String carNo = String.valueOf(cmt.getJtbCarInfoTable().getValueAt(cmt.getJtbCarInfoTable().getSelectedRow(),1));
-//		String carName = String.valueOf(cmt.getJtbCarInfoTable().getValueAt(cmt.getJtbCarInfoTable().getSelectedRow(),2));
-//		String maintenanceDetail = String.valueOf(cmt.getJtbCarInfoTable().getValueAt(cmt.getJtbCarInfoTable().getSelectedRow(),3));
-//		String receivedDay = String.valueOf(cmt.getJtbCarInfoTable().getValueAt(cmt.getJtbCarInfoTable().getSelectedRow(),4));
-//		String releaseDay = String.valueOf(cmt.getJtbCarInfoTable().getValueAt(cmt.getJtbCarInfoTable().getSelectedRow(),5));
-//		String note = String.valueOf(cmt.getJtbCarInfoTable().getValueAt(cmt.getJtbCarInfoTable().getSelectedRow(),6));
-//		
-//		cmVO.setHistoryNo(historyno);
-//		cmVO.setCarNo(carNo);
-//		cmVO.setCarName(carName);
-//		cmVO.setReceivedDay(receivedDay);
-//		cmVO.setReleaseDay(releaseDay);
-//		cmVO.setMaintenanceDetail(maintenanceDetail);
-//		cmVO.setNote(note);
-//		
-//		
-//		try {
-//			cmVO = cmDAO.selectOneCarInfo(cmVO);
-//			
-//			listPiVO = cmDAO.selectOnePartInfo(historyno);
-//			
-//			System.out.println(cmVO);
-//			for( PartInfoVO piVO : listPiVO) {
-//				System.out.println(piVO);
-//			}
-//			
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}//end catch
-//		
-//	}//oneCarInfo
 
 } // class

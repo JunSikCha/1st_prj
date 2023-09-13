@@ -2,10 +2,9 @@ package manager.carmanager;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Panel;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -16,12 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 public class CarManagerSubWindow extends JDialog {
 
@@ -76,18 +72,24 @@ public class CarManagerSubWindow extends JDialog {
 
 	private JComponent scrollPane;
 	private DefaultTableModel dtm;
+	private DefaultComboBoxModel<String> model;
 	
 		
-	public CarManagerSubWindow(CarManagerTab cmt) {
+
+
+
+	public CarManagerSubWindow(CarManagerTab cmt,String str) {
 		this.cmt=cmt;//cmt
 		
 		setLayout(null);
 		
-		jlTitle = new JLabel("차량정보");
+		jlTitle = new JLabel(str);
 		jpTitle = new JPanel();
 //		pTitle.setLayout(new BorderLayout());
 		jpTitle.add(jlTitle, BorderLayout.CENTER);
 		jpTitle.setBackground(Color.gray);
+		
+		model = new DefaultComboBoxModel<String>();
 		
 		
 		JLabel jlMaintenencrNo = new JLabel("정비번호");
@@ -181,7 +183,7 @@ public class CarManagerSubWindow extends JDialog {
 		//
 		jtfFaultDetail = new JTextField();
 		jtfMaintenanceDetail = new JTextField();
-		jtfPartName = new JComboBox();
+		jtfPartName = new JComboBox<String>(model);
 		
 		jbPartAdd = new JButton("추가");
 		
@@ -200,8 +202,9 @@ public class CarManagerSubWindow extends JDialog {
 
 		
 	    //SubWindow이벤트 실행 
-		CarManagerSubWindowEvt cmswe = new CarManagerSubWindowEvt(cmt,this);
+		CarManagerSubWindowEvt cmswe = new CarManagerSubWindowEvt(this.cmt,this,str);
 		jbFunction.addActionListener(cmswe);
+		jbPartAdd.addActionListener(cmswe);
 		
 		//게시판형태 테두리 선 주기
 		Border cmswBD = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
@@ -223,7 +226,7 @@ public class CarManagerSubWindow extends JDialog {
 		
 		//추가
 		setLayout(null);
-        
+        setTitle(str);
         add("Center", jpTitle);
         
         add("Center", jpMaintenencrNo);
@@ -342,32 +345,32 @@ public class CarManagerSubWindow extends JDialog {
 	}
 
 
-	public JPanel getjpTitle() {
+	public JPanel getJpTitle() {
 		return jpTitle;
 	}
 
 
-	public JPanel getjpMaintenencrNo() {
+	public JPanel getJpMaintenencrNo() {
 		return jpMaintenencrNo;
 	}
 
 
-	public JPanel getjpcarName() {
+	public JPanel getJpcarName() {
 		return jpcarName;
 	}
 
 
-	public JPanel getjpPhone() {
+	public JPanel getJpPhone() {
 		return jpPhone;
 	}
 
 
-	public JPanel getjpreceiveDay() {
+	public JPanel getJpreceiveDay() {
 		return jpreceiveDay;
 	}
 
 
-	public JPanel getjpempName() {
+	public JPanel getJpempName() {
 		return jpempName;
 	}
 
@@ -397,27 +400,27 @@ public class CarManagerSubWindow extends JDialog {
 	}
 
 
-	public JPanel getjpCarNo() {
+	public JPanel getJpCarNo() {
 		return jpCarNo;
 	}
 
 
-	public JPanel getjpClientName() {
+	public JPanel getJpClientName() {
 		return jpClientName;
 	}
 
 
-	public JPanel getjpClientEmail() {
+	public JPanel getJpClientEmail() {
 		return jpClientEmail;
 	}
 
 
-	public JPanel getjjpReleaseDay() {
+	public JPanel getJpReleaseDay() {
 		return jpReleaseDay;
 	}
 
 
-	public JPanel getjpCarmileage() {
+	public JPanel getJpCarmileage() {
 		return jpCarmileage;
 	}
 
@@ -447,27 +450,27 @@ public class CarManagerSubWindow extends JDialog {
 	}
 
 
-	public JPanel getjpFaultDetail() {
+	public JPanel getJpFaultDetail() {
 		return jpFaultDetail;
 	}
 
 
-	public JPanel getjpMaintenanceDetail() {
+	public JPanel getJpMaintenanceDetail() {
 		return jpMaintenanceDetail;
 	}
 
 
-	public JPanel getjpPartName() {
+	public JPanel getJpPartName() {
 		return jpPartName;
 	}
 
 
-	public JPanel getjpSUnitPrice() {
+	public JPanel getJpSUnitPrice() {
 		return jpSUnitPrice;
 	}
 
 
-	public JPanel getjpSPrice() {
+	public JPanel getJpSPrice() {
 		return jpSPrice;
 	}
 
@@ -482,7 +485,7 @@ public class CarManagerSubWindow extends JDialog {
 	}
 
 
-	public JComboBox getJtfPartName() {
+	public JComboBox<String> getJtfPartName() {
 		return jtfPartName;
 	}
 
@@ -497,12 +500,12 @@ public class CarManagerSubWindow extends JDialog {
 	}
 
 
-	public JPanel getjpNote() {
+	public JPanel getJpNote() {
 		return jpNote;
 	}
 
 
-	public JPanel getjpTotal() {
+	public JPanel getJpTotal() {
 		return jpTotal;
 	}
 
@@ -535,6 +538,15 @@ public class CarManagerSubWindow extends JDialog {
 	public DefaultTableModel getDtm() {
 		return dtm;
 	}
+
+
+	public DefaultComboBoxModel<String> getModel() {
+		return model;
+	}
+	
+	
+
+
 
 
 	
