@@ -28,9 +28,6 @@ public class ModifyEvt extends WindowAdapter implements ActionListener {
 //			mpd.setVisible(true);
 		}
 		
-		if(ae.getSource() == md.getJbtCancel()) {
-			md.dispose();
-		}
 
 	}
 	

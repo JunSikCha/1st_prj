@@ -94,48 +94,62 @@ public class JoinDesign extends JFrame {
 	    
 		 setBounds(800, 500, 1000, 700);
 	     setVisible(true);
-	     
+	     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public JTextField getJtfId() {
-		return jtfId;
-	}
-
-	public JPasswordField getJpwPass() {
-		return jpwPass;
-	}
-
-	public JPasswordField getJtfCheckPass() {
-		return jtfCheckPass;
-	}
-
-	public JTextField getJtfName() {
-		return jtfName;
-	}
-
-	public JTextField getJtfPhNum() {
-		return jtfPhNum;
-	}
-
-	public JTextField getJtfEmail() {
-		return jtfEmail;
-	}
-
-	public JButton getJbtldCheck() {
-		return jbtldCheck;
-	}
-
-	public JButton getJbtOk() {
-		return jbtOk;
-	}
-
-	public JButton getJbtCancel() {
-		return jbtCancel;
-	}
 
 	public JoinDesignEvt getJdEvt() {
 		return jdEvt;
 	}
 
+
+	public JTextField getJtfId() {
+		return jtfId;
+	}
+
+
+	public JPasswordField getJpwPass() {
+		return jpwPass;
+	}
+
+
+	public JPasswordField getJtfCheckPass() {
+		return jtfCheckPass;
+	}
+
+
+	public JTextField getJtfName() {
+		return jtfName;
+	}
+
+
+	public JTextField getJtfPhNum() {
+		return jtfPhNum;
+	}
+
+
+	public JTextField getJtfEmail() {
+		return jtfEmail;
+	}
+
+
+	public JButton getJbtldCheck() {
+		return jbtldCheck;
+	}
+
+
+	public JButton getJbtOk() {
+		return jbtOk;
+	}
+
+
+	public JButton getJbtCancel() {
+		return jbtCancel;
+	}
+
+
+	public static void main(String[] args) {
+		new JoinDesign();
+	}
 
 }

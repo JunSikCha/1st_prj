@@ -20,30 +20,34 @@ import kr.co.sist.user.event.BookingEvt;
 public class BookingDesign extends JFrame {
 	
 	private BookingEvt bdEvt;
-	private JLabel jlTitle;
-	private JLabel jlBranch;
-	private JLabel jlBookdate;
-	private JLabel jlBookTime;
-	private JLabel jlDetail;
 	private JComboBox<String>jcbBranch;
-	private JComboBox<String>jcbBookdate;
+	private JComboBox<String>jcbBookYear;
+	private JComboBox<String>jcbBookMonth;
+	private JComboBox<String>jcbBookDay;
 	private JComboBox<String>jcbBookTime;
 	private DefaultComboBoxModel<String>dcbmjcbBranch;
-	private DefaultComboBoxModel<String>dcbmjcbBookdate;
+	private DefaultComboBoxModel<String>dcbmjcbBookYear;
+	private DefaultComboBoxModel<String>dcbmjcbBookMonth;
+	private DefaultComboBoxModel<String>dcbmjcbBookday;
 	private DefaultComboBoxModel<String>dcbmjcbBookTime;
 	private JScrollPane jspjcbBranch;
-	private JScrollPane jspjcbBookdate;
+	private JScrollPane jspjcbBookYear;
+	private JScrollPane jspjcbBookMonth;
+	private JScrollPane jspjcbBookDay;
 	private JScrollPane jspjcbBookTime;
 	private DefaultTableModel dtmjcbBranch;
-	private DefaultTableModel dtmjcbBookdate;
+	private DefaultTableModel dtmjcbBookYear;
+	private DefaultTableModel dtmjcbBookMonth;
+	private DefaultTableModel dtmjcbBookDay;
 	private DefaultTableModel dtmjcbBookTime;
 	private JTextArea jtaDetail;
 	private JTable jtBranch;
-	private JTable jtBookdate;
+	private JTable jtBookYear;
+	private JTable jtBookMonth;
+	private JTable jtBookDay;
 	private JTable jtBookTime;
 	private JButton jbtCancel;
 	private JButton jbtComplete;
-	private JButton jbtX;
 	
 
 	public BookingDesign() {
@@ -57,34 +61,47 @@ public class BookingDesign extends JFrame {
 		JLabel  jlDetail = new JLabel("간략한 설명");
 		jbtComplete = new JButton("예약");
 		jbtCancel = new JButton("취소");
-		jbtX = new JButton("X");
 		
 		
 		String[] BranchName= {"강남점","분당점","부산점"};
-		String[] DateName= {"2023.08.01","2023.08.02","2023.08.03"};
+		String[] YearName= {"2023","2024","2025"};
+		String[] MonthName= {"1","2","3"};
+		String[] DayName= {"1","2","3"};
 		String[] TimeName= {"2PM","3PM","4PM"};
 	
 		dcbmjcbBranch=new DefaultComboBoxModel<String>();
-		dcbmjcbBookdate=new DefaultComboBoxModel<String>();
+		dcbmjcbBookYear=new DefaultComboBoxModel<String>();
+		dcbmjcbBookMonth=new DefaultComboBoxModel<String>();
+		dcbmjcbBookday=new DefaultComboBoxModel<String>();
 		dcbmjcbBookTime=new DefaultComboBoxModel<String>();
 		jcbBranch= new JComboBox<String>(BranchName);
-		jcbBookdate= new JComboBox<String>(DateName);
+		jcbBookYear= new JComboBox<String>(YearName);
+		jcbBookMonth= new JComboBox<String>(MonthName);
+		jcbBookDay= new JComboBox<String>(DayName);
 		jcbBookTime= new JComboBox<String>(TimeName);
 		dtmjcbBranch = new DefaultTableModel(null,BranchName);
-		dtmjcbBookdate = new DefaultTableModel(null,DateName);
+		dtmjcbBookYear = new DefaultTableModel(null,YearName);
+		dtmjcbBookMonth = new DefaultTableModel(null,MonthName);
+		dtmjcbBookDay = new DefaultTableModel(null,DayName);
 		dtmjcbBookTime = new DefaultTableModel(null,TimeName);
 		 jtBranch = new JTable(dtmjcbBranch);
-		 jtBookdate = new JTable(dtmjcbBookdate);
+		 jtBookYear = new JTable(dtmjcbBookYear);
+		 jtBookMonth = new JTable(dtmjcbBookMonth);
+		 jtBookDay = new JTable(dtmjcbBookDay);
 		 jtBookTime = new JTable(dtmjcbBookTime);
 		 jspjcbBranch = new JScrollPane(jtBranch);
-		 jspjcbBookdate = new JScrollPane(jtBookdate);
+		 jspjcbBookYear = new JScrollPane(jtBookYear);
+		 jspjcbBookMonth = new JScrollPane(jtBookMonth);
+		 jspjcbBookDay = new JScrollPane(jtBookDay);
 		 jspjcbBookTime = new JScrollPane(jtBookTime);
 		 jtaDetail = new JTextArea("내용을 입력해주세요");
 		 jtaDetail.setBackground(java.awt.Color.WHITE);
 		 jtaDetail.setText("내용을 입력해주세요");
 		 
 		 jcbBranch.addActionListener(bdEvt);
-		 jcbBookdate.addActionListener(bdEvt);
+		 jcbBookYear.addActionListener(bdEvt);
+		 jcbBookMonth.addActionListener(bdEvt);
+		 jcbBookDay.addActionListener(bdEvt);
 		 jcbBookTime.addActionListener(bdEvt);
 		 jbtComplete.addActionListener(bdEvt);
 		 jbtCancel.addActionListener(bdEvt);
@@ -93,26 +110,29 @@ public class BookingDesign extends JFrame {
 		 JPanel jpMiddle = new JPanel();
 		 JPanel jpSouth = new JPanel();
 		 jpNorth.add(jcbBranch);
-		 jpMiddle.add(jcbBookdate);
+		 jpMiddle.add(jcbBookYear);
+		 jpMiddle.add(jcbBookMonth);
+		 jpMiddle.add(jcbBookDay);
 		 jpSouth.add(jcbBookTime);
 		 
 		 jlTitle.setBounds(10, 2, 200, 50);
-		 jlBranch.setBounds(100, 20, 100, 100);
-		 jcbBranch.setBounds(100, 90, 200, 30);
-		 jlBookdate.setBounds(100, 100, 100, 100);
-		 jcbBookdate.setBounds(100, 160, 200, 30);
-		 jlBookTime.setBounds(100, 210, 200, 30);
-		 jcbBookTime.setBounds(100, 240, 200, 30);
-		 jlDetail.setBounds(100, 280, 200, 50);
-		 jtaDetail.setBounds(100, 350, 200, 50);
-		 jbtComplete.setBounds(70, 415, 100, 40);
-		 jbtCancel.setBounds(220, 415, 100, 40);
-		 jbtX.setBounds(334, 2, 50, 30);
+		 jlBranch.setBounds(90, 20, 100, 100);
+		 jcbBranch.setBounds(90, 90, 200, 30);
+		 jlBookdate.setBounds(90, 100, 100, 100);
+		 jcbBookYear.setBounds(90, 170, 80, 30);
+		 jcbBookMonth.setBounds(180, 170, 50, 30);
+		 jcbBookDay.setBounds(240, 170, 50, 30);
+		 jlBookTime.setBounds(90, 210, 200, 30);
+		 jcbBookTime.setBounds(90, 240, 200, 30);
+		 jlDetail.setBounds(90, 280, 200, 50);
+		 jtaDetail.setBounds(90, 320, 200, 50);
+		 jbtComplete.setBounds(60, 415, 100, 40);
+		 jbtCancel.setBounds(200, 415, 100, 40);
 		 
 		 
-		 Font titleFont = new Font("SansSerif", Font.BOLD, 18);
+		 Font titleFont = new Font("SansSerif", Font.BOLD, 20);
 	      jlTitle.setFont(titleFont);
-	      Font labelFont = new Font("SansSerif", Font.BOLD, 15);
+	      Font labelFont = new Font("SansSerif", Font.BOLD, 17);
 	     jlBranch.setFont(labelFont);
 	     jlBookdate.setFont(labelFont);
 	     jlBookTime.setFont(labelFont);
@@ -127,12 +147,14 @@ public class BookingDesign extends JFrame {
 	      add(jlBookdate);
 	      add(jlBookTime);
 	      add(jlDetail);
+	      add(jtaDetail);
 	      add(jcbBranch);
-	      add(jcbBookdate);
+	      add(jcbBookYear);
+	      add(jcbBookMonth);
+	      add(jcbBookDay);
 	      add(jcbBookTime);
 	      add(jbtComplete);
 	      add(jbtCancel);
-	      add(jbtX);
 	      
 	      bdEvt = new  BookingEvt (this);
 	      jbtComplete.addActionListener(bdEvt);
@@ -152,38 +174,8 @@ public class BookingDesign extends JFrame {
 	}//BookingCheckDesign
 
 
-	public JButton getJbtX() {
-		return jbtX;
-	}
-
-
 	public BookingEvt getBdEvt() {
 		return bdEvt;
-	}
-
-
-	public JLabel getJlTitle() {
-		return jlTitle;
-	}
-
-
-	public JLabel getJlBranch() {
-		return jlBranch;
-	}
-
-
-	public JLabel getJlBookdate() {
-		return jlBookdate;
-	}
-
-
-	public JLabel getJlBookTime() {
-		return jlBookTime;
-	}
-
-
-	public JLabel getJlDetail() {
-		return jlDetail;
 	}
 
 
@@ -192,8 +184,18 @@ public class BookingDesign extends JFrame {
 	}
 
 
-	public JComboBox<String> getJcbBookdate() {
-		return jcbBookdate;
+	public JComboBox<String> getJcbBookYear() {
+		return jcbBookYear;
+	}
+
+
+	public JComboBox<String> getJcbBookMonth() {
+		return jcbBookMonth;
+	}
+
+
+	public JComboBox<String> getJcbBookDay() {
+		return jcbBookDay;
 	}
 
 
@@ -207,8 +209,18 @@ public class BookingDesign extends JFrame {
 	}
 
 
-	public DefaultComboBoxModel<String> getDcbmjcbBookdate() {
-		return dcbmjcbBookdate;
+	public DefaultComboBoxModel<String> getDcbmjcbBookYear() {
+		return dcbmjcbBookYear;
+	}
+
+
+	public DefaultComboBoxModel<String> getDcbmjcbBookMonth() {
+		return dcbmjcbBookMonth;
+	}
+
+
+	public DefaultComboBoxModel<String> getDcbmjcbBookday() {
+		return dcbmjcbBookday;
 	}
 
 
@@ -222,8 +234,18 @@ public class BookingDesign extends JFrame {
 	}
 
 
-	public JScrollPane getJspjcbBookdate() {
-		return jspjcbBookdate;
+	public JScrollPane getJspjcbBookYear() {
+		return jspjcbBookYear;
+	}
+
+
+	public JScrollPane getJspjcbBookMonth() {
+		return jspjcbBookMonth;
+	}
+
+
+	public JScrollPane getJspjcbBookDay() {
+		return jspjcbBookDay;
 	}
 
 
@@ -237,8 +259,18 @@ public class BookingDesign extends JFrame {
 	}
 
 
-	public DefaultTableModel getDtmjcbBookdate() {
-		return dtmjcbBookdate;
+	public DefaultTableModel getDtmjcbBookYear() {
+		return dtmjcbBookYear;
+	}
+
+
+	public DefaultTableModel getDtmjcbBookMonth() {
+		return dtmjcbBookMonth;
+	}
+
+
+	public DefaultTableModel getDtmjcbBookDay() {
+		return dtmjcbBookDay;
 	}
 
 
@@ -257,8 +289,18 @@ public class BookingDesign extends JFrame {
 	}
 
 
-	public JTable getJtBookdate() {
-		return jtBookdate;
+	public JTable getJtBookYear() {
+		return jtBookYear;
+	}
+
+
+	public JTable getJtBookMonth() {
+		return jtBookMonth;
+	}
+
+
+	public JTable getJtBookDay() {
+		return jtBookDay;
 	}
 
 
@@ -275,7 +317,9 @@ public class BookingDesign extends JFrame {
 	public JButton getJbtComplete() {
 		return jbtComplete;
 	}
-	
+
+
+
 	
 	
 }//class

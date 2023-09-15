@@ -42,9 +42,6 @@ public class ModifyUserEvt extends WindowAdapter implements ActionListener {
 		if(ae.getSource()==mud.getJbtComplete()) {
 			modifyUserMessage();
 		}
-		if(ae.getSource()==mud.getJbtCancel()) {
-			mud.dispose();
-		}
 
 	}
 	public void modifyUserMessage() {

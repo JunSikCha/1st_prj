@@ -25,9 +25,6 @@ public class RecallEvt extends WindowAdapter implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if(ae.getSource()==rd.getJbtCancel()) {
-			rd.dispose();
-		}
 		
 
 	}

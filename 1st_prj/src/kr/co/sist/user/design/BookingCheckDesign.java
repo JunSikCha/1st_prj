@@ -13,19 +13,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import kr.co.sist.user.event.BookingCheckEvt;
+
 @SuppressWarnings("serial")
 public class BookingCheckDesign extends JFrame {
 
+	private BookingCheckEvt bcdEvt;
 
-	private JLabel jlBookingCheckDesign;
-	private JLabel jlBookingPeriod;
-	private JLabel jlviewHistory;
-	private JLabel jlBookDate;
-	private JLabel jlBookTime;
-	private JLabel jldefectDetail;
-	private JLabel jlBranch;
-	private JLabel jlcondition;
-	private JLabel jlrefusal;
 	private JButton jbtToday;
 	private JButton jbt7days;
 	private JButton jbt1month;
@@ -80,6 +74,8 @@ public class BookingCheckDesign extends JFrame {
 		dtmBookingCheckDesign = new DefaultTableModel();
 		jtBookingCheckDesign = new JTable(dtmBookingCheckDesign);
 		jspBookingCheckDesign = new JScrollPane(jtBookingCheckDesign);
+	    jcbStartDate.addActionListener(bcdEvt);
+	    jcbEndDate.addActionListener(bcdEvt);
 	    
 	    JPanel jpNorth = new JPanel();
 	    JPanel jpSouth = new JPanel();
@@ -93,7 +89,7 @@ public class BookingCheckDesign extends JFrame {
 		jlviewHistory.setBounds(350, 180, 100, 100);
 		
 		//////////////////////////////////////////////////////
-		jspBookingCheckDesign.setBounds(90,240,600,400);
+		jspBookingCheckDesign.setBounds(45,240,700,350);
 		add(jspBookingCheckDesign);
 		///////////////////////////////////////////////////////
 		jcbStartDate.setBounds(200, 150, 150, 30);
@@ -104,8 +100,7 @@ public class BookingCheckDesign extends JFrame {
 		jbt3month.setBounds(500, 100, 80, 30);
 		jbtMonthlyChk.setBounds(600, 100, 120, 30);
 		jbtChk.setBounds(550, 150, 100, 30);
-		
-		jbtMain.setBounds(340, 300, 100, 30);
+		jbtMain.setBounds(320, 600, 140, 30);
 
 		Font titleFont = new Font("SansSerif", Font.BOLD, 22);
 		jlBookingCheckDesign.setFont(titleFont);
@@ -136,50 +131,23 @@ public class BookingCheckDesign extends JFrame {
 		add(jbtChk);
 		add(jbtMain);
 
+		bcdEvt = new BookingCheckEvt(this);
+		jbtToday.addActionListener(bcdEvt);
+		jbt7days.addActionListener(bcdEvt);
+		jbt1month.addActionListener(bcdEvt);
+		jbt3month.addActionListener(bcdEvt);
+		jbtMonthlyChk.addActionListener(bcdEvt);
+		jbtChk.addActionListener(bcdEvt);
+		jbtMain.addActionListener(bcdEvt);
 
 		setBounds(600, 350, 800, 700);
 		setVisible(true);
 
 	}// BookingCheckDesign
 
-
-	public JLabel getJlBookingCheckDesign() {
-		return jlBookingCheckDesign;
+	public BookingCheckEvt getBcdEvt() {
+		return bcdEvt;
 	}
-
-	public JLabel getJlBookingPeriod() {
-		return jlBookingPeriod;
-	}
-
-	public JLabel getJlviewHistory() {
-		return jlviewHistory;
-	}
-
-
-	public JLabel getJlBookDate() {
-		return jlBookDate;
-	}
-
-	public JLabel getJlBookTime() {
-		return jlBookTime;
-	}
-
-	public JLabel getJldefectDetail() {
-		return jldefectDetail;
-	}
-
-	public JLabel getJlBranch() {
-		return jlBranch;
-	}
-
-	public JLabel getJlcondition() {
-		return jlcondition;
-	}
-
-	public JLabel getJlrefusal() {
-		return jlrefusal;
-	}
-
 
 	public JButton getJbtToday() {
 		return jbtToday;
@@ -209,9 +177,48 @@ public class BookingCheckDesign extends JFrame {
 		return jbtMain;
 	}
 
-
 	public JButton getJbtDetail() {
 		return jbtDetail;
+	}
+
+	public JComboBox<String> getJcbStartDate() {
+		return jcbStartDate;
+	}
+
+	public JComboBox<String> getJcbEndDate() {
+		return jcbEndDate;
+	}
+
+	public DefaultComboBoxModel<String> getDcbmStartDate() {
+		return dcbmStartDate;
+	}
+
+	public DefaultComboBoxModel<String> getDcbmEndDate() {
+		return dcbmEndDate;
+	}
+
+	public JScrollPane getJspStartDate() {
+		return jspStartDate;
+	}
+
+	public JScrollPane getJspEndDate() {
+		return jspEndDate;
+	}
+
+	public DefaultTableModel getDtmStartDate() {
+		return dtmStartDate;
+	}
+
+	public DefaultTableModel getDtmEndDate() {
+		return dtmEndDate;
+	}
+
+	public JTable getJtaStartDate() {
+		return jtaStartDate;
+	}
+
+	public JTable getJtaEndDate() {
+		return jtaEndDate;
 	}
 
 	public JScrollPane getJspBookingCheckDesign() {
@@ -225,6 +232,7 @@ public class BookingCheckDesign extends JFrame {
 	public JTable getJtBookingCheckDesign() {
 		return jtBookingCheckDesign;
 	}
+
 
 	
 	

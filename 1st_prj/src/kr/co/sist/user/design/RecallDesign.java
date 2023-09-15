@@ -25,11 +25,10 @@ public class RecallDesign extends JFrame {
 	private JLabel jlRecallReason2;
 	private JLabel jlRecallDate;
 	private JLabel jlRecallDate2;
-	private JButton jbtCancel;
 	
 	private JScrollPane jspRecallDesign;
 	private DefaultTableModel dtmRecallDesign;
-	private JTable jtRecallDesign;
+	private JTable jtRecall;
 	
 	
 	public RecallDesign() {
@@ -44,15 +43,14 @@ public class RecallDesign extends JFrame {
 		JLabel  jlRecallReason2 = new JLabel("냉각수");
 		JLabel  jlRecallDate = new JLabel("리콜날짜");
 		JLabel  jlRecallDate2 = new JLabel("2023.08.22");
-	    jbtCancel = new JButton("X");
 	    
 	    dtmRecallDesign = new DefaultTableModel();
-	    jtRecallDesign = new JTable(dtmRecallDesign);
-	    jspRecallDesign = new JScrollPane(jtRecallDesign);
+	    jtRecall = new JTable(dtmRecallDesign);
+	    jspRecallDesign = new JScrollPane(jtRecall);
 	    
 	  
 	    
-	    jspRecallDesign.setBounds(110,400,800,800);
+	    jspRecallDesign.setBounds(110,400,700,500);
 	    add(jspRecallDesign);
 	    
 	    
@@ -67,7 +65,6 @@ public class RecallDesign extends JFrame {
         add(jlRecallReason2);
         add(jlRecallDate);
         add(jlRecallDate2);
-        add( jbtCancel);
         
         JLabel imgLabel = new JLabel();
 //        ImageIcon icon = new ImageIcon(RecallDesign.class.getResource("/project/bmw.JPG"));
@@ -84,7 +81,6 @@ public class RecallDesign extends JFrame {
         getContentPane().add(imgLabel2);
         
         rEvt = new RecallEvt(this);
-        jbtCancel.addActionListener(rEvt);
         
         jlTitle.setBounds(430, 15, 180, 50);
         Font titleFont = new Font("SansSerif", Font.BOLD, 28);
@@ -108,9 +104,7 @@ public class RecallDesign extends JFrame {
         jlRecallReason2.setFont(subTitleFont);
         jlRecallDate.setFont(subTitleFont);
         jlRecallDate2.setFont(subTitleFont);
-        jbtCancel.setBounds(935, 2, 50, 30);
         Font btnFont = new Font("SansSerif", Font.BOLD, 20);
-        jbtCancel.setFont(btnFont);
         
 		setBounds(600,350,1000,700);
 		setVisible(true);
@@ -137,8 +131,8 @@ public class RecallDesign extends JFrame {
 
 
 
-	public JTable getJtRecallDesign() {
-		return jtRecallDesign;
+	public JTable getjtRecall() {
+		return jtRecall;
 	}
 
 
@@ -242,20 +236,5 @@ public class RecallDesign extends JFrame {
 
 
 
-
-
-
-	public JButton getJbtCancel() {
-		return jbtCancel;
-	}
-
-
-
-
-
-
-	public static void main(String[] args) {
-
-	}
 
 }

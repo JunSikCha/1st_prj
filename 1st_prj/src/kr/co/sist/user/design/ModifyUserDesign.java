@@ -16,15 +16,10 @@ import kr.co.sist.user.event.ModifyUserEvt;
 public class ModifyUserDesign extends JFrame {
 
 	private ModifyUserEvt mudEvt;
-	private JLabel jlUserModfiy;
-	private JLabel jlName;
 	private JTextField jtfName;
-	private JLabel jlPhoneNum;
 	private JTextField jtfPhoneNum;
-	private JLabel jlEmail;
 	private JTextField jtfEmail;
 	private JButton jbtComplete;
-	private JButton jbtCancel;
 	
 	public ModifyUserDesign() {
 		super("회원정보 수정");
@@ -39,7 +34,6 @@ public class ModifyUserDesign extends JFrame {
 		jtfEmail = new JTextField();
 		
 		jbtComplete = new JButton("완료");
-		jbtCancel = new JButton("X");
 		
 		Font titleFont = new Font(null, Font.BOLD, 20);
 		jlUserModfiy.setFont(titleFont);
@@ -56,8 +50,7 @@ public class ModifyUserDesign extends JFrame {
 		jtfPhoneNum.setBounds(70, 240, 350, 40);
 		jlEmail.setBounds(70, 270,150, 100);
 		jtfEmail.setBounds(70, 340, 350, 40);
-		jbtComplete.setBounds(0,420,500,40);
-		jbtCancel.setBounds(435,2,50,30);
+		jbtComplete.setBounds(200,420,100,30);
 		
 		setLayout(null);
 		add(jlUserModfiy);
@@ -68,11 +61,9 @@ public class ModifyUserDesign extends JFrame {
 		add(jlEmail);
 		add(jtfEmail);
 		add(jbtComplete);
-		add(jbtCancel);
 		
 		mudEvt = new ModifyUserEvt(this);
 		jbtComplete.addActionListener(mudEvt);
-		jbtCancel.addActionListener(mudEvt);
 		
 		setBounds(400,400,500,500);
 		setVisible(true);
@@ -89,28 +80,12 @@ public class ModifyUserDesign extends JFrame {
 		return mudEvt;
 	}
 
-	public JLabel getJlUserModfiy() {
-		return jlUserModfiy;
-	}
-
-	public JLabel getJlName() {
-		return jlName;
-	}
-
 	public JTextField getJtfName() {
 		return jtfName;
 	}
 
-	public JLabel getJlPhoneNum() {
-		return jlPhoneNum;
-	}
-
 	public JTextField getJtfPhoneNum() {
 		return jtfPhoneNum;
-	}
-
-	public JLabel getJlEmail() {
-		return jlEmail;
 	}
 
 	public JTextField getJtfEmail() {
@@ -121,9 +96,6 @@ public class ModifyUserDesign extends JFrame {
 		return jbtComplete;
 	}
 
-	public JButton getJbtCancel() {
-		return jbtCancel;
-	}
-	
+
 
 }

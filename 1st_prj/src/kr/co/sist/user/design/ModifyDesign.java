@@ -14,8 +14,6 @@ public class ModifyDesign extends JFrame {
 	
 	
 	private ModifyEvt mdEvt;
-	private JLabel jlModify;
-	private JButton jbtCancel;
 	private JButton jbtModifyUserDesign;
 	private JButton jbtModifyPassDesign;
 
@@ -24,14 +22,12 @@ public class ModifyDesign extends JFrame {
 		JLabel jlModify =new JLabel("정보수정");
 		jbtModifyUserDesign = new JButton("회원정보수정");
 		jbtModifyPassDesign = new JButton("비밀번호변경");
-		jbtCancel = new JButton("X");
 		
 		ModifyEvt mde = new ModifyEvt(this);
 		
 		jlModify.setBounds(240, 40, 150, 100);
 		jbtModifyUserDesign.setBounds(110, 140, 150, 100);
 		jbtModifyPassDesign.setBounds(330, 140, 150, 100);
-		jbtCancel.setBounds(540, 2, 50, 30);
 		
 		
 		 Font titleFont = new Font("SansSerif", Font.BOLD, 25);
@@ -43,11 +39,9 @@ public class ModifyDesign extends JFrame {
 	      mdEvt= new ModifyEvt(this);
 	      jbtModifyPassDesign.addActionListener(mdEvt);
 	      jbtModifyUserDesign.addActionListener(mdEvt);
-	      jbtCancel.addActionListener(mdEvt);
 	      
 	      setLayout(null);
 	      add(jlModify);
-	      add(jbtCancel);
 	      add(jbtModifyPassDesign);
 	      add(jbtModifyUserDesign);
 	      
@@ -65,13 +59,6 @@ public class ModifyDesign extends JFrame {
 		return mdEvt;
 	}
 
-	public JLabel getJlModify() {
-		return jlModify;
-	}
-
-	public JButton getJbtCancel() {
-		return jbtCancel;
-	}
 
 	public JButton getJbtModifyUserDesign() {
 		return jbtModifyUserDesign;
@@ -80,6 +67,7 @@ public class ModifyDesign extends JFrame {
 	public JButton getJbtModifyPassDesign() {
 		return jbtModifyPassDesign;
 	}
+
 	
 	
 	

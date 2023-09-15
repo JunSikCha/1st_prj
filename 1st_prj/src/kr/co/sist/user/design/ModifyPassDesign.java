@@ -14,14 +14,9 @@ public class ModifyPassDesign extends JFrame{
 	
 	private ModifyPassEvt mpdEvt;
 	
-	private JLabel jlModifyPass;
-	private JLabel jlcurPwd;
 	private JTextField jtfcurPwdField;
-	private JLabel jlnewPwd;
 	private JTextField jtfnewPwdField;
-	private JLabel jlconfirmPwd;
 	private JTextField jtfconfirmPwd;
-	private JButton jbtCancel;
 	private JButton jbtComplete;
 	
 	public ModifyPassDesign() {
@@ -36,7 +31,6 @@ public class ModifyPassDesign extends JFrame{
 		jtfconfirmPwd = new JTextField();
 		
 		jbtComplete = new JButton("비밀번호 변경");
-		jbtCancel = new JButton("X");
 		
 		Font titleFont = new Font(null, Font.BOLD, 20);
 		 jlModifyPass.setFont(titleFont);
@@ -52,8 +46,7 @@ public class ModifyPassDesign extends JFrame{
 		jtfnewPwdField.setBounds(70, 240, 350, 40);
 		jlconfirmPwd.setBounds(70, 270,150, 100);
 		jtfconfirmPwd.setBounds(70, 340, 350, 40);
-		jbtComplete.setBounds(0,420,500,40);
-		jbtCancel.setBounds(435,2,50,30);
+		jbtComplete.setBounds(170,420,150,30);
 		
 		setLayout(null);
 		add(jlModifyPass);
@@ -64,11 +57,9 @@ public class ModifyPassDesign extends JFrame{
 		add(jlconfirmPwd);
 		add(jtfconfirmPwd);
 		add(jbtComplete);
-		add(jbtCancel);
 		
 		mpdEvt = new ModifyPassEvt(this);
 		jbtComplete.addActionListener(mpdEvt);
-		jbtCancel.addActionListener(mpdEvt);
 		
 		setBounds(400,400,500,500);
 		setVisible(true);
@@ -79,42 +70,22 @@ public class ModifyPassDesign extends JFrame{
 		return mpdEvt;
 	}
 
-	public JLabel getJlModifyPass() {
-		return jlModifyPass;
-	}
-
-	public JLabel getJlcurPwd() {
-		return jlcurPwd;
-	}
-
 	public JTextField getJtfcurPwdField() {
 		return jtfcurPwdField;
-	}
-
-	public JLabel getJlnewPwd() {
-		return jlnewPwd;
 	}
 
 	public JTextField getJtfnewPwdField() {
 		return jtfnewPwdField;
 	}
 
-	public JLabel getJlconfirmPwd() {
-		return jlconfirmPwd;
-	}
-
 	public JTextField getJtfconfirmPwd() {
 		return jtfconfirmPwd;
 	}
 
-	public JButton getJbtCancel() {
-		return jbtCancel;
-	}
 
 	public JButton getJbtComplete() {
 		return jbtComplete;
 	}
-	
-	
+
 
 }

@@ -43,9 +43,6 @@ public class ModifyPassEvt extends WindowAdapter implements ActionListener {
 			modifyPassMessage();
 		}
 		
-		if(ae.getSource()==mpd.getJbtCancel()) {
-			mpd.dispose();
-		}
 	}
 	
 	public void modifyPassMessage() {
