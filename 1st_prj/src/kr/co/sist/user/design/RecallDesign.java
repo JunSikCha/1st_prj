@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import kr.co.sist.user.event.RecallEvt;
+import kr.co.sist.user.event.UserData;
 
 @SuppressWarnings("serial")
 public class RecallDesign extends JFrame {

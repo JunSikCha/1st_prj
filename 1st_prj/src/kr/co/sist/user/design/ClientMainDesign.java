@@ -32,6 +32,7 @@ public class ClientMainDesign extends JFrame {
 	private JButton jbtBookCheck;
 	private JButton jbtRecall;
 	private JButton jbtNotify;
+	
 
 	public ClientMainDesign( String id ){
 		super("메인화면");
@@ -122,7 +123,24 @@ public class ClientMainDesign extends JFrame {
 		
 	}//ClientMainDesign
 	
+	public ClientMainEvt getCmEvt() {
+		return cmEvt;
+	}
+
+	public JLabel getJlCarname() {
+		return jlCarname;
+	}
+
+	public JLabel getJlCarNo() {
+		return jlCarNo;
+	}
+
+	public JLabel getJlDefaultimg() {
+		return jlDefaultimg;
+	}
+
 	public JButton getJbtRegist() {
+		
 		return jbtRegist;
 	}
 

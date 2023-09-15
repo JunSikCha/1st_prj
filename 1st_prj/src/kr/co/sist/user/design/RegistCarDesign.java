@@ -25,8 +25,8 @@ public class RegistCarDesign extends JFrame {
 	private JLabel jlModel;
 	private JLabel jlCarNum;
 	private JLabel jlDistance;
-	private DefaultComboBoxModel<String>dcbmjcbRegisterCarDesign;
-	private JComboBox<String>jcbRegisterCarDesign;
+	private DefaultComboBoxModel<String> dcbmModel;
+	private JComboBox<String>jcbModel;
 	private JScrollPane jspRegisterCarDesign;
 	private JTextField jtfCarnum;
 	private JTextField jtfDistance;
@@ -47,22 +47,19 @@ public class RegistCarDesign extends JFrame {
 		jbtComplete = new JButton("완료");
 		jbtCancel = new JButton("X");
 		
-		String[] columnNames = {"520D", "320D","720D"};
-		dcbmjcbRegisterCarDesign = new DefaultComboBoxModel<String>();
-//		jcbRegisterCarDesign = new JComboBox<String>(dcbmjcbRegisterCarDesign);
-		jcbRegisterCarDesign = new JComboBox<String>(columnNames);
-		dtmRegisterCarDesign = new DefaultTableModel(null, columnNames);
+		dcbmModel = new DefaultComboBoxModel<String>();
+		jcbModel = new JComboBox<String>(dcbmModel);
 		jtRegisterCarDesign = new JTable(dtmRegisterCarDesign);
 		jspRegisterCarDesign = new JScrollPane(jtRegisterCarDesign);
 		
 		
-		jcbRegisterCarDesign.addActionListener(rcEvt);
+		jcbModel.addActionListener(rcEvt);
 		JPanel jpNorth = new JPanel();
-		jpNorth.add(jcbRegisterCarDesign);
+		jpNorth.add(jcbModel);
 		
 		 jlRegist.setBounds(10, 2, 200, 50);
 		 jlModel.setBounds(100, 40, 100, 100);
-		 jcbRegisterCarDesign.setBounds(100, 110, 200, 30);
+		 jcbModel.setBounds(100, 110, 200, 30);
 		 jlCarnum.setBounds(100, 140, 100, 100);
 		 jtfCarnum.setBounds(100, 200, 200, 30);
 		 jlDistance.setBounds(100, 260, 200, 30);
@@ -84,7 +81,7 @@ public class RegistCarDesign extends JFrame {
 		 add(jlRegist);
 		 add(jlModel);
 		 add("North",jpNorth);
-		 add(jcbRegisterCarDesign);
+		 add(jcbModel);
 		 add(jlCarnum);
 		 add(jtfCarnum);
 		 add(jlDistance);
@@ -150,19 +147,19 @@ public class RegistCarDesign extends JFrame {
 	}
 
 
-	public DefaultComboBoxModel<String> getDcbmjcbRegisterCarDesign() {
-		return dcbmjcbRegisterCarDesign;
+	public DefaultComboBoxModel<String> getDcbmModel() {
+		return dcbmModel;
 	}
 
 
 	public void setDcbmjcbRegisterCarDesign(DefaultComboBoxModel<String> dcbmjcbRegisterCarDesign) {
-		this.dcbmjcbRegisterCarDesign = dcbmjcbRegisterCarDesign;
+		this.dcbmModel = dcbmjcbRegisterCarDesign;
 	}
 
 
 
-	public JComboBox<String> getJcbRegisterCarDesign() {
-		return jcbRegisterCarDesign;
+	public JComboBox<String> getJcbModel() {
+		return jcbModel;
 	}
 
 
@@ -171,7 +168,7 @@ public class RegistCarDesign extends JFrame {
 
 
 	public void setJcbRegisterCarDesign(JComboBox<String> jcbRegisterCarDesign) {
-		this.jcbRegisterCarDesign = jcbRegisterCarDesign;
+		this.jcbModel = jcbRegisterCarDesign;
 	}
 
 
@@ -302,6 +299,8 @@ public class RegistCarDesign extends JFrame {
 
 
 	public static void main(String[] args) {
-//		new RegistCarDesign();
+		new RegistCarDesign();
 	}
+	
+
 }//class

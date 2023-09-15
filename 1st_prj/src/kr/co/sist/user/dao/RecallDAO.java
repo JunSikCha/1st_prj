@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.co.sist.user.dbconn.DbConn;
 import kr.co.sist.user.vo.RecallVO;
@@ -23,7 +25,9 @@ public class RecallDAO {
 		return rcDAO;
 	}//getInstance
 	
-	public RecallVO selectRecall(String id) throws SQLException {
+	public List<RecallVO> selectRecall(String id) throws SQLException {
+		
+		List<RecallVO> rcList = new ArrayList<RecallVO>();
 		
 		RecallVO rcVO = null;
 		
@@ -51,12 +55,13 @@ public class RecallDAO {
 			
 			if(rs.next()) {
 				rcVO = new RecallVO(rs.getString("mName"), rs.getString("rDetail"), rs.getDate("rDate"));
+				rcList.add(rcVO);
 			}
 			
 		}finally {
 			db.dbClose(rs, pstmt, con);
 		}
-		return rcVO;
+		return rcList;
 	}
 	
 	public static void main(String[] args) {

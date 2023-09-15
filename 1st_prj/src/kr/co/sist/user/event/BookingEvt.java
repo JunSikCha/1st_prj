@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import kr.co.sist.user.dao.BookingDAO;
 import kr.co.sist.user.design.BookingDesign;
+import kr.co.sist.user.design.RecallDesign;
 import kr.co.sist.user.vo.BookingVO;
 
 public class BookingEvt implements ActionListener{
@@ -13,10 +14,10 @@ public class BookingEvt implements ActionListener{
 	private BookingDesign bd;
 	
 	private BookingVO bVO;
-
+	
 	public BookingEvt(BookingDesign bd) {
 		this.bd=bd;
-	}
+	}//BookingEvt
 	
 	private void addBooking(String carno, String modelno, String issue, String centername ,String bdate) {
 		

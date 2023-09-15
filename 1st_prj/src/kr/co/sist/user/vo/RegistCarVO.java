@@ -2,17 +2,18 @@ package kr.co.sist.user.vo;
 
 public class RegistCarVO {
 	
-	private String carModel, carNo;
+	private String carModel, carNo, modelNo;
 	private int distance;
 
 	public RegistCarVO() {
 		super();
 	}
 
-	public RegistCarVO(String carModel, String carNo, int distance) {
+	public RegistCarVO(String carModel, String carNo, String modelNo, int distance) {
 		super();
 		this.carModel = carModel;
 		this.carNo = carNo;
+		this.modelNo = modelNo;
 		this.distance = distance;
 	}
 
@@ -22,6 +23,10 @@ public class RegistCarVO {
 
 	public String getCarNo() {
 		return carNo;
+	}
+	
+	public String getModelNo() {
+		return modelNo;
 	}
 
 	public int getDistance() {
@@ -42,7 +47,10 @@ public class RegistCarVO {
 
 	@Override
 	public String toString() {
-		return "RegistCarVO [carModel=" + carModel + ", carNo=" + carNo + ", distance=" + distance + "]";
+		return "RegistCarVO [carModel=" + carModel + ", carNo=" + carNo + ", modelNo=" + modelNo + ", distance="
+				+ distance + "]";
 	}
+
+	
 	
 }

@@ -82,7 +82,8 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 		}
 		JOptionPane.showMessageDialog(lg, lrVO.getName()+"님으로 로그인 되었습니다.");
 //		System.out.println(lVO.getId());
-		new ClientMainDesign(lVO.getId());
+		new ClientMainDesign( lVO.getId());
+		UserData.id = lVO.getId();
 		}catch(SQLException e) {
 			JOptionPane.showMessageDialog(lg, "아이디나 비밀번호를 입력해주세요");
 			e.printStackTrace();
