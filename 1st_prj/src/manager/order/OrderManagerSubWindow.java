@@ -2,8 +2,9 @@ package manager.order;
 
 import java.awt.Font;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,8 +17,8 @@ public class OrderManagerSubWindow extends JDialog{
 
 	private JLabel jlTitle;
 	
-	private JCheckBox jcbPartNo;
-	
+	private JComboBox jtfPartName;
+	private DefaultComboBoxModel<String> model;
 	private JTextField jtfPartStock;
 	private JTextField jtfPartUnit;
 	private JTextField jtfOrderQuantity;
@@ -25,14 +26,12 @@ public class OrderManagerSubWindow extends JDialog{
 	private JButton jbCancle;
 	private JButton jbOk;
 	
+	private DefaultTableModel dtm;
 	private OrderManagerTab omt;
 	private OrderManagerSubWindowEvt omswe;
 	private JScrollPane scrollPane;
-	private DefaultTableModel dtm;
 
-	private JTextField jtfPartName;
 
-	private JTextField jtfAddNumber;
 
 	
 	
@@ -56,8 +55,7 @@ public class OrderManagerSubWindow extends JDialog{
         JLabel jlOrderQuantity = new JLabel("발주 수량");
         
         //수정 가능
-        jtfPartName = new JTextField();
-        jtfAddNumber = new JTextField();
+        jtfOrderQuantity = new JTextField();
         //수정 불가능
         jtfPartStock = new JTextField();
         jtfPartStock.setEditable(false);
@@ -66,6 +64,9 @@ public class OrderManagerSubWindow extends JDialog{
         
 		jbCancle = new JButton("취소");
 		jbOk = new JButton("확인");
+		
+		model = new DefaultComboBoxModel<String>();
+		jtfPartName = new JComboBox(model);
 		
         //추가
       	setLayout(null);
@@ -76,40 +77,38 @@ public class OrderManagerSubWindow extends JDialog{
       	add("Center", jlPartStock);
       	add("Center", jlPartUnit);
       	add("Center", jlOrderQuantity);
-      	
-      	add("Center", jtfPartName);
+      	add("Center", jtfPartName); 
       	add("Center", jtfPartStock);
       	add("Center", jtfPartUnit);
-      	add("Center", jtfAddNumber);
+      	add("Center", jtfOrderQuantity);
 		
       	add("Center", jbCancle);
       	add("Center", jbOk);
 		
-      	dtm = new DefaultTableModel();
 		
-//      	OrderManagerSubWindowEvt  omswe= new OrderManagerSubWindowEvt(omt,this);
+      	OrderManagerSubWindowEvt  omswe= new OrderManagerSubWindowEvt(omt,this);
 //		jbOk.addActionListener(omswe);
 		
 		
 		//크기 조정 및 배치
-		jlTitle.setBounds(10, 6, 140, 20);
+		jlTitle.setBounds(20, 6, 140, 20);
 		scrollPane.setBounds(60, 50, 800, 770); 
 		
-		jlPartName.setBounds(70, 40, 80, 30);
-		jlPartStock.setBounds(70, 170, 80, 30);
-		jlPartUnit.setBounds(170, 170, 80, 30);
-		jlOrderQuantity.setBounds(70, 220, 80, 30);
+		jlPartName.setBounds(80, 80, 80, 30);
+		jlPartStock.setBounds(80, 220, 80, 30);
+		jlPartUnit.setBounds(210, 220, 80, 30);
+		jlOrderQuantity.setBounds(80, 320, 80, 30);
 		
-		jtfPartName.setBounds(70, 110, 240, 30);
-		jtfPartStock.setBounds(70, 240, 100, 30);
-		jtfPartUnit.setBounds(190, 240, 100, 30);
-//		jtfOrderQuantity.setBounds(70, 280, 80, 30);
+		jtfPartName.setBounds(80, 110, 230, 55);
+		jtfPartStock.setBounds(80, 250, 100, 30);
+		jtfPartUnit.setBounds(210, 250, 100, 30);
+		jtfOrderQuantity.setBounds(80, 360, 230, 30);
 		
-		jbCancle.setBounds(60, 500, 120, 30);
-		jbOk.setBounds(200, 500, 120, 30);
+		jbCancle.setBounds(70, 500, 120, 30);
+		jbOk.setBounds(210, 500, 120, 30);
 		
 		
-		setBounds(omt.getX()+620, omt.getY()+190, 400, 600);
+		setBounds(omt.getX()+650, omt.getY()+190, 400, 600);
 		
 		jlTitle.setVisible(true);
 		scrollPane.setVisible(true);
@@ -124,11 +123,52 @@ public class OrderManagerSubWindow extends JDialog{
 		
 	} //OrderManagerSubWindow
 
-	public static void main(String[] args) {
-		OrderManagerTab omt = new OrderManagerTab();
-		new OrderManagerSubWindow(omt);
+	public JLabel getJlTitle() {
+		return jlTitle;
 	}
 
+	public JComboBox getJtfPartName() {
+		return jtfPartName;
+	}
+
+	public JTextField getJtfPartStock() {
+		return jtfPartStock;
+	}
+
+	public JTextField getJtfPartUnit() {
+		return jtfPartUnit;
+	}
+
+	public JTextField getJtfOrderQuantity() {
+		return jtfOrderQuantity;
+	}
+
+	public JButton getJbCancle() {
+		return jbCancle;
+	}
+
+	public JButton getJbOk() {
+		return jbOk;
+	}
+
+	public OrderManagerTab getOmt() {
+		return omt;
+	}
+
+	public OrderManagerSubWindowEvt getOmswe() {
+		return omswe;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public DefaultTableModel getDtm() {
+		return dtm;
+	}
+
+	
+	
+	
 
 } //class
-

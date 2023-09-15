@@ -74,25 +74,30 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 				return super.getColumnClass(column);
 			}
 		};
+		
 		scrollPane = new JScrollPane(jtbOrderInfoTable);
-		// 컬럼네임 크기 조절
+		
+		
+		//게시판 열 굵게
 		JTableHeader tableHeader = jtbOrderInfoTable.getTableHeader();
 		Font headerFont = new Font(null, Font.BOLD, 14);
 		tableHeader.setFont(headerFont);
-		// 데이터 크기 조절
+		//게시판 행 얇게
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) jtbOrderInfoTable
 				.getDefaultRenderer(Object.class);
 		Font dataFont = new Font(null, Font.PLAIN, 14);
 		renderer.setFont(dataFont);
 		renderer.setHorizontalAlignment(SwingConstants.CENTER); // 데이터 가운데 정렬
 
-		// 날짜, 검색
-		omMiddle = new JLabel("~");
+		
+		// 하단 날짜, 검색
+		omMiddle = new JLabel("~"); //시작날짜 ~ 끝날짜
 		Font omMiddleFont = new Font(null, Font.BOLD, 14);
 		omMiddle.setFont(omMiddleFont);
 
 		jtfStartDate = new JTextField();
 		jtfEndDate = new JTextField();
+		
 		jbDateSearch = new JButton("검색");
 
 		jbAccept = new JButton("수락");
@@ -101,6 +106,7 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		jbReservationManage = new JButton("예약 신청 관리");
 		jbSave = new JButton("저장");
 
+		
 		// 추가
 		setLayout(null);
 
@@ -129,22 +135,24 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		jbReservationManage.addActionListener(bmtEvt);
 		jbSave.addActionListener(bmtEvt);
 
-		// 크기 조정 및 배치
-		jlBMName.setBounds(10, 6, 140, 20);
-		scrollPane.setBounds(65, 50, 800, 400);
-
-		jtfStartDate.setBounds(65, 520, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
-		omMiddle.setBounds(215, 520, 20, 20);
-		jtfEndDate.setBounds(235, 520, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
-		jbDateSearch.setBounds(385, 520, 70, 30); // 검색 버튼의 위치와 크기 설정
-
-		jbAccept.setBounds(485, 520, 120, 30);
-		jbRefusal.setBounds(610, 520, 120, 30);
-		jbReservation.setBounds(735, 520, 120, 30);
 		
-		jbSave.setBounds(610, 520, 120, 30);
-		jbReservationManage.setBounds(735, 520, 120, 30);
+		// 크기 조정 및 배치
+		jlBMName.setBounds(70, 16, 140, 20);
+		scrollPane.setBounds(70, 50, 800, 400);
 
+		jtfStartDate.setBounds(70, 520, 140, 30);
+		omMiddle.setBounds(220, 520, 20, 20);
+		jtfEndDate.setBounds(240, 520, 140, 30); 
+		jbDateSearch.setBounds(390, 520, 70, 30);
+
+		jbAccept.setBounds(495, 520, 120, 30);
+		jbRefusal.setBounds(620, 520, 120, 30);
+		jbReservation.setBounds(745, 520, 120, 30);
+		
+		jbSave.setBounds(620, 520, 120, 30);
+		jbReservationManage.setBounds(745, 520, 120, 30);
+
+		
 		scrollPane.setVisible(true);
 		setVisible(true);
 

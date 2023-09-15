@@ -3,6 +3,7 @@ package manager.MyInformation;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class MyInformationTab extends JPanel implements ActionListener {
@@ -21,26 +23,20 @@ public class MyInformationTab extends JPanel implements ActionListener {
 	
 	//좌측테이블
 	private JLabel jlMIMessage;
-	private Panel pMIMessage;
+	private JPanel jpMIMessage;
 	
 	//우측 테이블
-	private JLabel jlBranchName;
-	private JLabel jlBranchNo;
-	private JLabel jlManagerPhone;
-	private JLabel jlManagerEmail;
-	private JLabel jlBranchAddr;
+	private JPanel jpBranchName;
+	private JPanel jpBranchNo;
+	private JPanel jpManagerPhone;
+	private JPanel jpManagerEmail;
+	private JPanel jpBranchAddr;
 	
-	private Panel pBranchName;
-	private Panel pBranchNo;
-	private Panel pManagerPhone;
-	private Panel pManagerEmail;
-	private Panel pBranchAddr;
-	
-	private JTextArea jtaBranchName;
-	private JTextArea jtaBranchNo;
-	private JTextArea jtaManagerPhone;
-	private JTextArea jtaManagerEmail;
-	private JTextArea jtaBranchAddr;
+	private JTextField jtfBranchName;
+	private JTextField jtfBranchNo;
+	private JTextField jtfManagerPhone;
+	private JTextField jtfManagerEmail;
+	private JTextField jtfBranchAddr;
 	
 	private JButton jbMIHome;
 	private JButton jbinfoModify;
@@ -48,117 +44,111 @@ public class MyInformationTab extends JPanel implements ActionListener {
 	
 	public MyInformationTab() {
 		dtm = new DefaultTableModel();
+		setLayout(null);
 		
-		//왼쪽, 
-		ImageIcon empImg = new ImageIcon("");
-//		lMIMessage = new JLabel(empName + "(" + empNo + ")" + "님 안녕하세요?");
-		jlMIMessage = new JLabel("안녕하세요");
+		//왼쪽
+		ImageIcon empImg = new ImageIcon("경로 적기");
+		JLabel jlEmpImg = new JLabel(empImg); //관리자 사진
 		
-		//오른쪽, 세로 게시판 형태
-		jlBranchName = new JLabel("지점명");
-		jlBranchNo = new JLabel("지점번호");
-		jlManagerPhone = new JLabel("전화번호");
-		jlManagerEmail = new JLabel("이메일");
-		jlBranchAddr = new JLabel("지점주소");
 		
+		//게시판 형식, 배경색
+//		JLabel lMIMessage = new JLabel(empName + "(" + empNo + ")" + "님 안녕하세요?");
+		JLabel jlMIMessage = new JLabel("안녕하세요?",JLabel.CENTER);
+		jpMIMessage = new JPanel();
+		jpMIMessage.setLayout(new BorderLayout());
+		jpMIMessage.add(jlMIMessage);
+		jpMIMessage.setBackground(Color.gray);
+		Font mINameFont = new Font(null, Font.BOLD, 14);
+		jlMIMessage.setFont(mINameFont);
+		
+		JLabel jlBranchName = new JLabel("지점명",JLabel.CENTER);
+		jpBranchName = new JPanel();
+		jpBranchName.setLayout(new BorderLayout());
+		jpBranchName.add(jlBranchName);
+		jpBranchName.setBackground(Color.gray);
+		
+		JLabel jlBranchNo = new JLabel("지점번호",JLabel.CENTER);
+		jpBranchNo = new JPanel();
+		jpBranchNo.setLayout(new BorderLayout());
+		jpBranchNo.add(jlBranchNo);
+		jpBranchNo.setBackground(Color.gray);
+		
+		JLabel jlManagerPhone = new JLabel("전화번호",JLabel.CENTER);
+		jpManagerPhone = new JPanel();
+		jpManagerPhone.setLayout(new BorderLayout());
+		jpManagerPhone.add(jlManagerPhone);
+		jpManagerPhone.setBackground(Color.gray);
+		
+		JLabel jlManagerEmail = new JLabel("이메일",JLabel.CENTER);
+		jpManagerEmail = new JPanel();
+		jpManagerEmail.setLayout(new BorderLayout());
+		jpManagerEmail.add(jlManagerEmail);
+		jpManagerEmail.setBackground(Color.gray);
+		
+		JLabel jlBranchAddr = new JLabel("지점주소",JLabel.CENTER);
+		jpBranchAddr = new JPanel();
+		jpBranchAddr.setLayout(new BorderLayout());
+		jpBranchAddr.add(jlBranchAddr);
+		jpBranchAddr.setBackground(Color.gray);
+		
+		
+		//하단 버튼
 		jbMIHome = new JButton("홈화면");
 		jbinfoModify = new JButton("정보수정");
 		
-		setLayout(null);
+		//게시판 수정 가능 영역
+		jtfBranchName = new JTextField();
+		jtfBranchNo = new JTextField();
+		jtfManagerPhone = new JTextField();
+		jtfManagerEmail = new JTextField();
+		jtfBranchAddr = new JTextField();
 		
-		pMIMessage = new Panel();
-		pMIMessage.setLayout(new BorderLayout());
-		pMIMessage.add(jlMIMessage, BorderLayout.CENTER);
-		
-		pBranchName = new Panel();
-		pBranchName.setLayout(new BorderLayout());
-		pBranchName.add(jlBranchName, BorderLayout.CENTER);
-		
-		pBranchNo = new Panel();
-		pBranchNo.setLayout(new BorderLayout());
-		pBranchNo.add(jlBranchNo, BorderLayout.CENTER);
-		
-		pManagerPhone = new Panel();
-		pManagerPhone.setLayout(new BorderLayout());
-		pManagerPhone.add(jlManagerPhone, BorderLayout.CENTER);
-				
-		pManagerEmail = new Panel();
-		pManagerEmail.setLayout(new BorderLayout());
-		pManagerEmail.add(jlManagerEmail, BorderLayout.CENTER);
-		
-		pBranchAddr = new Panel();
-		pBranchAddr.setLayout(new BorderLayout());
-		pBranchAddr.add(jlBranchAddr, BorderLayout.CENTER);
-		
-		jtaBranchName = new JTextArea();
-		jtaBranchNo = new JTextArea();
-		jtaManagerPhone = new JTextArea();
-		jtaManagerEmail = new JTextArea();
-		jtaBranchAddr = new JTextArea();
-		
-		//게시판색상
-		pMIMessage.setBackground(Color.GRAY);
-		pBranchName.setBackground(Color.lightGray);
-		pBranchNo.setBackground(Color.lightGray);
-		pManagerPhone.setBackground(Color.lightGray);
-		pManagerEmail.setBackground(Color.lightGray);
-		pBranchAddr.setBackground(Color.lightGray);
 		
 		//추가
-		add("Center",pMIMessage);
+		add("Center",jlEmpImg);
+		add("Center",jpMIMessage);
 		
-		add("Center",pBranchName);
-		add("Center",pBranchNo);
-		add("Center",pManagerPhone);
-		add("Center",pManagerEmail);
-		add("Center",pBranchAddr);
 		
-		add("Center",jtaBranchName);
-		add("Center",jtaBranchNo);
-		add("Center",jtaManagerPhone);
-		add("Center",jtaManagerEmail);
-		add("Center",jtaBranchAddr);
+		add("Center",jpBranchName);
+		add("Center",jpBranchNo);
+		add("Center",jpManagerPhone);
+		add("Center",jpManagerEmail);
+		add("Center",jpBranchAddr);
+		
+		add("Center",jtfBranchName);
+		add("Center",jtfBranchNo);
+		add("Center",jtfManagerPhone);
+		add("Center",jtfManagerEmail);
+		add("Center",jtfBranchAddr);
+		
 		
 		add("Center", jbMIHome);
 		add("Center", jbinfoModify);
 		
+		//클릭 이벤트
 		mifEvt = new MyInformationTabEvt(this);
 		
-		//클릭 이벤트
 		jbMIHome.addActionListener(mifEvt);
 		jbinfoModify.addActionListener(mifEvt);
 		
 		//사이즈
-		pMIMessage.setBounds(150, 208, 200, 80);
+		jlEmpImg.setBounds(170, 100, 220, 220);
+		jpMIMessage.setBounds(140, 330, 220, 80);
 		
-		pBranchName.setBounds(480, 100, 80, 25);
-		pBranchNo.setBounds(480, 140, 80, 25);
-		pManagerPhone.setBounds(480, 180, 80, 25);
-		pManagerEmail.setBounds(480, 220, 80, 25);
-		pBranchAddr.setBounds(480, 260, 80, 25);
+		jpBranchName.setBounds(480, 110, 109, 58);
+		jpBranchNo.setBounds(480, 170, 109, 58);
+		jpManagerPhone.setBounds(480, 230, 109, 58);
+		jpManagerEmail.setBounds(480, 290, 109, 58);
+		jpBranchAddr.setBounds(480, 350, 109, 58);
 		
-		jtaBranchName.setBounds(570, 100, 120, 25);
-		jtaBranchNo.setBounds(570, 140, 120, 25);
-		jtaManagerPhone.setBounds(570, 180, 120, 25);
-		jtaManagerEmail.setBounds(570, 220, 120, 25);
-		jtaBranchAddr.setBounds(570, 260, 120, 25);
+		jtfBranchName.setBounds(590, 110, 209, 58);
+		jtfBranchNo.setBounds(590, 170, 209, 58);
+		jtfManagerPhone.setBounds(590, 230, 209, 58);
+		jtfManagerEmail.setBounds(590, 290, 209, 58);
+		jtfBranchAddr.setBounds(590, 350, 209, 58);
 		
 		jbMIHome.setBounds(250, 520, 120, 30);
 		jbinfoModify.setBounds(570, 520, 120, 30);
-		
-		pBranchName.setVisible(true);
-		pBranchNo.setVisible(true);
-		pManagerPhone.setVisible(true);
-		pManagerEmail.setVisible(true);
-		pBranchAddr.setVisible(true);
-		jbMIHome.setVisible(true);
-		jbinfoModify.setVisible(true);
-		
-//		setVisible(true);
-		
-		
-		
-		
 		
 
 	}//MyInformationTab
@@ -169,7 +159,90 @@ public class MyInformationTab extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public MyInformationTabEvt getMifEvt() {
+		return mifEvt;
+	}
+
+
+	public DefaultTableModel getDtm() {
+		return dtm;
+	}
+
+
+	public JLabel getJlMIMessage() {
+		return jlMIMessage;
+	}
+
+
+	public JPanel getpMIMessage() {
+		return jpMIMessage;
+	}
+
+
+
+
+	public JPanel getJpBranchName() {
+		return jpBranchName;
+	}
+
+
+	public JPanel getJpBranchNo() {
+		return jpBranchNo;
+	}
+
+
+	public JPanel getJpManagerPhone() {
+		return jpManagerPhone;
+	}
+
+
+	public JPanel getJpManagerEmail() {
+		return jpManagerEmail;
+	}
+
+
+	public JPanel getJpBranchAddr() {
+		return jpBranchAddr;
+	}
+
+
+	public JTextField getJtaBranchName() {
+		return jtfBranchName;
+	}
+
+
+	public JTextField getJtaBranchNo() {
+		return jtfBranchNo;
+	}
+
+
+	public JTextField getJtaManagerPhone() {
+		return jtfManagerPhone;
+	}
+
+
+	public JTextField getJtaManagerEmail() {
+		return jtfManagerEmail;
+	}
+
+
+	public JTextField getJtaBranchAddr() {
+		return jtfBranchAddr;
+	}
+
+
+	public JButton getJbMIHome() {
+		return jbMIHome;
+	}
+
+
+	public JButton getJbinfoModify() {
+		return jbinfoModify;
+	}
 	
 	
 	
 }//class	
+	

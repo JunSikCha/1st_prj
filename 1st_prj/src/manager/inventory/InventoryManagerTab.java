@@ -40,14 +40,16 @@ public class InventoryManagerTab extends JPanel implements ActionListener{
 		Font imNameFont = new Font(null, Font.BOLD, 20);
         iMName.setFont(imNameFont);
         
-        //재고 게시판
+        
+
         jtbInventoryInfoTable = new JTable(dtm);
+        
 		scrollPane = new JScrollPane(jtbInventoryInfoTable);
-		//컬럼네임 크기 조절
+		//게시판 열 굵게
         JTableHeader tableHeader = jtbInventoryInfoTable.getTableHeader();
         Font headerFont = new Font(null, Font.BOLD, 14);
         tableHeader.setFont(headerFont);
-        //데이터 크기 조절
+        //게시판 행 얇게
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) jtbInventoryInfoTable.getDefaultRenderer(Object.class);
         Font dataFont = new Font(null, Font.PLAIN, 14);
         renderer.setFont(dataFont);
@@ -74,14 +76,15 @@ public class InventoryManagerTab extends JPanel implements ActionListener{
         
         imtEvt = new InventoryManagerTabEvt(this);
         
+        
         //클릭 이벤트
         jbPartNameSearch.addActionListener(imtEvt);
         jbAdd.addActionListener(imtEvt);
         
         
         //크기 조정 및 배치
-        iMName.setBounds(10, 6, 140, 20);
-        scrollPane.setBounds(80, 50, 800, 400); 
+        iMName.setBounds(70, 16, 140, 20);
+        scrollPane.setBounds(70, 50, 800, 400); 
         
         jtfPartName.setBounds(250, 520, 180, 30);
         jbPartNameSearch.setBounds(460, 520, 70, 30);

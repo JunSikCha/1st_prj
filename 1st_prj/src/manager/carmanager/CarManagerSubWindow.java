@@ -36,13 +36,12 @@ public class CarManagerSubWindow extends JDialog {
 	private JTextField jtfPhone;
 	private JTextField jtfreceiveDay;
 	private JTextField jtfempName;
-	//	
+	
 	private JPanel jpCarNo;
 	private JPanel jpClientName;
 	private JPanel jpClientEmail;
 	private JPanel jpReleaseDay;
 	private JPanel jpCarmileage;
-	//
 	private JTextField jtfCarNo;
 	private JTextField jtfClientName;
 	private JTextField jtfClientEmail;
@@ -54,7 +53,6 @@ public class CarManagerSubWindow extends JDialog {
 	private JPanel jpPartName;
 	private JPanel jpSUnitPrice;
 	private JPanel jpSPrice;
-	//
 	private JTextField jtfFaultDetail;
 	private JTextField  jtfMaintenanceDetail;
 	private JComboBox  jtfPartName;
@@ -64,14 +62,12 @@ public class CarManagerSubWindow extends JDialog {
 	
 	private JPanel jpNote;
 	private JPanel jpTotal;
-	//
 	private JTextField jtfNote;
 	private JTextField jtfTotal;
 	
 	private JButton jbCancle;
 	private JButton jbFunction;
 
-//	private JComponent scrollPane;
 	private JScrollPane scrollPane;
 	private DefaultTableModel dtm;
 	private DefaultComboBoxModel<String> model;
@@ -81,19 +77,19 @@ public class CarManagerSubWindow extends JDialog {
 
 
 	public CarManagerSubWindow(CarManagerTab cmt,String str) {
-		this.cmt=cmt;//cmt
+		this.cmt=cmt;
 		
 		setLayout(null);
-		
+		//좌측 상단
 		jlTitle = new JLabel(str);
 		jpTitle = new JPanel();
-//		pTitle.setLayout(new BorderLayout());
 		jpTitle.add(jlTitle, BorderLayout.CENTER);
 		jpTitle.setBackground(Color.gray);
 		
 		model = new DefaultComboBoxModel<String>();
 		
 		
+		//게시판 형식, 배경색
 		JLabel jlMaintenencrNo = new JLabel("정비번호");
 		jpMaintenencrNo = new JPanel();
 		jpMaintenencrNo.add(jlMaintenencrNo, BorderLayout.CENTER);
@@ -118,13 +114,6 @@ public class CarManagerSubWindow extends JDialog {
 		jpempName = new JPanel();
 		jpempName.add(jlempName, BorderLayout.CENTER);
 		jpempName.setBackground(Color.gray);
-		//
-		jtfMaintenencrNo = new JTextField();
-		jtfcarName = new JTextField();
-		jtfPhone = new JTextField();
-		jtfreceiveDay = new JTextField();
-		jtfempName = new JTextField();
-		
 		
 		JLabel jlCarNo = new JLabel("차량번호");
 		jpCarNo = new JPanel();
@@ -150,14 +139,8 @@ public class CarManagerSubWindow extends JDialog {
 		jpCarmileage = new JPanel();
 		jpCarmileage.add(jlCarmileage, BorderLayout.CENTER);
 		jpCarmileage.setBackground(Color.gray);
-		//
-		jtfCarNo = new JTextField();
-		jtfClientName = new JTextField();
-		jtfClientEmail = new JTextField();
-		jtfReleaseDay = new JTextField();
-		jtfCarmileage = new JTextField();
 		
-		
+	
 		JLabel jlFaultDetail = new JLabel("고장증상");
 		jpFaultDetail = new JPanel();
 		jpFaultDetail.add(jlFaultDetail, BorderLayout.CENTER);
@@ -182,19 +165,37 @@ public class CarManagerSubWindow extends JDialog {
 		jpTotal = new JPanel();
 		jpTotal.add(jlTotal, BorderLayout.CENTER);
 		jpTotal.setBackground(Color.gray);
-		//
+		
+		
+		
+		// 게시판 기입 내용 칸
+		jtfMaintenencrNo = new JTextField();
+		jtfcarName = new JTextField();
+		jtfPhone = new JTextField();
+		jtfreceiveDay = new JTextField();
+		jtfempName = new JTextField();
+		jtfCarNo = new JTextField();
+		jtfClientName = new JTextField();
+		jtfClientEmail = new JTextField();
+		jtfReleaseDay = new JTextField();
+		jtfCarmileage = new JTextField();
 		jtfFaultDetail = new JTextField();
 		jtfMaintenanceDetail = new JTextField();
-		jtfPartName = new JComboBox<String>(model);
 		
-		jbPartAdd = new JButton("추가");
-		jbPartRemove = new JButton("제거");
+		jtfPartName = new JComboBox<String>(model);
 		
 		jtfNote = new JTextField();
 		jtfTotal = new JTextField();
 		
+		
+		
+		//하단 버튼
+		jbPartAdd = new JButton("추가");
+		jbPartRemove = new JButton("제거");
+		
+		
 		jbCancle = new JButton("취소");
-		jbFunction = new JButton("수정"); //맞나??
+		jbFunction = new JButton("수정");
 		
 		
         
@@ -222,10 +223,10 @@ public class CarManagerSubWindow extends JDialog {
 		
 	    //SubWindow이벤트 실행 
 		CarManagerSubWindowEvt cmswe = new CarManagerSubWindowEvt(this.cmt,this,str);
-		jbFunction.addActionListener(cmswe);
-		jbPartAdd.addActionListener(cmswe);
-		jbPartRemove.addActionListener(cmswe);
-		jbCancle.addActionListener(cmswe);
+		jbFunction.addActionListener(cmswe); //수정
+		jbPartAdd.addActionListener(cmswe); //추가
+		jbPartRemove.addActionListener(cmswe); //제거
+		jbCancle.addActionListener(cmswe); //취소
 		
 		
 		//게시판형태 테두리 선 주기
@@ -246,6 +247,8 @@ public class CarManagerSubWindow extends JDialog {
 		jpNote.setBorder(cmswBD);
 		jpTotal.setBorder(cmswBD);
 		
+		
+		
 		//추가
 		setLayout(null);
         setTitle(str);
@@ -256,52 +259,57 @@ public class CarManagerSubWindow extends JDialog {
 		add("Center", jpPhone);
 		add("Center", jpreceiveDay);
 		add("Center", jpempName);
+		
 		add("Center", jtfMaintenencrNo);
 		add("Center", jtfcarName);
 		add("Center", jtfPhone);
 		add("Center", jtfreceiveDay);
 		add("Center", jtfempName);
 		
+		
 		add("Center", jpCarNo);
 		add("Center", jpClientName);
 		add("Center", jpClientEmail);
 		add("Center", jpReleaseDay);
 		add("Center", jpCarmileage);
+		
 		add("Center", jtfCarNo);
 		add("Center", jtfClientName);
 		add("Center", jtfClientEmail);
 		add("Center", jtfReleaseDay);
 		add("Center", jtfCarmileage);
 		
+		
 		add("Center", jpFaultDetail);
-//		add("Center", jtPartTable);
 		add("Center", scrollPane);
 		add("Center", jpMaintenanceDetail);
 		add("Center", jpPartName);
 		add("Center", jpNote);
 		add("Center", jpTotal);
+		
 		add("Center", jtfFaultDetail);
 		add("Center", jtfMaintenanceDetail);
 		add("Center", jtfPartName);
 		add("Center", jtfNote);
 		add("Center", jtfTotal);
 		
+		
 		add("Center", jbPartAdd);
 		add("Center", jbPartRemove);
 		add("Center", jbCancle);
 		add("Center", jbFunction);
 
+		
 	
 		//위치 조절
 		jpTitle.setBounds(50, 20, 580, 30);
-//		scrollPane.setBounds(60, 50, 800, 720); 
 		
 		jpMaintenencrNo.setBounds(50, 50, 145, 30);
 		jpcarName.setBounds(50, 80, 145, 30);
 		jpPhone.setBounds(50, 110, 145, 30);
 		jpreceiveDay.setBounds(50, 140, 145, 30);
 		jpempName.setBounds(50, 170, 145, 30);
-		//
+		
 		jtfMaintenencrNo.setBounds(195, 50, 145, 30);
 		jtfcarName.setBounds(195, 80, 145, 30);
 		jtfPhone.setBounds(195, 110, 145, 30);
@@ -314,7 +322,7 @@ public class CarManagerSubWindow extends JDialog {
 		jpClientEmail.setBounds(340, 110, 145, 30);
 		jpReleaseDay.setBounds(340, 140, 145, 30);
 		jpCarmileage.setBounds(340, 170, 145, 30);
-		//
+		
 		jtfCarNo.setBounds(485, 50, 145, 30);
 		jtfClientName.setBounds(485, 80, 145, 30);
 		jtfClientEmail.setBounds(485, 110, 145, 30);
@@ -327,7 +335,6 @@ public class CarManagerSubWindow extends JDialog {
 		jpNote.setBounds(50, 420, 290, 30);
 		jpTotal.setBounds(50, 450, 290, 30);
 		
-//		scrollPane.setBounds(50, 260, 580, 100);
 		
 		jtfFaultDetail.setBounds(340, 200, 290, 30);
 		jtfMaintenanceDetail.setBounds(340, 230, 290, 30);
@@ -343,7 +350,6 @@ public class CarManagerSubWindow extends JDialog {
 		
 		setBounds(cmt.getX()+520, cmt.getY()+190, 700, 600);
 		
-//		scrollPane.setVisible(true);
 		jlTitle.setVisible(true);
 		
 		setVisible(true);
@@ -359,6 +365,7 @@ public class CarManagerSubWindow extends JDialog {
 	}
 
 
+	//getter
 	public JButton getJbPartRemove() {
 		return jbPartRemove;
 	}

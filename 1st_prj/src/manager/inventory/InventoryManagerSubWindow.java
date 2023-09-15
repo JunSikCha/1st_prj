@@ -19,9 +19,9 @@ public class InventoryManagerSubWindow extends JDialog{
 	//임시주석
 	private JLabel jlTitle;
 	
-	private JComboBox jtfPartName;
 	private DefaultComboBoxModel<String> model;
 	
+	private JTextField jtfPartName;
 	private JTextField jtfPartNo;
 	private JTextField jtfAddNumber;
 	private JTextField jlAddNumber;
@@ -59,23 +59,15 @@ public class InventoryManagerSubWindow extends JDialog{
         JLabel jlPartCost = new JLabel("단가");
         JLabel jlLaborCost = new JLabel("공임비");
         
-        //수정 가능
+        //입력
+        jtfPartName = new JTextField();
         jtfAddNumber = new JTextField();
-        //수정 불가능
         jtfPartNo = new JTextField();
-        jtfPartNo.setEditable(false);
-        
         jtfPartUnit = new JTextField();
-        jtfPartUnit.setEditable(false);
-        
         jtfPartCost = new JTextField();
-        jtfPartCost.setEditable(false);
-        
         jtfLaborCost = new JTextField();
-        jtfLaborCost.setEditable(false);
         
         model = new DefaultComboBoxModel<String>();
-        jtfPartName = new JComboBox(model);
         
         
         jbCancle = new JButton("취소");
@@ -93,7 +85,7 @@ public class InventoryManagerSubWindow extends JDialog{
 		add("Center",jlPartUnit);
 		add("Center",jlPartCost);
 		add("Center",jlLaborCost);
-		add("Center", jtfPartName);
+		add("Center",jtfPartName);
 		add("Center",jtfPartNo);
 		add("Center",jtfAddNumber);
 		add("Center",jtfPartUnit);
@@ -137,7 +129,7 @@ public class InventoryManagerSubWindow extends JDialog{
 		jbCancle.setBounds(60, 500, 120, 30);
 		jbOk.setBounds(200, 500, 120, 30);
 		
-		setBounds(imt.getX()+620, imt.getY()+190, 400, 600);
+		setBounds(imt.getX()+650, imt.getY()+190, 400, 600);
 		
 		jlTitle.setVisible(true);
 		scrollPane.setVisible(true);

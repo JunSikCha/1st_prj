@@ -40,14 +40,15 @@ public class OrderManagerTab extends JPanel implements ActionListener{
 		Font oMNameFont = new Font(null, Font.BOLD, 20);
 		jlOMName.setFont(oMNameFont);
 
+		
 		//재고 게시판
 		jtbOrderInfoTable = new JTable(dtm);
 		scrollPane = new JScrollPane(jtbOrderInfoTable);
-		//컬럼네임 크기 조절
+		//게시판 열 굵게
 		JTableHeader tableHeader = jtbOrderInfoTable.getTableHeader();
 		Font headerFont = new Font(null, Font.BOLD, 14);
 		tableHeader.setFont(headerFont);
-		//데이터 크기 조절
+		//게시판 행 얇게
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) jtbOrderInfoTable.getDefaultRenderer(Object.class);
 		Font dataFont = new Font(null, Font.PLAIN, 14);
 		renderer.setFont(dataFont);
@@ -79,6 +80,7 @@ public class OrderManagerTab extends JPanel implements ActionListener{
 
 		add("Center", jbOrder);
 
+		
 		omEvt = new OrderManagerEvt(this);
 		
 		//클릭 이벤트
@@ -86,13 +88,13 @@ public class OrderManagerTab extends JPanel implements ActionListener{
 		jbOrder.addActionListener(omEvt);
 
 		//크기 조정 및 배치
-		jlOMName.setBounds(10, 6, 140, 20);
-		scrollPane.setBounds(80, 50, 800, 400); 
+		jlOMName.setBounds(65, 16, 140, 20);
+		scrollPane.setBounds(65, 50, 800, 400); 
 	
-		jtfStartDate.setBounds(190, 520, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
-		jlOMMiddle.setBounds(340, 520, 20, 20);
-		jtfEndDate.setBounds(360, 520, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
-		jbDateSearch.setBounds(520, 520, 70, 30); // 검색 버튼의 위치와 크기 설정
+		jtfStartDate.setBounds(175, 520, 140, 30); // 시작 날짜 필드의 위치와 크기 설정
+		jlOMMiddle.setBounds(325, 520, 20, 20);
+		jtfEndDate.setBounds(345, 520, 140, 30); // 종료 날짜 필드의 위치와 크기 설정
+		jbDateSearch.setBounds(505, 520, 70, 30); // 검색 버튼의 위치와 크기 설정
 	
 		jbOrder.setBounds(620, 520, 120, 30);
 	

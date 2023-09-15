@@ -110,7 +110,7 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		jbCarInfoModify.addActionListener(cmtEvt);
 
 		// 크기 조정 및 배치
-		jlCMName.setBounds(10, 6, 140, 20);
+		jlCMName.setBounds(60, 16, 140, 20);
 		scrollPane.setBounds(60, 50, 800, 400);
 
 		jtfStartDate.setBounds(65, 520, 140, 30);
