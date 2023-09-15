@@ -165,6 +165,46 @@ public class CarManagerDAO {
 		return	 list;
 	}//selectOnePartInfo
 	
+	//파트시리얼넘버로 파트정보조회
+	//차량추가, 정보수정 윈도우에 적용
+	public PartInfoVO selectAddPart(String partSN) throws SQLException {
+		
+		PartInfoVO piVO = new PartInfoVO();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		DbConn db = DbConn.getInstance();
+		
+		try {
+			
+			con=db.getConnection("192.168.10.150", "manager", "1234");
+			StringBuilder sb = new StringBuilder();
+			
+			sb
+			.append("		select  sname, sunitprice, sprice	")
+			.append("		from 	parts_info p				")
+			.append("		where 	sn = ?						");
+			
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, partSN);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				piVO.setPartName(rs.getString("sname"));
+				piVO.setPartCost(rs.getInt("sunitprice"));
+				piVO.setLaborCost(rs.getInt("sprice"));
+				
+			}//end while
+			
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//finally
+		return piVO;
+	}//selectAddPart
+	
 	public void insertCarInfo(CarManagerVO cVO) {
 		
 	}//insertCarInfo
@@ -172,8 +212,34 @@ public class CarManagerDAO {
 		
 	}//insertPartInfo
 	
-	public void updateCarInfo(String endDate) {
+	public int updateCarInfo(String hno,String endDate) throws SQLException {
+		int rowCnt = 0;
 		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		DbConn db = DbConn.getInstance();
+		
+		try {
+			
+			con=db.getConnection("192.168.10.150", "manager", "1234");
+			StringBuilder sb = new StringBuilder();
+			
+			sb
+			.append("		update  history	")
+			.append("		set     houtbound	= ?			")
+			.append("		where 	historyno = ?						");
+			
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, endDate);
+			pstmt.setString(2, hno);
+			
+			rowCnt = pstmt.executeUpdate();
+		}finally {
+			db.dbClose(null, pstmt, con);
+		}//finally
+		return rowCnt;
 	}//updateCarInfo
 	
 //	public static void main(String[] args) {

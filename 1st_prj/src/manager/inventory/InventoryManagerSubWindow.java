@@ -2,6 +2,7 @@ package manager.inventory;
 
 import java.awt.Font;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -19,6 +20,8 @@ public class InventoryManagerSubWindow extends JDialog{
 	private JLabel jlTitle;
 	
 	private JComboBox jtfPartName;
+	private DefaultComboBoxModel<String> model;
+	
 	private JTextField jtfPartNo;
 	private JTextField jtfAddNumber;
 	private JTextField jlAddNumber;
@@ -70,6 +73,9 @@ public class InventoryManagerSubWindow extends JDialog{
         
         jtfLaborCost = new JTextField();
         jtfLaborCost.setEditable(false);
+        
+        model = new DefaultComboBoxModel<String>();
+        jtfPartName = new JComboBox(model);
         
         
         jbCancle = new JButton("취소");

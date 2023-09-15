@@ -60,6 +60,7 @@ public class CarManagerSubWindow extends JDialog {
 	private JComboBox  jtfPartName;
 	private JTable jtPartTable;
 	private JButton jbPartAdd;
+	private JButton jbPartRemove;
 	
 	private JPanel jpNote;
 	private JPanel jpTotal;
@@ -70,7 +71,8 @@ public class CarManagerSubWindow extends JDialog {
 	private JButton jbCancle;
 	private JButton jbFunction;
 
-	private JComponent scrollPane;
+//	private JComponent scrollPane;
+	private JScrollPane scrollPane;
 	private DefaultTableModel dtm;
 	private DefaultComboBoxModel<String> model;
 	
@@ -186,6 +188,7 @@ public class CarManagerSubWindow extends JDialog {
 		jtfPartName = new JComboBox<String>(model);
 		
 		jbPartAdd = new JButton("추가");
+		jbPartRemove = new JButton("제거");
 		
 		jtfNote = new JTextField();
 		jtfTotal = new JTextField();
@@ -196,7 +199,23 @@ public class CarManagerSubWindow extends JDialog {
 		
         
         //부품 게시판
-		dtm = new DefaultTableModel();
+		dtm = new DefaultTableModel() {
+			//수량칼럼만 수정가능
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        int[] readOnlyColumns = {0, 1, 2, 4}; // 읽기 전용으로 만들고자 하는 칼럼 인덱스 배열
+
+		        for (int readOnlyColumn : readOnlyColumns) {
+		            if (column == readOnlyColumn) {
+		                // 읽기 전용으로 설정한 칼럼은 false를 반환하여 편집을 비활성화합니다.
+		                return false;
+		            }//end if
+		        }//end for
+
+		        // 나머지 칼럼은 편집 가능하게 설정합니다.
+		        return true;
+		    }//isCellEditable
+		};
 		jtPartTable = new JTable(dtm);
         scrollPane = new JScrollPane(jtPartTable);
 
@@ -205,6 +224,9 @@ public class CarManagerSubWindow extends JDialog {
 		CarManagerSubWindowEvt cmswe = new CarManagerSubWindowEvt(this.cmt,this,str);
 		jbFunction.addActionListener(cmswe);
 		jbPartAdd.addActionListener(cmswe);
+		jbPartRemove.addActionListener(cmswe);
+		jbCancle.addActionListener(cmswe);
+		
 		
 		//게시판형태 테두리 선 주기
 		Border cmswBD = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
@@ -265,13 +287,14 @@ public class CarManagerSubWindow extends JDialog {
 		add("Center", jtfTotal);
 		
 		add("Center", jbPartAdd);
+		add("Center", jbPartRemove);
 		add("Center", jbCancle);
 		add("Center", jbFunction);
 
 	
 		//위치 조절
 		jpTitle.setBounds(50, 20, 580, 30);
-		scrollPane.setBounds(60, 50, 800, 720); 
+//		scrollPane.setBounds(60, 50, 800, 720); 
 		
 		jpMaintenencrNo.setBounds(50, 50, 145, 30);
 		jpcarName.setBounds(50, 80, 145, 30);
@@ -300,26 +323,27 @@ public class CarManagerSubWindow extends JDialog {
 		
 		jpFaultDetail.setBounds(50, 200, 290, 30);
 		jpMaintenanceDetail.setBounds(50, 230, 290, 30);
-		jpPartName.setBounds(50, 260, 290, 30);
-		jpNote.setBounds(50, 390, 290, 30);
-		jpTotal.setBounds(50, 420, 290, 30);
+		jpPartName.setBounds(50, 360, 145, 30);
+		jpNote.setBounds(50, 420, 290, 30);
+		jpTotal.setBounds(50, 450, 290, 30);
 		
-		scrollPane.setBounds(50, 290, 581, 100);
+//		scrollPane.setBounds(50, 260, 580, 100);
 		
 		jtfFaultDetail.setBounds(340, 200, 290, 30);
 		jtfMaintenanceDetail.setBounds(340, 230, 290, 30);
-		jtfPartName.setBounds(340, 260, 290, 30);
-		jtfNote.setBounds(340, 390, 290, 30);
-		jtfTotal.setBounds(340, 420, 290, 30);
+		jtfPartName.setBounds(50, 390, 580, 30);
+		jtfNote.setBounds(340, 420, 290, 30);
+		jtfTotal.setBounds(340, 450, 290, 30);
 		
+		jbPartAdd.setBounds(510, 360, 60, 30);
+		jbPartRemove.setBounds(570, 360, 60, 30);
 		
-		jbCancle.setBounds(180, 480, 120, 30);
-		jbPartAdd.setBounds(380, 480, 120, 30);
-		jbFunction.setBounds(380, 480, 120, 30);
+		jbCancle.setBounds(180, 510, 120, 30);
+		jbFunction.setBounds(380, 510, 120, 30);
 		
 		setBounds(cmt.getX()+520, cmt.getY()+190, 700, 600);
 		
-		scrollPane.setVisible(true);
+//		scrollPane.setVisible(true);
 		jlTitle.setVisible(true);
 		
 		setVisible(true);
@@ -332,6 +356,11 @@ public class CarManagerSubWindow extends JDialog {
 	private Object pTotal(String string, LineBorder border) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	public JButton getJbPartRemove() {
+		return jbPartRemove;
 	}
 
 

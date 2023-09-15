@@ -65,6 +65,9 @@ public class InventoryManagerTabEvt implements ActionListener {
 		if(e.getSource()==imt.getJbPartNameSearch()){
 			setInventoryTable();
 		}
+		if(e.getSource()==imt.getJbAdd()) {
+			new InventoryManagerSubWindow(imt);
+		}
 	}
 
 }

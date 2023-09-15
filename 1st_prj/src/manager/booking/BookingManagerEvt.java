@@ -90,6 +90,13 @@ public class BookingManagerEvt implements ActionListener {
 	        column.setMinWidth(0);
 	        column.setMaxWidth(0);
 	        column.setPreferredWidth(0);
+	        
+			 // 열 활성화 
+	        TableColumnModel columnModel1 = bmt.getJtbOrderInfoTable().getColumnModel();
+	        TableColumn column1 = columnModel1.getColumn(8); 
+	        column1.setMinWidth(100);
+	        column1.setMaxWidth(100);
+	        column1.setPreferredWidth(100);
 
 
 		} catch (SQLException e) {

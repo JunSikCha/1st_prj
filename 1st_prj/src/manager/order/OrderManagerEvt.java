@@ -83,7 +83,10 @@ public class OrderManagerEvt implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource()==omt.getJbOrder()){
+			new OrderManagerSubWindow(omt);
+		}
+		
 		
 	}
 	
