@@ -221,8 +221,9 @@ public class BookingEvt implements ActionListener{
 	 		//데이터를 모두 bVO에 담은 상태에서 insertBooking 메소드 실행. 
 	 		//쿼리 성공/실패에 따라 예약신청이 완료되었습니다. 잘못된 정보입니다 다시 확인해주세요 나눠서 출력
 			if(e.getSource()==bD.getJbtComplete()) {
-				bVO.setCarno(null);
-				bVO.setModelno(null);
+				bVO.setCarno(UserData.carno);
+				bVO.setModelno(UserData.modelno);
+				bVO.setIssue(bD.getJtaDetail().getText());
 				
 				try {
 					bDAO.insertBooking(bVO);
