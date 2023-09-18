@@ -96,7 +96,7 @@ public class InventoryManagerSubWindow extends JDialog{
 		add("Center",jbOk);
 		
 		dtm = new DefaultTableModel();
-		
+		//클릭 이벤트
 		InventoryManagerSubWindowEvt imswe = new InventoryManagerSubWindowEvt(imt,this);
 		jbOk.addActionListener(imswe);
 		
@@ -142,10 +142,6 @@ public class InventoryManagerSubWindow extends JDialog{
 		
 	}
 	
-//	public static void main(String[] args) {
-//		InventoryManagerTab imt = new InventoryManagerTab();
-//	      new InventoryManagerSubWindow(imt);
-//	   }//main //배치 확인용 메인
 
 	public JLabel getJlTitle() {
 		return jlTitle;

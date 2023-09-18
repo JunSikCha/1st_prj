@@ -74,10 +74,10 @@ public class InventoryManagerTab extends JPanel implements ActionListener{
         
         add("Center", jbAdd);
         
-        imtEvt = new InventoryManagerTabEvt(this);
-        
         
         //클릭 이벤트
+        imtEvt = new InventoryManagerTabEvt(this);
+        
         jbPartNameSearch.addActionListener(imtEvt);
         jbAdd.addActionListener(imtEvt);
         

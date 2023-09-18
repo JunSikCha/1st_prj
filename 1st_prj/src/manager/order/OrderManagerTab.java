@@ -81,9 +81,9 @@ public class OrderManagerTab extends JPanel implements ActionListener{
 		add("Center", jbOrder);
 
 		
-		omEvt = new OrderManagerEvt(this);
-		
 		//클릭 이벤트
+		
+		omEvt = new OrderManagerEvt(this);
 		jbDateSearch.addActionListener(omEvt);
 		jbOrder.addActionListener(omEvt);
 
@@ -102,7 +102,9 @@ public class OrderManagerTab extends JPanel implements ActionListener{
 		setVisible(true);
 	
 	
-		} //OrderManagerTab
+} //OrderManagerTab
+	
+	
 	
 		
 		//getter

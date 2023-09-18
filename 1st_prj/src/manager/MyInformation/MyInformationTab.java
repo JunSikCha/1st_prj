@@ -153,6 +153,9 @@ public class MyInformationTab extends JPanel implements ActionListener {
 
 	}//MyInformationTab
 
+	
+	
+	//getter 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

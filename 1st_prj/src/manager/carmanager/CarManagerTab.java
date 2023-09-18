@@ -19,17 +19,28 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 	// 아오 다영시치
 	private CarManagerTabEvt cmtEvt;
 
-	private JLabel jlCMName;
+	private JLabel jlCMNameL;
+	private JLabel jlCMNameR;
+	private JLabel jlCMNameM;
+	
 	private JTable jtbCarInfoTable;
-	private JScrollPane scrollPane;
+	private JScrollPane jspCarInfoTable; //입고 차량 관리
+	
+	private JTable jtbWaitTable;
+	private JScrollPane jspWaitTable;//대기 차량 관리
+	
+	private JTable jtbOutputTable;
+	private JScrollPane jspOutputTable;//출고 차량 관리
 
 	private JTextField jtfStartDate;
 	private JTextField jtfEndDate;
 	private JButton jbDateSearch;
 
-	private JButton jbCarInfo;
-	private JButton jbCarAdd;
-	private JButton jbCarInfoModify;
+	private JButton jbCarAdd; //입고
+	private JButton jbCarOut; //출고
+	private JButton jbCarInfo; //차량정보
+	private JButton jbCarInfoModify; //정보수정
+	private JButton jbCarRepairEnd; //수리완료
 
 	private DefaultTableModel dtm;
 
@@ -47,29 +58,68 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 
 		// 페이지 이름
-		jlCMName = new JLabel("입고 차량 관리");
-		Font cmNameFont = new Font(null, Font.BOLD, 20);
-		jlCMName.setFont(cmNameFont);
+		jlCMNameL = new JLabel("대기 차량 관리");
+		Font cmNameFontL = new Font(null, Font.BOLD, 20);
+		jlCMNameL.setFont(cmNameFontL);
 
-		// 정보 게시판
+		
+		jlCMNameR = new JLabel("출고 차량 관리");
+		Font cmNameFontR = new Font(null, Font.BOLD, 20);
+		jlCMNameR.setFont(cmNameFontR);
+		
+		
+		jlCMNameM = new JLabel("입고 차량 관리");
+		Font cmNameFontM = new Font(null, Font.BOLD, 20);
+		jlCMNameM.setFont(cmNameFontM);
+
+		
+		// 중앙 상단 입고 차량관리
 		jtbCarInfoTable = new JTable(dtm);
-		scrollPane = new JScrollPane(jtbCarInfoTable);
-
-		//////////////////////////////////////////////////////
+		jspCarInfoTable = new JScrollPane(jtbCarInfoTable);
+		//좌측 하단 대기 차랑관리
+		jtbWaitTable = new JTable(dtm);
+		jspWaitTable = new JScrollPane(jtbWaitTable);
+		//우측 하단 출고 차량관리
+		jtbOutputTable = new JTable(dtm);
+		jspOutputTable = new JScrollPane(jtbOutputTable);
+		
+		
+		//게시판 수정 불가
 		jtbCarInfoTable.getTableHeader().setReorderingAllowed(false);
+		jtbWaitTable.getTableHeader().setReorderingAllowed(false);
+		jtbOutputTable.getTableHeader().setReorderingAllowed(false);
 
-		//////////////////////////////////////////////////////
-
-		// 컬럼네임 크기 조절
+		
+		//게시판 열 굵게
 		JTableHeader tableHeader = jtbCarInfoTable.getTableHeader();
 		Font headerFont = new Font(null, Font.BOLD, 14);
 		tableHeader.setFont(headerFont);
-		// 데이터 크기 조절
+		
+		JTableHeader tableHeader2 = jtbWaitTable.getTableHeader();
+		Font headerFont2 = new Font(null, Font.BOLD, 14);
+		tableHeader2.setFont(headerFont2);
+		
+		JTableHeader tableHeader3 = jtbOutputTable.getTableHeader();
+		Font headerFont3 = new Font(null, Font.BOLD, 14);
+		tableHeader3.setFont(headerFont3);
+		
+		//게시판 행 얇게
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) jtbCarInfoTable.getDefaultRenderer(Object.class);
 		Font dataFont = new Font(null, Font.PLAIN, 14);
 		renderer.setFont(dataFont);
 		renderer.setHorizontalAlignment(SwingConstants.CENTER); // 데이터 가운데 정렬
+		
+		DefaultTableCellRenderer renderer2 = (DefaultTableCellRenderer) jtbWaitTable.getDefaultRenderer(Object.class);
+		Font dataFont2 = new Font(null, Font.PLAIN, 14);
+		renderer2.setFont(dataFont2);
+		renderer2.setHorizontalAlignment(SwingConstants.CENTER); // 데이터 가운데 정렬
+		
+		DefaultTableCellRenderer renderer3 = (DefaultTableCellRenderer) jtbOutputTable.getDefaultRenderer(Object.class);
+		Font dataFont3 = new Font(null, Font.PLAIN, 14);
+		renderer3.setFont(dataFont3);
+		renderer3.setHorizontalAlignment(SwingConstants.CENTER); // 데이터 가운데 정렬
 
+		
 		// 날짜, 검색
 		JLabel cmMiddle = new JLabel("~");
 		Font cmMiddleFont = new Font(null, Font.BOLD, 14);
@@ -77,26 +127,38 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 		jtfStartDate = new JTextField();
 		jtfEndDate = new JTextField();
+		
 		jbDateSearch = new JButton("검색");
 
+		jbCarAdd = new JButton("입고");
+		jbCarOut = new JButton("출고");
+		
 		jbCarInfo = new JButton("차량 정보");
-		jbCarAdd = new JButton("차량 추가");
 		jbCarInfoModify = new JButton("정보 수정");
+		jbCarRepairEnd = new JButton("수리 완료");
 
+		
 		// 추가
 		setLayout(null);
 
-		add("North", jlCMName);
-		add("Center", scrollPane);
+		add("North", jlCMNameL);
+		add("North", jlCMNameR);
+		add("North", jlCMNameM);
+		
+		add("Center", jspCarInfoTable);
+		add("Center", jspWaitTable);
+		add("Center", jspOutputTable);
 
-		add("Center", cmMiddle);
 		add("Center", jtfStartDate);
+		add("Center", cmMiddle);
 		add("Center", jtfEndDate);
 		add("Center", jbDateSearch);
 
-		add("Center", jbCarInfo);
 		add("Center", jbCarAdd);
+		add("Center", jbCarOut);
+		add("Center", jbCarInfo);
 		add("Center", jbCarInfoModify);
+		add("Center", jbCarRepairEnd);
 
 		cmtEvt = new CarManagerTabEvt(this);
 
@@ -105,73 +167,142 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		jtfEndDate.addActionListener(cmtEvt);
 		jbDateSearch.addActionListener(cmtEvt);
 
-		jbCarInfo.addActionListener(cmtEvt);
 		jbCarAdd.addActionListener(cmtEvt);
+		jbCarOut.addActionListener(cmtEvt);
+		
+		jbCarInfo.addActionListener(cmtEvt);
 		jbCarInfoModify.addActionListener(cmtEvt);
+		jbCarRepairEnd.addActionListener(cmtEvt);
 
 		// 크기 조정 및 배치
-		jlCMName.setBounds(60, 16, 140, 20);
-		scrollPane.setBounds(60, 50, 800, 400);
+		jlCMNameL.setBounds(60, 16, 140, 20);
+		jlCMNameR.setBounds(480, 16, 140, 20);
+		jlCMNameM.setBounds(60, 280, 140, 20);
+		
+		
+		jspWaitTable.setBounds(60, 50, 380, 140);
+		jspOutputTable.setBounds(480, 50, 380, 140);
+		jspCarInfoTable.setBounds(60, 310, 800, 190);
 
 		jtfStartDate.setBounds(65, 520, 140, 30);
 		cmMiddle.setBounds(215, 520, 20, 20);
 		jtfEndDate.setBounds(235, 520, 140, 30);
 		jbDateSearch.setBounds(385, 520, 70, 30);
+		
+		jbCarAdd.setBounds(320, 210, 120, 30);
+		jbCarOut.setBounds(740, 210, 120, 30);
+		
+		jbCarInfo.setBounds(490, 520, 120, 30);
+		jbCarInfoModify.setBounds(615, 520, 120, 30);
+		jbCarRepairEnd.setBounds(740, 520, 120, 30);
 
-		jbCarInfo.setBounds(485, 520, 120, 30);
-		jbCarAdd.setBounds(610, 520, 120, 30);
-		jbCarInfoModify.setBounds(735, 520, 120, 30);
-
-		scrollPane.setVisible(true);
+		jspCarInfoTable.setVisible(true);
 		setVisible(true);
 
 	} // CarManagerTap1
 
+	
+	//getter
 	public DefaultTableModel getDtm() {
 		return dtm;
 	}
 
-	// getter method
-	public JLabel getCMName() {
-		return jlCMName;
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
-	public JScrollPane getScrollPane() {
-		return scrollPane;
+
+	// getter method
+	public CarManagerTabEvt getCmtEvt() {
+		return cmtEvt;
 	}
+
+
+	public JLabel getJlCMNameL() {
+		return jlCMNameL;
+	}
+
+
+	public JLabel getJlCMNameR() {
+		return jlCMNameR;
+	}
+
+
+	public JLabel getJlCMNameM() {
+		return jlCMNameM;
+	}
+
 
 	public JTable getJtbCarInfoTable() {
 		return jtbCarInfoTable;
 	}
 
+
+	public JScrollPane getJspCarInfoTable() {
+		return jspCarInfoTable;
+	}
+
+
+	public JTable getJtbWaitTable() {
+		return jtbWaitTable;
+	}
+
+
+	public JScrollPane getJspWaitTable() {
+		return jspWaitTable;
+	}
+
+
+	public JTable getJtbOutputTable() {
+		return jtbOutputTable;
+	}
+
+
+	public JScrollPane getJspOutputTable() {
+		return jspOutputTable;
+	}
+
+
 	public JTextField getJtfStartDate() {
 		return jtfStartDate;
 	}
+
 
 	public JTextField getJtfEndDate() {
 		return jtfEndDate;
 	}
 
+
 	public JButton getJbDateSearch() {
 		return jbDateSearch;
 	}
 
-	public JButton getJbtCarInfo() {
-		return jbCarInfo;
-	}
 
-	public JButton getJbtCarAdd() {
+	public JButton getJbCarAdd() {
 		return jbCarAdd;
 	}
 
-	public JButton getJbtCarInfoModify() {
+
+	public JButton getJbCarOut() {
+		return jbCarOut;
+	}
+
+
+	public JButton getJbCarInfo() {
+		return jbCarInfo;
+	}
+
+
+	public JButton getJbCarInfoModify() {
 		return jbCarInfoModify;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
+	public JButton getJbCarRepairEnd() {
+		return jbCarRepairEnd;
 	}
 
 } // class

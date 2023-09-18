@@ -85,7 +85,8 @@ public class OrderManagerSubWindow extends JDialog{
       	add("Center", jbCancle);
       	add("Center", jbOk);
 		
-		
+      	
+		//클릭 이벤트
       	OrderManagerSubWindowEvt  omswe= new OrderManagerSubWindowEvt(omt,this);
 //		jbOk.addActionListener(omswe);
 		
@@ -121,7 +122,12 @@ public class OrderManagerSubWindow extends JDialog{
 		
 	
 		
-	} //OrderManagerSubWindow
+} //OrderManagerSubWindow
+	
+	
+	
+	//getter
+	
 
 	public JLabel getJlTitle() {
 		return jlTitle;

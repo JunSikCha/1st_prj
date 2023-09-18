@@ -302,7 +302,7 @@ public class CarManagerSubWindow extends JDialog {
 		
 	
 		//위치 조절
-		jpTitle.setBounds(50, 20, 580, 30);
+		jpTitle.setBounds(50, 20, 270, 30);
 		
 		jpMaintenencrNo.setBounds(50, 50, 145, 30);
 		jpcarName.setBounds(50, 80, 145, 30);
