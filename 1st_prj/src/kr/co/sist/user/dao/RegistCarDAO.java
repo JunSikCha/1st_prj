@@ -34,14 +34,7 @@ public class RegistCarDAO {
 			con = db.getConnection("192.168.10.150", "manager", "1234");
 			String selectModel = "select mname from car_info";
 			
-			pstmt = con.prepareStatement(selectModel);
-			
-//			배열 2개를 만들어서
-//			1개는 modelno modelno[0]
-//			1개는 mname   mname[0]
-//					
-//		    콤보박스 mname 배열순서대로
-			
+			pstmt = con.prepareStatement(selectModel);			
 			
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -125,9 +118,17 @@ public class RegistCarDAO {
 			
 			StringBuilder updateInfo = new StringBuilder();
 			updateInfo
-			.append("	update user_info	")
-			.append("		")
-			.append("		");
+			.append("	update user_info		")
+			.append("	set carno=?, modelno=?	")
+			.append("	where user_id=?			");
+			
+			pstmt = con.prepareStatement(updateInfo.toString());
+			
+			pstmt.setString(1, rcVO.getCarNo());
+			pstmt.setString(2, rcVO.getModelNo());
+			pstmt.setString(3, rcVO.getId());
+			
+			rowCnt = pstmt.executeUpdate();
 			
 		}finally {
 			db.dbClose(null, pstmt, con);

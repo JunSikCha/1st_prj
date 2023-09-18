@@ -42,7 +42,7 @@ public class ClientMainDAO {
 			selectCarInfo
 			.append("		SELECT uci.carno, ci.mName")
 			.append("		FROM user_info ui, USER_CAR_INFO uci, CAR_INFO ci")
-			.append("		WHERE ui.modelno = uci.modelno and uci.modelno = ci.modelno and ui.user_id =?");
+			.append("		WHERE ui.carno = uci.carno and uci.modelno = ci.modelno and ui.user_id =?");
 			
 			pstmt =con.prepareStatement(selectCarInfo.toString());
 			

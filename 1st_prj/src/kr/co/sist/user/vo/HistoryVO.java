@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class HistoryVO {
 
-	private Date inbound;
+	private String inbound;
 	private String detail;
 	private int price;
 	
@@ -12,14 +12,14 @@ public class HistoryVO {
 		super();
 	}
 
-	public HistoryVO(Date inbound, String detail, int price) {
+	public HistoryVO(String inbound, String detail, int price) {
 		super();
 		this.inbound = inbound;
 		this.detail = detail;
 		this.price = price;
 	}
 
-	public Date getInbound() {
+	public String getInbound() {
 		return inbound;
 	}
 

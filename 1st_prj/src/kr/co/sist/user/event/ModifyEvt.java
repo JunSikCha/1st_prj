@@ -14,18 +14,20 @@ public class ModifyEvt extends WindowAdapter implements ActionListener {
 	
 	public ModifyEvt(ModifyDesign md) {
 		this.md=md;
-	}
+	}//ModifyEvt
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		//회원 정보 수정
 		if(ae.getSource() == md.getJbtModifyUserDesign()) {
 			ModifyUserDesign mud = new ModifyUserDesign();
 			mud.setVisible(true);
 		}
 		
+		//비밀번호 변경
 		if(ae.getSource()  == md.getJbtModifyPassDesign()) {
 			ModifyPassDesign mpd = new ModifyPassDesign();
-//			mpd.setVisible(true);
+			mpd.setVisible(true);
 		}
 		
 

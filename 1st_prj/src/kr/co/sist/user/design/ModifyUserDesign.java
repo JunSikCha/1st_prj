@@ -8,15 +8,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
 import kr.co.sist.user.event.ModifyUserEvt;
+import kr.co.sist.user.event.UserData;
 
 @SuppressWarnings("serial")
 public class ModifyUserDesign extends JFrame {
 
 	private ModifyUserEvt mudEvt;
-	private JTextField jtfName;
+	private JLabel jlOrName;
 	private JTextField jtfPhoneNum;
 	private JTextField jtfEmail;
 	private JButton jbtComplete;
@@ -29,7 +29,7 @@ public class ModifyUserDesign extends JFrame {
 		JLabel jlPhoneNum = new JLabel("전화번호");
 		JLabel jlEmail = new JLabel("이메일");
 		
-		jtfName = new JTextField();
+		jlOrName = new JLabel(UserData.name);
 		jtfPhoneNum = new JTextField();
 		jtfEmail = new JTextField();
 		
@@ -45,7 +45,7 @@ public class ModifyUserDesign extends JFrame {
 		
 		jlUserModfiy.setBounds(180, 0, 150, 100);
 		jlName.setBounds(70, 60, 150, 100);
-		jtfName.setBounds(70, 130, 350, 40);
+		jlOrName.setBounds(70, 130, 350, 40);
 		jlPhoneNum.setBounds(70, 160, 150, 100);
 		jtfPhoneNum.setBounds(70, 240, 350, 40);
 		jlEmail.setBounds(70, 270,150, 100);
@@ -55,7 +55,7 @@ public class ModifyUserDesign extends JFrame {
 		setLayout(null);
 		add(jlUserModfiy);
 		add(jlName);
-		add(jtfName);
+		add(jlOrName);
 		add(jlPhoneNum);
 		add(jtfPhoneNum);
 		add(jlEmail);
@@ -80,8 +80,8 @@ public class ModifyUserDesign extends JFrame {
 		return mudEvt;
 	}
 
-	public JTextField getJtfName() {
-		return jtfName;
+	public JLabel getJtfName() {
+		return jlOrName;
 	}
 
 	public JTextField getJtfPhoneNum() {
@@ -96,6 +96,8 @@ public class ModifyUserDesign extends JFrame {
 		return jbtComplete;
 	}
 
-
+	public static void main(String args[]) {
+		new ModifyDesign();
+	}
 
 }

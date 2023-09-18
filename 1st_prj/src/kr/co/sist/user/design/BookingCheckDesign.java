@@ -3,20 +3,20 @@ package kr.co.sist.user.design;
 
 import java.awt.Font;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import kr.co.sist.user.event.BookingCheckEvt;
 
+
 @SuppressWarnings("serial")
-public class BookingCheckDesign extends JFrame {
+public class BookingCheckDesign extends JFrame  {
 
 	private BookingCheckEvt bcdEvt;
 
@@ -27,19 +27,8 @@ public class BookingCheckDesign extends JFrame {
 	private JButton jbtMonthlyChk;
 	private JButton jbtChk;
 	private JButton jbtMain;
-	private JButton jbtDetail;
-	private JComboBox<String>jcbStartDate;
-	private JComboBox<String>jcbEndDate;
-	private DefaultComboBoxModel<String>dcbmStartDate;
-	private DefaultComboBoxModel<String>dcbmEndDate;
-	private JScrollPane jspStartDate;
-	private JScrollPane jspEndDate;
-	private DefaultTableModel dtmStartDate;
-	private DefaultTableModel dtmEndDate;
-	private JTable jtaStartDate;
-	private JTable jtaEndDate;
-	
-
+	private JTextField jtfStartDate;
+	private JTextField jtfEndDate;
 	private JScrollPane jspBookingCheckDesign;
 	private DefaultTableModel dtmBookingCheckDesign;
 	private JTable jtBookingCheckDesign;
@@ -56,32 +45,21 @@ public class BookingCheckDesign extends JFrame {
 		jbtMonthlyChk = new JButton("월별조회");
 		jbtChk = new JButton("조회");
 		jbtMain = new JButton("메인화면으로");
-		jbtDetail = new JButton("상세");
-
-		/////////////////////////////////////////////////////////
-		String[] StartDate= {"2010-01-01","2010-01-02","2010-01-03"};
-		String[] EndDate= {"2023-09-01","2023-09-02","2023-09-03"};
-		dcbmStartDate= new DefaultComboBoxModel<String>();
-		dcbmEndDate= new DefaultComboBoxModel<String>();
-		jcbStartDate= new JComboBox<String>(StartDate);
-		jcbEndDate= new JComboBox<String>(EndDate);
-		dtmStartDate = new DefaultTableModel(null,StartDate);
-		dtmEndDate = new DefaultTableModel(null,EndDate);
-		jtaStartDate = new JTable(dtmStartDate);
-		jtaEndDate = new JTable(dtmEndDate);
-		jspStartDate = new JScrollPane(jtaStartDate);
-		jspEndDate = new JScrollPane(jtaEndDate);
+      
+		
+		jtfStartDate = new JTextField();
+		jtfEndDate = new JTextField();
 		dtmBookingCheckDesign = new DefaultTableModel();
 		jtBookingCheckDesign = new JTable(dtmBookingCheckDesign);
 		jspBookingCheckDesign = new JScrollPane(jtBookingCheckDesign);
-	    jcbStartDate.addActionListener(bcdEvt);
-	    jcbEndDate.addActionListener(bcdEvt);
-	    
-	    JPanel jpNorth = new JPanel();
-	    JPanel jpSouth = new JPanel();
-	    jpNorth.add(jcbStartDate);
-	    jpSouth.add(jcbEndDate);
-	    
+		jtfStartDate.addActionListener(bcdEvt);
+		jtfEndDate.addActionListener(bcdEvt);
+			
+		JPanel jpNorth = new JPanel();
+		JPanel jpSouth = new JPanel();
+		jpNorth.add(jtfStartDate);
+		jpSouth.add(jtfEndDate);
+		
 		///////////////////////////////////////////////////
 
 		jlBookingCheckDesign.setBounds(10, 5, 150, 100);
@@ -92,8 +70,6 @@ public class BookingCheckDesign extends JFrame {
 		jspBookingCheckDesign.setBounds(45,240,700,350);
 		add(jspBookingCheckDesign);
 		///////////////////////////////////////////////////////
-		jcbStartDate.setBounds(200, 150, 150, 30);
-		jcbEndDate.setBounds(380, 150, 150, 30);
 		jbtToday.setBounds(200, 100, 80, 30);
 		jbt7days.setBounds(300, 100, 80, 30);
 		jbt1month.setBounds(400, 100, 80, 30);
@@ -101,6 +77,8 @@ public class BookingCheckDesign extends JFrame {
 		jbtMonthlyChk.setBounds(600, 100, 120, 30);
 		jbtChk.setBounds(550, 150, 100, 30);
 		jbtMain.setBounds(320, 600, 140, 30);
+		jtfStartDate.setBounds(200, 150, 150, 30);
+		jtfEndDate.setBounds(380, 150, 150, 30);
 
 		Font titleFont = new Font("SansSerif", Font.BOLD, 22);
 		jlBookingCheckDesign.setFont(titleFont);
@@ -118,11 +96,11 @@ public class BookingCheckDesign extends JFrame {
 		jbtMain.setFont(btnFont);
 
 		setLayout(null);
+		add(jtfStartDate);
+		add(jtfEndDate);
 		add(jlBookingCheckDesign);
 		add(jlBookingPeriod);
 		add(jlviewHistory);
-		add(jcbStartDate);
-		add(jcbEndDate);
 		add(jbtToday);
 		add(jbt7days);
 		add(jbt1month);
@@ -142,99 +120,93 @@ public class BookingCheckDesign extends JFrame {
 
 		setBounds(600, 350, 800, 700);
 		setVisible(true);
-
-	}// BookingCheckDesign
-
+	}
+	
+	
+	
 	public BookingCheckEvt getBcdEvt() {
 		return bcdEvt;
 	}
+
+
 
 	public JButton getJbtToday() {
 		return jbtToday;
 	}
 
+
+
 	public JButton getJbt7days() {
 		return jbt7days;
 	}
+
+
 
 	public JButton getJbt1month() {
 		return jbt1month;
 	}
 
+
+
 	public JButton getJbt3month() {
 		return jbt3month;
 	}
+
+
 
 	public JButton getJbtMonthlyChk() {
 		return jbtMonthlyChk;
 	}
 
+
+
 	public JButton getJbtChk() {
 		return jbtChk;
 	}
+
+
 
 	public JButton getJbtMain() {
 		return jbtMain;
 	}
 
-	public JButton getJbtDetail() {
-		return jbtDetail;
+
+
+	public JTextField getJtfStartDate() {
+		return jtfStartDate;
 	}
 
-	public JComboBox<String> getJcbStartDate() {
-		return jcbStartDate;
+
+
+	public JTextField getJtfEndDate() {
+		return jtfEndDate;
 	}
 
-	public JComboBox<String> getJcbEndDate() {
-		return jcbEndDate;
-	}
 
-	public DefaultComboBoxModel<String> getDcbmStartDate() {
-		return dcbmStartDate;
-	}
-
-	public DefaultComboBoxModel<String> getDcbmEndDate() {
-		return dcbmEndDate;
-	}
-
-	public JScrollPane getJspStartDate() {
-		return jspStartDate;
-	}
-
-	public JScrollPane getJspEndDate() {
-		return jspEndDate;
-	}
-
-	public DefaultTableModel getDtmStartDate() {
-		return dtmStartDate;
-	}
-
-	public DefaultTableModel getDtmEndDate() {
-		return dtmEndDate;
-	}
-
-	public JTable getJtaStartDate() {
-		return jtaStartDate;
-	}
-
-	public JTable getJtaEndDate() {
-		return jtaEndDate;
-	}
 
 	public JScrollPane getJspBookingCheckDesign() {
 		return jspBookingCheckDesign;
 	}
 
+
+
 	public DefaultTableModel getDtmBookingCheckDesign() {
 		return dtmBookingCheckDesign;
 	}
+
+
 
 	public JTable getJtBookingCheckDesign() {
 		return jtBookingCheckDesign;
 	}
 
 
-	
-	
 
-}// class
+	public static void main(String args[]) {
+		new BookingCheckDesign();
+	}
+
+
+
+
+	}

@@ -45,8 +45,13 @@ public class ClientMainDesign extends JFrame {
 		
 			ClientMainVO cmVO = cmDAO.selectCarInfo(id);
 			
-				userCarName=cmVO.getUserCarName();
-				userCarNo=cmVO.getUserCarNo();
+				if(cmVO!=null) {					
+					userCarName=cmVO.getUserCarName();
+					userCarNo=cmVO.getUserCarNo();
+				}else {
+					userCarName="차량을 등록해주세요";
+					userCarNo="";
+				}
 
 		} catch (SQLException e) {
 			e.printStackTrace();

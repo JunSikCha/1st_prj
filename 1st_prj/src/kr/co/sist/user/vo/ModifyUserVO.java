@@ -20,7 +20,7 @@ public class ModifyUserVO {
 	}
 
 	public String getUserID() {
-		return userName;
+		return userID;
 
 	}
 	public String getUserName() {
@@ -33,6 +33,24 @@ public class ModifyUserVO {
 
 	public String getUserEmail() {
 		return userEmail;
+	}
+	
+	
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 
 	@Override

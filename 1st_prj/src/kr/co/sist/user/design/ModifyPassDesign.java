@@ -25,7 +25,7 @@ public class ModifyPassDesign extends JFrame{
 		JLabel jlModifyPass = new JLabel("비밀번호 변경");
 		JLabel jlcurPwd = new JLabel("기존 비밀번호");
 		jtfcurPwdField = new JTextField();
-		JLabel jlnewPwd = new JLabel("비밀번호");
+		JLabel jlnewPwd = new JLabel("변경할 비밀번호");
 		jtfnewPwdField = new JTextField();
 		JLabel jlconfirmPwd = new JLabel("비밀번호 확인");
 		jtfconfirmPwd = new JTextField();

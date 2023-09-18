@@ -74,12 +74,15 @@ public class LoginDesign extends JFrame {
         add(jbjoin);
         
         lgEvt = new LoginEvt(this);
+        jtfId.addActionListener(lgEvt);
+		jpwPass.addActionListener(lgEvt);
         jbLogin.addActionListener(lgEvt);
         jbjoin.addActionListener(lgEvt);
+        
+        addWindowListener(lgEvt);
 
         setBounds(500, 300, 1000, 700);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
 

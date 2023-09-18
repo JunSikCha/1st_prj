@@ -74,9 +74,9 @@ public class ModifyUserDAO {
 			
 			StringBuilder updateUser = new StringBuilder();
 			updateUser
-			.append("	update user_info				")
-			.append("	set user_tel=?, user_email=?	")
-			.append("	where user_id=?				");
+			.append("	update user_info					")
+			.append("	set user_tel=	?, user_email=	?	")
+			.append("	where user_id=	?					");
 			
 			pstmt=con.prepareStatement(updateUser.toString());
 			

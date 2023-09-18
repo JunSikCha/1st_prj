@@ -94,7 +94,6 @@ public class JoinDesign extends JFrame {
 	    
 		 setBounds(800, 500, 1000, 700);
 	     setVisible(true);
-	     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 

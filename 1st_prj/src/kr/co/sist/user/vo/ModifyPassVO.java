@@ -22,6 +22,15 @@ public class ModifyPassVO {
 	public String getNewPass() {
 		return newPass;
 	}
+	
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setNewPass(String newPass) {
+		this.newPass = newPass;
+	}
 
 	@Override
 	public String toString() {

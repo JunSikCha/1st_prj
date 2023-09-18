@@ -2,14 +2,13 @@ package kr.co.sist.user.design;
 
 import java.awt.Font;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import kr.co.sist.user.event.HistoryEvt;
@@ -29,16 +28,8 @@ public class HistoryDesign extends JFrame {
 	private JButton jbtDetail;
 	private JButton jbtPrev;
 	private JButton jbtNext;
-	private JComboBox<String>jcbStartDate;
-	private JComboBox<String>jcbEndDate;
-	private DefaultComboBoxModel<String>dcbmStartDate;
-	private DefaultComboBoxModel<String>dcbmEndDate;
-	private JScrollPane jspStartDate;
-	private JScrollPane jspEndDate;
-	private DefaultTableModel dtmStartDate;
-	private DefaultTableModel dtmEndDate;
-	private JTable jtaStartDate;
-	private JTable jtaEndDate;
+	private JTextField jtfStartDate;
+	private JTextField jtfEndDate;
 	private JScrollPane jspHistoryDesign;
 	private DefaultTableModel dtmHistoryDesign;
 	private JTable jtHistoryDesign;
@@ -59,36 +50,26 @@ public class HistoryDesign extends JFrame {
 		jbtPrev = new JButton("< prev");
 		jbtNext = new JButton("next >");
 		
-		String[] StartDate= {"2010-01-01","2010-01-02","2010-01-03"};
-		String[] EndDate= {"2023-09-01","2023-09-02","2023-09-03"};
-		dcbmStartDate= new DefaultComboBoxModel<String>();
-		dcbmEndDate= new DefaultComboBoxModel<String>();
-		jcbStartDate= new JComboBox<String>(StartDate);
-		jcbEndDate= new JComboBox<String>(EndDate);
-		dtmStartDate = new DefaultTableModel(null,StartDate);
-		dtmEndDate = new DefaultTableModel(null,EndDate);
-		jtaStartDate = new JTable(dtmStartDate);
-		jtaEndDate = new JTable(dtmEndDate);
-		jspStartDate = new JScrollPane(jtaStartDate);
-		jspEndDate = new JScrollPane(jtaEndDate);
+		jtfStartDate= new JTextField();
+		jtfEndDate= new JTextField();
 		dtmHistoryDesign = new DefaultTableModel();
 		jtHistoryDesign = new JTable(dtmHistoryDesign);
 		jspHistoryDesign = new JScrollPane(jtHistoryDesign);
-	    jcbStartDate.addActionListener(hdEvt);
-	    jcbEndDate.addActionListener(hdEvt);
+	    jtfStartDate.addActionListener(hdEvt);
+	    jtfEndDate.addActionListener(hdEvt);
 	    
 	    JPanel jpNorth = new JPanel();
 	    JPanel jpSouth = new JPanel();
-	    jpNorth.add(jcbStartDate);
-	    jpSouth.add(jcbEndDate);
+	    jpNorth.add(jtfStartDate);
+	    jpSouth.add(jtfEndDate);
 	    
 	    jlTitle.setBounds(10, 5, 150, 100);
 		jlHistoryPeriod.setBounds(80, 130, 100, 30);
 		jlHistory.setBounds(350, 180, 100, 100);
 		jspHistoryDesign.setBounds(80,240,600,300);
 		add(jspHistoryDesign);
-		jcbStartDate.setBounds(200, 150, 150, 30);
-		jcbEndDate.setBounds(380, 150, 150, 30);
+		jtfStartDate.setBounds(200, 150, 150, 30);
+		jtfEndDate.setBounds(380, 150, 150, 30);
 		jbtToday.setBounds(200, 100, 80, 30);
 		jbt7days.setBounds(300, 100, 80, 30);
 		jbt1month.setBounds(400, 100, 80, 30);
@@ -117,8 +98,8 @@ public class HistoryDesign extends JFrame {
 		add(jlTitle);
 		add(jlHistoryPeriod);
 		add(jlHistory);
-		add(jcbStartDate);
-		add(jcbEndDate);
+		add(jtfStartDate);
+		add(jtfEndDate);
 		add(jbtToday);
 		add(jbt7days);
 		add(jbt1month);
@@ -190,44 +171,12 @@ public class HistoryDesign extends JFrame {
 		return jbtNext;
 	}
 
-	public JComboBox<String> getJcbStartDate() {
-		return jcbStartDate;
+	public JTextField getJtfStartDate() {
+		return jtfStartDate;
 	}
 
-	public JComboBox<String> getJcbEndDate() {
-		return jcbEndDate;
-	}
-
-	public DefaultComboBoxModel<String> getDcbmStartDate() {
-		return dcbmStartDate;
-	}
-
-	public DefaultComboBoxModel<String> getDcbmEndDate() {
-		return dcbmEndDate;
-	}
-
-	public JScrollPane getJspStartDate() {
-		return jspStartDate;
-	}
-
-	public JScrollPane getJspEndDate() {
-		return jspEndDate;
-	}
-
-	public DefaultTableModel getDtmStartDate() {
-		return dtmStartDate;
-	}
-
-	public DefaultTableModel getDtmEndDate() {
-		return dtmEndDate;
-	}
-
-	public JTable getJtaStartDate() {
-		return jtaStartDate;
-	}
-
-	public JTable getJtaEndDate() {
-		return jtaEndDate;
+	public JTextField getJtfEndDate() {
+		return jtfEndDate;
 	}
 
 	public JScrollPane getJspHistoryDesign() {
@@ -242,7 +191,9 @@ public class HistoryDesign extends JFrame {
 		return jtHistoryDesign;
 	}
 
-	
+	public static void main(String args[]) {
+		new HistoryDesign();
+	}
 
 
 	
