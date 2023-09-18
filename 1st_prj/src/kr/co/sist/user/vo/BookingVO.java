@@ -65,6 +65,11 @@ public class BookingVO {
 	public void setBdate(String bdate) {
 		this.bdate = bdate;
 	}
+	
+
+	public void setCentername(String centername) {
+		this.centername = centername;
+	}
 
 	@Override
 	public String toString() {
