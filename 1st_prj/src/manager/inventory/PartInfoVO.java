@@ -9,8 +9,44 @@ public class PartInfoVO {
 	private String partStock;
 	private String partUnit;
 	
+	private int historyNo;
+	private int empNo;
+	private String modelNo;
+	private int bookingNo;
+	private String carNo;
+	
 	private int usedPartQuantity;
 	
+	public int getHistoryNo() {
+		return historyNo;
+	}
+	public void setHistoryNo(int historyNo) {
+		this.historyNo = historyNo;
+	}
+	public int getEmpNo() {
+		return empNo;
+	}
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
+	}
+	public String getModelNo() {
+		return modelNo;
+	}
+	public void setModelNo(String modelNo) {
+		this.modelNo = modelNo;
+	}
+	public int getBookingNo() {
+		return bookingNo;
+	}
+	public void setBookingNo(int bookingNo) {
+		this.bookingNo = bookingNo;
+	}
+	public String getCarNo() {
+		return carNo;
+	}
+	public void setCarNo(String carNo) {
+		this.carNo = carNo;
+	}
 	public int getUsedPartQuantity() {
 		return usedPartQuantity;
 	}

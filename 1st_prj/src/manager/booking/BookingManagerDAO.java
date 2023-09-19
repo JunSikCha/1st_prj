@@ -24,7 +24,7 @@ public class BookingManagerDAO {
 		return bmDAO;
 	}
 	
-	public List<BookingManagerVO> selectBooking(String strDate, String endDate) throws SQLException{
+	public List<BookingManagerVO> selectBooking(String strDate, String endDate,String status) throws SQLException{
 		List<BookingManagerVO> list = new ArrayList<BookingManagerVO>();
 		
 		BookingManagerVO bmVO = null;
@@ -45,8 +45,11 @@ public class BookingManagerDAO {
 			.append("		where b.modelno=ci.modelno and ui.carno=b.carno	");
 			
 			if(!strDate.equals("")) {
-				sb.append("	and	hinbound between TO_DATE(?, 'YYYY-MM-DD') and TO_DATE(?, 'YYYY-MM-DD') ");
+				sb.append("	and	booking_date between TO_DATE(?, 'YYYY-MM-DD') and TO_DATE(?, 'YYYY-MM-DD') ");
 			}//end if
+			if(status!=null&&status.equals("Y")) {
+				sb.append("		and bstatus = 'y'	");
+			}
 			sb
 			.append("		order by booking_no desc	");
 			pstmt = con.prepareStatement(sb.toString());
@@ -55,6 +58,8 @@ public class BookingManagerDAO {
 				pstmt.setString(1, strDate);
 				pstmt.setString(2, endDate);
 			}//end if
+			
+			
 			
 			rs = pstmt.executeQuery();
 			

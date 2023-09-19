@@ -29,10 +29,6 @@ public class BookingManagerEvt implements ActionListener {
 	}
 	//예약 신청관리창 테이터 입력
 	public void reservationManage() {
-		
-
-		
-		
 		BookingManagerDAO bmDAO = BookingManagerDAO.getInstance();
 
 		String strDate = bmt.getJtfStartDate().getText();
@@ -56,7 +52,7 @@ public class BookingManagerEvt implements ActionListener {
 		} // end if
 
 		try {
-			list = bmDAO.selectBooking(strDate, endDate);
+			list = bmDAO.selectBooking(strDate, endDate,null);
 
 			// JTable의 칼럼이 0개라면 칼럼명 추가
 			if (bmt.getJtbOrderInfoTable().getColumnCount() == 0) {
@@ -141,7 +137,7 @@ public class BookingManagerEvt implements ActionListener {
 		} // end if
 
 		try {
-			list = bmDAO.selectBooking(strDate, endDate);
+			list = bmDAO.selectBooking(strDate, endDate,null);
 
 			// JTable의 칼럼이 0개라면 칼럼명 추가
 			if (bmt.getJtbOrderInfoTable().getColumnCount() == 0) {
