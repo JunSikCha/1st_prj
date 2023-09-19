@@ -9,16 +9,19 @@ import manager.MyInformation.MyInformationTab;
 import manager.booking.BookingManagerTab;
 import manager.calculate.CalculateTab;
 import manager.inventory.InventoryManagerTab;
+import manager.login.LoginVO;
 import manager.order.OrderManagerTab;
 
 public class CarManager extends JFrame {//
 
     
    private JTabbedPane jtp;
+   private LoginVO lVO;
    
    
-   public CarManager() {
+   public CarManager(LoginVO lVO) {
       super("MYCAR");
+      this.lVO=lVO;
       jtp=new JTabbedPane();
       
       
@@ -59,10 +62,5 @@ public class CarManager extends JFrame {//
       
       
    }//CarManager
-   
-   
-   public static void main(String[] args) {
-      new CarManager();
-   }//main
 
 }//class
