@@ -6,8 +6,11 @@ import java.awt.event.ActionListener;
 public class MyInformationSubWindowEvt implements ActionListener {
 //	private MyInformationSubWindow misw;
 	
-	public MyInformationSubWindowEvt(/* MyInformationSubWindow misw */) {
-//		this.misw=misw;
+
+	private MyInformationSubWindow misw;
+
+	public MyInformationSubWindowEvt(MyInformationTab mit, MyInformationSubWindow misw) {
+		this.misw=misw;
 	}
 
 	@Override

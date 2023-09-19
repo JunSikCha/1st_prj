@@ -16,12 +16,10 @@ public class CarManager extends JFrame {//
 
     
    private JTabbedPane jtp;
-   private LoginVO lVO;
    
    
-   public CarManager(LoginVO lVO) {
+   public CarManager() {
       super("MYCAR");
-      this.lVO=lVO;
       jtp=new JTabbedPane();
       
       
@@ -31,7 +29,7 @@ public class CarManager extends JFrame {//
       OrderManagerTab cmt3=new OrderManagerTab(); 
       BookingManagerTab cmt4=new BookingManagerTab(); 
       CalculateTab cmt5=new CalculateTab(); 
-      MyInformationTab cmt6= new MyInformationTab(); 
+      MyInformationTab cmt6= new MyInformationTab(this); 
       
 //      setLayout(null);
       
@@ -62,5 +60,16 @@ public class CarManager extends JFrame {//
       
       
    }//CarManager
+   
+   
+   public static void main(String[] args) {
+      new CarManager();
+   }//main
+
+
+public LoginVO getlVO() {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 }//class

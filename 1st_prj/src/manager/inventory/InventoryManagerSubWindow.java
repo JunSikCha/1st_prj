@@ -40,7 +40,6 @@ public class InventoryManagerSubWindow extends JDialog{
 	
 	public InventoryManagerSubWindow(InventoryManagerTab imt) {
 		
-		
 		this.imt=imt;
 		
 		setLayout(null);
@@ -104,26 +103,26 @@ public class InventoryManagerSubWindow extends JDialog{
 		
 		
 		//크기 조정 및 배치
-		jlTitle.setBounds(10, 6, 140, 20);
-		scrollPane.setBounds(60, 50, 800, 770); 
+		jlTitle.setBounds(68, 20, 140, 20);
+		scrollPane.setBounds(60, 50, 840, 850); 
 		
-		jlPartName.setBounds(70, 40, 80, 30);
-		jtfPartName.setBounds(70, 70, 240, 30);
+		jlPartName.setBounds(70, 60, 80, 30);
+		jtfPartName.setBounds(70, 90, 240, 30);
 		
-		jlPartNo.setBounds(70, 110, 80, 30);
-		jtfPartNo.setBounds(70, 140, 240, 30);
+		jlPartNo.setBounds(70, 130, 80, 30);
+		jtfPartNo.setBounds(70, 160, 240, 30);
 		
-		jlAddNumber.setBounds(70, 180, 80, 30);
-		jtfAddNumber.setBounds(70, 210, 240, 30);
+		jlAddNumber.setBounds(70, 200, 80, 30);
+		jtfAddNumber.setBounds(70, 230, 240, 30);
 		
-		jlPartUnit.setBounds(70, 250, 80, 30);
-		jtfPartUnit.setBounds(70, 280, 240, 30);
+		jlPartUnit.setBounds(70, 270, 80, 30);
+		jtfPartUnit.setBounds(70, 300, 240, 30);
 		
-		jlPartCost.setBounds(70, 320, 80, 30);
-		jtfPartCost.setBounds(70, 350, 240, 30);
+		jlPartCost.setBounds(70, 340, 80, 30);
+		jtfPartCost.setBounds(70, 370, 240, 30);
 		
-		jlLaborCost.setBounds(70, 390, 80, 30);
-		jtfLaborCost.setBounds(70, 420, 240, 30);
+		jlLaborCost.setBounds(70, 410, 80, 30);
+		jtfLaborCost.setBounds(70, 440, 240, 30);
 		
 		
 		jbCancle.setBounds(60, 500, 120, 30);

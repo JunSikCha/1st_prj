@@ -25,15 +25,12 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 	
 	private JTable jtbCarInfoTable;
 	private JScrollPane jspCarInfoTable; //입고 차량 관리
-	private DefaultTableModel dtmCarInfo;
 	
 	private JTable jtbWaitTable;
 	private JScrollPane jspWaitTable;//대기 차량 관리
-	private DefaultTableModel dtmWait;
 	
 	private JTable jtbOutputTable;
 	private JScrollPane jspOutputTable;//출고 차량 관리
-	private DefaultTableModel dtmOutput;
 
 	private JTextField jtfStartDate;
 	private JTextField jtfEndDate;
@@ -41,33 +38,21 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 	private JButton jbCarAdd; //입고
 	private JButton jbCarOut; //출고
-//	private JButton jbCarInfo; //차량정보
+	private JButton jbCarInfo; //차량정보
 	private JButton jbCarInfoModify; //정보수정
 	private JButton jbCarRepairEnd; //수리완료
 
+	private DefaultTableModel dtm;
 
 	public CarManagerTab() {
 		
+		boolean[] flag = {false,false,false,true,false};
 
-		dtmCarInfo = new DefaultTableModel() {
+		dtm = new DefaultTableModel() {
 			// 테이블 읽기전용으로 설정
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-		dtmWait = new DefaultTableModel() {
-			// 테이블 읽기전용으로 설정
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-		dtmOutput = new DefaultTableModel() {
-			// 테이블 읽기전용으로 설정
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
+				return flag[2];
 			}
 		};
 
@@ -89,13 +74,13 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 		
 		// 중앙 상단 입고 차량관리
-		jtbCarInfoTable = new JTable(dtmCarInfo);
+		jtbCarInfoTable = new JTable(dtm);
 		jspCarInfoTable = new JScrollPane(jtbCarInfoTable);
 		//좌측 하단 대기 차랑관리
-		jtbWaitTable = new JTable(dtmWait);
+		jtbWaitTable = new JTable(dtm);
 		jspWaitTable = new JScrollPane(jtbWaitTable);
 		//우측 하단 출고 차량관리
-		jtbOutputTable = new JTable(dtmOutput);
+		jtbOutputTable = new JTable(dtm);
 		jspOutputTable = new JScrollPane(jtbOutputTable);
 		
 		
@@ -148,7 +133,7 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		jbCarAdd = new JButton("입고");
 		jbCarOut = new JButton("출고");
 		
-//		jbCarInfo = new JButton("차량 정보");
+		jbCarInfo = new JButton("차량 정보");
 		jbCarInfoModify = new JButton("정보 수정");
 		jbCarRepairEnd = new JButton("수리 완료");
 
@@ -171,7 +156,7 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 		add("Center", jbCarAdd);
 		add("Center", jbCarOut);
-//		add("Center", jbCarInfo);
+		add("Center", jbCarInfo);
 		add("Center", jbCarInfoModify);
 		add("Center", jbCarRepairEnd);
 
@@ -185,31 +170,31 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		jbCarAdd.addActionListener(cmtEvt);
 		jbCarOut.addActionListener(cmtEvt);
 		
-//		jbCarInfo.addActionListener(cmtEvt);
+		jbCarInfo.addActionListener(cmtEvt);
 		jbCarInfoModify.addActionListener(cmtEvt);
 		jbCarRepairEnd.addActionListener(cmtEvt);
 
 		// 크기 조정 및 배치
-		jlCMNameL.setBounds(60, 16, 140, 20);
-		jlCMNameR.setBounds(480, 16, 140, 20);
-		jlCMNameM.setBounds(60, 280, 140, 20);
+		jlCMNameL.setBounds(60, 56, 140, 20);
+		jlCMNameR.setBounds(480, 56, 140, 20);
+		jlCMNameM.setBounds(60, 320, 140, 20);
 		
 		
-		jspWaitTable.setBounds(60, 50, 380, 140);
-		jspOutputTable.setBounds(480, 50, 380, 140);
-		jspCarInfoTable.setBounds(60, 310, 800, 190);
+		jspWaitTable.setBounds(60, 90, 380, 140);
+		jspOutputTable.setBounds(480, 90, 380, 140);
+		jspCarInfoTable.setBounds(60, 350, 800, 190);
 
-		jtfStartDate.setBounds(65, 520, 140, 30);
-		cmMiddle.setBounds(215, 520, 20, 20);
-		jtfEndDate.setBounds(235, 520, 140, 30);
-		jbDateSearch.setBounds(385, 520, 70, 30);
+		jtfStartDate.setBounds(60, 560, 140, 30);
+		cmMiddle.setBounds(205, 560, 20, 20);
+		jtfEndDate.setBounds(225, 560, 140, 30);
+		jbDateSearch.setBounds(375, 560, 70, 30);
 		
-		jbCarAdd.setBounds(320, 210, 120, 30);
-		jbCarOut.setBounds(740, 210, 120, 30);
+		jbCarAdd.setBounds(320, 250, 120, 30);
+		jbCarOut.setBounds(740, 250, 120, 30);
 		
-//		jbCarInfo.setBounds(490, 520, 120, 30);
-		jbCarInfoModify.setBounds(615, 520, 120, 30);
-		jbCarRepairEnd.setBounds(740, 520, 120, 30);
+		jbCarInfo.setBounds(490, 560, 120, 30);
+		jbCarInfoModify.setBounds(615, 560, 120, 30);
+		jbCarRepairEnd.setBounds(740, 560, 120, 30);
 
 		jspCarInfoTable.setVisible(true);
 		setVisible(true);
@@ -218,28 +203,15 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 	
 	//getter
-	
+	public DefaultTableModel getDtm() {
+		return dtm;
+	}
 
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-	}
-
-
-	public DefaultTableModel getDtmCarInfo() {
-		return dtmCarInfo;
-	}
-
-
-	public DefaultTableModel getDtmWait() {
-		return dtmWait;
-	}
-
-
-	public DefaultTableModel getDtmOutput() {
-		return dtmOutput;
 	}
 
 
@@ -319,9 +291,9 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 	}
 
 
-//	public JButton getJbCarInfo() {
-//		return jbCarInfo;
-//	}
+	public JButton getJbCarInfo() {
+		return jbCarInfo;
+	}
 
 
 	public JButton getJbCarInfoModify() {
