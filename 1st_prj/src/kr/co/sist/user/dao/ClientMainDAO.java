@@ -40,7 +40,7 @@ public class ClientMainDAO {
 			
 			StringBuilder selectCarInfo = new StringBuilder();
 			selectCarInfo
-			.append("		SELECT uci.carno, ci.mName")
+			.append("		SELECT uci.carno, ci.mName, ci.modelno")
 			.append("		FROM user_info ui, USER_CAR_INFO uci, CAR_INFO ci")
 			.append("		WHERE ui.carno = uci.carno and uci.modelno = ci.modelno and ui.user_id =?");
 			
@@ -51,7 +51,7 @@ public class ClientMainDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				cmVO = new ClientMainVO(rs.getString("carno"),rs.getString("mName"));
+				cmVO = new ClientMainVO(rs.getString("carno"),rs.getString("mName"),rs.getString("modelno"));
 //				cmList.add(cmVO);
 			}//end if
 			

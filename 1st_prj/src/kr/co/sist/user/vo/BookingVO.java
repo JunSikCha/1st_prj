@@ -22,53 +22,54 @@ public class BookingVO {
 		this.bdate = bdate;
 	}
 
+
+
 	public String getCarno() {
 		return carno;
-	}
-
-	public String getModelno() {
-		return modelno;
-	}
-
-	public String getIssue() {
-		return issue;
-	}
-
-	public String getCenterno() {
-		return centerno;
-	}
-
-	public String getCentername() {
-		return centername;
-	}
-
-	public String getBdate() {
-		return bdate;
 	}
 
 	public void setCarno(String carno) {
 		this.carno = carno;
 	}
 
+	public String getModelno() {
+		return modelno;
+	}
+
 	public void setModelno(String modelno) {
 		this.modelno = modelno;
+	}
+
+	public String getIssue() {
+		return issue;
 	}
 
 	public void setIssue(String issue) {
 		this.issue = issue;
 	}
 
+	public String getCenterno() {
+		return centerno;
+	}
+
 	public void setCenterno(String centerno) {
 		this.centerno = centerno;
 	}
 
-	public void setBdate(String bdate) {
-		this.bdate = bdate;
+	public String getCentername() {
+		return centername;
 	}
-	
 
 	public void setCentername(String centername) {
 		this.centername = centername;
+	}
+
+	public String getBdate() {
+		return bdate;
+	}
+
+	public void setBdate(String bdate) {
+		this.bdate = bdate;
 	}
 
 	@Override

@@ -27,8 +27,8 @@ public class LoginDesign extends JFrame {
         JLabel jlId = new JLabel("아이디");
         JLabel jlblPass = new JLabel("비밀번호");
         JLabel jlblDc = new JLabel("아직 회원이 아니신가요?");
-        jtfId = new JTextField();
-        jpwPass = new JPasswordField();
+        jtfId = new JTextField("kim2");
+        jpwPass = new JPasswordField("1234");
 
         // 버튼 생성
         jbLogin = new JButton("확인");

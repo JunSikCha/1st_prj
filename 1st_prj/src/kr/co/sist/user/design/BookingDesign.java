@@ -25,25 +25,21 @@ public class BookingDesign extends JFrame {
 	private JComboBox<String>jcbBookMonth;
 	private JComboBox<String>jcbBookDay;
 	private JComboBox<String>jcbBookTime;
-	
 	private DefaultComboBoxModel<String>dcbmjcbBranch;
 	private DefaultComboBoxModel<String>dcbmjcbBookYear;
 	private DefaultComboBoxModel<String>dcbmjcbBookMonth;
 	private DefaultComboBoxModel<String>dcbmjcbBookday;
 	private DefaultComboBoxModel<String>dcbmjcbBookTime;
-	
 	private JScrollPane jspjcbBranch;
 	private JScrollPane jspjcbBookYear;
 	private JScrollPane jspjcbBookMonth;
 	private JScrollPane jspjcbBookDay;
 	private JScrollPane jspjcbBookTime;
-	
 	private DefaultTableModel dtmjcbBranch;
 	private DefaultTableModel dtmjcbBookYear;
 	private DefaultTableModel dtmjcbBookMonth;
 	private DefaultTableModel dtmjcbBookDay;
 	private DefaultTableModel dtmjcbBookTime;
-
 	private JTextArea jtaDetail;
 	private JTable jtBranch;
 	private JTable jtBookYear;
@@ -72,41 +68,24 @@ public class BookingDesign extends JFrame {
 		String[] MonthName= {"1","2","3"};
 		String[] DayName= {"1","2","3"};
 		String[] TimeName= {"2PM","3PM","4PM"};
-		//연,월,일 콤보박스 선언
+	
 		dcbmjcbBranch=new DefaultComboBoxModel<String>();
 		dcbmjcbBookYear=new DefaultComboBoxModel<String>();
 		dcbmjcbBookMonth=new DefaultComboBoxModel<String>();
 		dcbmjcbBookday=new DefaultComboBoxModel<String>();
 		dcbmjcbBookTime=new DefaultComboBoxModel<String>();
-		
 		jcbBranch= new JComboBox<String>(BranchName);
-//		jcbBookYear= new JComboBox<String>(YearName);
-//		jcbBookMonth= new JComboBox<String>(MonthName);
-//		jcbBookDay= new JComboBox<String>(DayName);
-		jcbBookYear= new JComboBox<String>();
-		jcbBookMonth= new JComboBox<String>();
-		jcbBookDay= new JComboBox<String>();
-			//월을 추가하는 for 구문
-		for(int i=1; i<13; i++) {
-			jcbBookMonth.addItem(String.valueOf(i));
-		}
-		
-		for(int e=1; e<31; e++) {
-			jcbBookDay.addItem(String.valueOf(e));
-		}
-		
-		
-		
+		jcbBookYear= new JComboBox<String>(YearName);
+		jcbBookMonth= new JComboBox<String>(MonthName);
+		jcbBookDay= new JComboBox<String>(DayName);
 		jcbBookTime= new JComboBox<String>(TimeName);
-		
 		dtmjcbBranch = new DefaultTableModel(null,BranchName);
-//		dtmjcbBookYear = new DefaultTableModel(null,YearName);
-//		dtmjcbBookMonth = new DefaultTableModel(null,MonthName);
-//		dtmjcbBookDay = new DefaultTableModel(null,DayName);
+		dtmjcbBookYear = new DefaultTableModel(null,YearName);
+		dtmjcbBookMonth = new DefaultTableModel(null,MonthName);
+		dtmjcbBookDay = new DefaultTableModel(null,DayName);
 		dtmjcbBookTime = new DefaultTableModel(null,TimeName);
-		
-		jtBranch = new JTable(dtmjcbBranch);
-		jtBookYear = new JTable(dtmjcbBookYear);
+		 jtBranch = new JTable(dtmjcbBranch);
+		 jtBookYear = new JTable(dtmjcbBookYear);
 		 jtBookMonth = new JTable(dtmjcbBookMonth);
 		 jtBookDay = new JTable(dtmjcbBookDay);
 		 jtBookTime = new JTable(dtmjcbBookTime);

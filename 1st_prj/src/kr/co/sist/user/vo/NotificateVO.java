@@ -3,38 +3,59 @@ package kr.co.sist.user.vo;
 import java.util.Date;
 
 public class NotificateVO {
-	
-	private String userName, bookResult;
-	private Date outDate;
-	
+
+	private String id, username, bstatus, reason, ctname, bdate, outbound;
+
 	public NotificateVO() {
 		super();
 	}
-
-	public NotificateVO(String userName, String bookResult, Date outDate) {
+	
+	public NotificateVO(String outbound) {
 		super();
-		this.userName = userName;
-		this.bookResult = bookResult;
-		this.outDate = outDate;
+		this.outbound = outbound;
 	}
 
-	public String getUserName() {
-		return userName;
+	public NotificateVO(String bstatus, String reason,String bdate, String ctname) {
+		super();
+		this.bstatus = bstatus;
+		this.reason = reason;
+		this.bdate = bdate;
+		this.ctname = ctname;
 	}
 
-	public String getBookResult() {
-		return bookResult;
+	public String getId() {
+		return id;
 	}
 
-	public Date getOutDate() {
-		return outDate;
+	public String getUsername() {
+		return username;
+	}
+
+	public String getBstatus() {
+		return bstatus;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+	
+	public String getCtname() {
+		return ctname;
+	}
+
+	public String getBdate() {
+		return bdate;
+	}
+
+	public String getOutbound() {
+		return outbound;
 	}
 
 	@Override
 	public String toString() {
-		return "NotificateVO [userName=" + userName + ", bookResult=" + bookResult + ", outDate=" + outDate + "]";
+		return "NotificateVO [id=" + id + ", username=" + username + ", bstatus=" + bstatus + ", reason=" + reason
+				+ ", ctname=" + ctname + ", bdate=" + bdate + ", outbound=" + outbound + "]";
 	}
-	
-	
-	
+		
+
 }

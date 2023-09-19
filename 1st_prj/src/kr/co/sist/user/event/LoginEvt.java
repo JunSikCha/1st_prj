@@ -12,6 +12,7 @@ import kr.co.sist.user.dao.LoginDAO;
 import kr.co.sist.user.design.ClientMainDesign;
 import kr.co.sist.user.design.JoinDesign;
 import kr.co.sist.user.design.LoginDesign;
+import kr.co.sist.user.design.NotificateDesign;
 import kr.co.sist.user.vo.LoginResultVO;
 import kr.co.sist.user.vo.LoginVO;
 
@@ -23,6 +24,12 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 
 	public LoginEvt(LoginDesign lg) {
 		this.lg = lg;
+		
+		// 아이디 필드에 액션 이벤트 리스너 추가
+        lg.getJtfId().addActionListener(this);
+
+        // 비밀번호 필드에 액션 이벤트 리스너 추가
+        lg.getJpwPass().addActionListener(this);
 	}
 
 	@Override
@@ -84,6 +91,7 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 			JOptionPane.showMessageDialog(lg, lrVO.getName() + "님으로 로그인 되었습니다.");
 //		System.out.println(lVO.getId());
 			new ClientMainDesign(lVO.getId());
+			new NotificateDesign();
 			UserData.id = lVO.getId();
 			UserData.name = lrVO.getName();
 			UserData.pass = lVO.getPassword();

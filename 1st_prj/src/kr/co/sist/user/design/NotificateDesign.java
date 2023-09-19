@@ -3,6 +3,8 @@ package kr.co.sist.user.design;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,21 +14,28 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import kr.co.sist.user.dao.NotificateDAO;
+import kr.co.sist.user.event.NotificateEvt;
+import kr.co.sist.user.event.UserData;
+import kr.co.sist.user.vo.NotificateVO;
+
 @SuppressWarnings("serial")
 public class NotificateDesign extends JFrame {
+	
 	private JTextArea jtaNotifi;
+	private NotificateEvt noEvt = new NotificateEvt();
 
     public NotificateDesign() {
         super("알림톡");
+        
         JLabel jlTitle = new JLabel("MYCAR");
         JLabel jlsubTitle = new JLabel("알림톡");
-        jtaNotifi = new JTextArea("*안녕하세요 ooo고객님.\r\n"
-                + "  BMW자동차 예약센터입니다\r\n"
-                + "  고객님의 소중한 차의 수리가 완료되었습니다.\n\n\n"
-                + "*안녕하세요 ooo고객님.\r\n"
-                + "  BMW자동차 예약센터입니다 고객님의 차량은 1년마다  \r\n"
-                + "  정기점검을 받으셔야합니다.\r\n"
-                + "  검사가능기간: 2023.07.26~2023.09.26");
+        try {
+			jtaNotifi = new JTextArea(noEvt.NotificateInfo());
+			jtaNotifi.setEditable(false);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
         jlTitle.setBounds(50, 2, 200, 50);
         jlsubTitle.setBounds(50, 20, 100, 100);
@@ -42,35 +51,19 @@ public class NotificateDesign extends JFrame {
         add(jlTitle);
         add(jlsubTitle);
         add(jtaNotifi);
-
+        
         setBounds(500, 280, 500, 300);
         setVisible(true);
 
     }
     
 
-   
-
-
 	public JTextArea getJtaNotifi() {
 		return jtaNotifi;
 	}
 
-
-
-
-
-
-
-
-
-
 	public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            // JFrame 생성
-            NotificateDesign frame = new NotificateDesign();
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        });
+		new NotificateDesign();
     }
 }
 
