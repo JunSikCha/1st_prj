@@ -92,6 +92,7 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 //		System.out.println(lVO.getId());
 			new ClientMainDesign(lVO.getId());
 			new NotificateDesign();
+			lg.dispose();
 			UserData.id = lVO.getId();
 			UserData.name = lrVO.getName();
 			UserData.pass = lVO.getPassword();

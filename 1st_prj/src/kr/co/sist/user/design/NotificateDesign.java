@@ -63,7 +63,7 @@ public class NotificateDesign extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new NotificateDesign();
+		new NotificateDesign(); 
     }
 }
 

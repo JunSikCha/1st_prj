@@ -26,13 +26,14 @@ public class HistoryDesign extends JFrame {
 	private JButton jbtChk;
 	private JButton jbtMain;
 	private JButton jbtDetail;
-	private JButton jbtPrev;
 	private JButton jbtNext;
 	private JTextField jtfStartDate;
 	private JTextField jtfEndDate;
 	private JScrollPane jspHistoryDesign;
 	private DefaultTableModel dtmHistoryDesign;
 	private JTable jtHistoryDesign;
+	
+	
 	
 	public HistoryDesign() {
 		super("차량 정비 내역");
@@ -46,13 +47,19 @@ public class HistoryDesign extends JFrame {
 		jbtMonthlyChk = new JButton("월별조회");
 		jbtChk = new JButton("조회");
 		jbtMain = new JButton("메인화면으로");
-		jbtDetail = new JButton("상세");
-		jbtPrev = new JButton("< prev");
+		jbtDetail = new JButton("상세보기");
 		jbtNext = new JButton("next >");
 		
 		jtfStartDate= new JTextField();
 		jtfEndDate= new JTextField();
-		dtmHistoryDesign = new DefaultTableModel();
+		dtmHistoryDesign = new DefaultTableModel() {
+			//테이블 수정 못하게
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+			
+		};
 		jtHistoryDesign = new JTable(dtmHistoryDesign);
 		jspHistoryDesign = new JScrollPane(jtHistoryDesign);
 	    jtfStartDate.addActionListener(hdEvt);
@@ -78,7 +85,7 @@ public class HistoryDesign extends JFrame {
 		jbtChk.setBounds(550, 150, 100, 30);
 		jbtMain.setBounds(300, 600, 150, 30);
 		jbtNext.setBounds(400, 550, 100, 30);
-		jbtPrev.setBounds(250, 550, 100, 30);
+		jbtDetail.setBounds(250, 550, 100, 30);
 	    
 		Font titleFont = new Font("SansSerif", Font.BOLD, 22);
 		jlTitle.setFont(titleFont);
@@ -108,7 +115,7 @@ public class HistoryDesign extends JFrame {
 		add(jbtChk);
 		add(jbtMain);
 		add(jbtNext);
-		add(jbtPrev);
+		add(jbtDetail);
 		
 	    hdEvt = new HistoryEvt(this);
 		jbtToday.addActionListener(hdEvt);
@@ -118,7 +125,7 @@ public class HistoryDesign extends JFrame {
 		jbtMonthlyChk.addActionListener(hdEvt);
 		jbtChk.addActionListener(hdEvt);
 		jbtNext.addActionListener(hdEvt);
-		jbtPrev.addActionListener(hdEvt);
+		jbtDetail.addActionListener(hdEvt);
 		jbtMain.addActionListener(hdEvt);
 		
 		
@@ -164,7 +171,7 @@ public class HistoryDesign extends JFrame {
 	}
 
 	public JButton getJbtPrev() {
-		return jbtPrev;
+		return jbtDetail;
 	}
 
 	public JButton getJbtNext() {

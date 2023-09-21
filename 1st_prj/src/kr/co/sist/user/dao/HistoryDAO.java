@@ -42,7 +42,7 @@ public class HistoryDAO {
 			
 			StringBuilder selectHistory = new StringBuilder();
 			selectHistory
-			.append("	SELECT to_char(ht.hinbound,'yyyy-mm-dd') hinbound, ht.hdetail, pi.sunitprice+pi.sprice total	")
+			.append("	SELECT to_char(ht.hinbound,'yyyy-mm-dd') hinbound, ht.hdetail, ht.historyno ,pi.sunitprice+pi.sprice total	")
 			.append("	FROM user_info ui, history ht, used_parts up, parts_info pi	")
 			.append("	WHERE (ui.carno=ht.carno and ht.carno=up.carno and up.sn=pi.sn) and ui.user_id=?	");
 			
@@ -60,7 +60,7 @@ public class HistoryDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				htVO = new HistoryVO(rs.getString("hinbound"),rs.getString("hdetail"),rs.getInt("total"));
+				htVO = new HistoryVO(rs.getString("hinbound"),rs.getString("hdetail"), rs.getInt("historyno"),rs.getInt("total"));
 				htList.add(htVO);
 			}
 			

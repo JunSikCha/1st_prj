@@ -76,14 +76,15 @@ public class BookingCheckEvt implements ActionListener {
 
 			// JTable 행 정보 추가
 			for (int i = 0; i < list.size(); i++) {
-				String[] arrRow = new String[6];
+				String[] arrRow = new String[7];
 				BookingCheckVO bcVO = list.get(i);
-				arrRow[0] = bcVO.getBdate();
-				arrRow[1] = bcVO.getBtime();
-				arrRow[2] = bcVO.getDetail();
-				arrRow[3] = bcVO.getCenter();
-				arrRow[4] = bcVO.getStatus();
-				arrRow[5] = bcVO.getReason();
+				arrRow[0] = String.valueOf(i+1);
+				arrRow[1] = bcVO.getBdate();
+				arrRow[2] = bcVO.getBtime();
+				arrRow[3] = bcVO.getDetail();
+				arrRow[4] = bcVO.getCenter();
+				arrRow[5] = bcVO.getStatus();
+				arrRow[6] = bcVO.getReason();
 				bcd.getDtmBookingCheckDesign().addRow(arrRow);
 			}
 

@@ -127,6 +127,7 @@ public class ClientMainDesign extends JFrame {
 
 		setBounds(300, 150, 1200, 700);
 		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}// ClientMainDesign
 

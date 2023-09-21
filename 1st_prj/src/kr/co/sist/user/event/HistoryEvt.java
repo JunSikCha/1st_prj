@@ -9,7 +9,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JOptionPane;
+
 import kr.co.sist.user.dao.HistoryDAO;
+import kr.co.sist.user.design.DetailHisDesign;
 import kr.co.sist.user.design.HistoryDesign;
 import kr.co.sist.user.vo.HistoryVO;
 
@@ -32,7 +35,7 @@ public class HistoryEvt extends WindowAdapter implements ActionListener {
 
 		// 테이블 컬럼명 설정
 		if (hd.getJtHistoryDesign().getColumnCount() == 0) {
-			String[] col = { "번호", "날짜", "정비내역", "비용" };
+			String[] col = { "번호", "날짜", "정비내역", "비용", "정비번호" };
 			for (int i = 0; i < col.length; i++) {
 				hd.getDtmHistoryDesign().addColumn(col[i]);
 			} // end for
@@ -71,13 +74,14 @@ public class HistoryEvt extends WindowAdapter implements ActionListener {
 			hd.getDtmHistoryDesign().setRowCount(0);
 
 			// JTable 행 정보 추가
-			String[] addRow = new String[4];
+			String[] addRow = new String[5];
 			for (int i = 0; i < hList.size(); i++) {
 				HistoryVO hVO = hList.get(i);
 				addRow[0] = String.valueOf(i + 1);
 				addRow[1] = hVO.getInbound();
 				addRow[2] = hVO.getDetail();
 				addRow[3] = String.valueOf(hVO.getPrice());
+				addRow[4] = String.valueOf(hVO.getHistoryno());
 				hd.getDtmHistoryDesign().addRow(addRow);
 			} // end for
 
@@ -118,6 +122,15 @@ public class HistoryEvt extends WindowAdapter implements ActionListener {
 			hd.getJtfStartDate().setText(startDate);
 			hd.getJtfEndDate().setText(endDate);
 		}
+		
+		if(ae.getSource() == hd.getJbtDetail()) { //상세보기 버튼
+			String str="상세내역";
+			try {
+			new DetailHisDesign(hd, str);
+			}catch(ArrayIndexOutOfBoundsException aie){
+				JOptionPane.showMessageDialog(null, "조회할 내역을 선택하세요");
+			}//end catch
+		}//end if
 
 		// 조회 버튼
 		if (ae.getSource() == hd.getJbtChk()) {
