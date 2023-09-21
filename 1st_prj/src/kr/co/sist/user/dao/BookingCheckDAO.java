@@ -42,7 +42,7 @@ public class BookingCheckDAO {
 
 			StringBuilder selectBooking = new StringBuilder();
 			selectBooking
-			.append(" SELECT to_char(bk.booking_date, 'yyyy-mm-dd') bdate, to_char(bk.booking_date, 'hh24:mi') btime, ht.hdetail, ci.ctname, bk.bstatus, bk.reason")
+			.append(" SELECT to_char(bk.booking_date, 'yyyy-mm-dd') bdate, to_char(bk.booking_date, 'hh24:mi') btime, bk.issue, ci.ctname, bk.bstatus, bk.reason")
             .append(" FROM user_info ui, history ht, Booking bk, center_info ci")
             .append(" WHERE ui.carno = ht.carno and ht.carno = bk.carno and bk.centerno = ci.centerno and ui.user_id = ?");
 
@@ -50,7 +50,7 @@ if (!strDate.equals("")) {
    selectBooking.append(" and bk.booking_date between TO_DATE(?, 'YYYY-MM-DD') and TO_DATE(?, 'YYYY-MM-DD')");
 }
 
-selectBooking.append(" group by bk.booking_no, to_char(bk.booking_date, 'yyyy-mm-dd'), to_char(bk.booking_date, 'hh24:mi'), ht.hdetail, ci.ctname, bk.bstatus, bk.reason");
+selectBooking.append(" group by bk.booking_no, to_char(bk.booking_date, 'yyyy-mm-dd'), to_char(bk.booking_date, 'hh24:mi'), bk.issue, ci.ctname, bk.bstatus, bk.reason");
 
 			
 			pstmt = con.prepareStatement(selectBooking.toString());
@@ -68,7 +68,7 @@ selectBooking.append(" group by bk.booking_no, to_char(bk.booking_date, 'yyyy-mm
 				bcVO = new BookingCheckVO();
 				bcVO.setBdate(rs.getString("bdate"));
 				bcVO.setBtime(rs.getString("btime"));
-				bcVO.setDetail(rs.getString("hdetail"));
+				bcVO.setDetail(rs.getString("issue"));
 				bcVO.setCenter(rs.getString("ctname"));
 				bcVO.setStatus(rs.getString("bstatus"));
 				bcVO.setReason(rs.getString("reason"));

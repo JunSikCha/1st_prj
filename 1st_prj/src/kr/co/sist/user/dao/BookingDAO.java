@@ -77,8 +77,8 @@ public class BookingDAO {
 			StringBuilder insertBooking = new StringBuilder();
 			
 			insertBooking
-			.append("	 insert into booking(booking_no, carno, modelno, issue, booking_date, centerno)	")
-			.append("	 values ((select max(booking_no)+1 from booking), ?, ?, ?, ?, ? )	");
+			.append("	 	insert into booking(booking_no, carno, modelno, issue, booking_date, centerno)		")
+			.append("		values ( (select max(booking_no)+1 from booking), ?, ?, ?, to_date( ?, 'yyyy-mm-dd hh24:mi'), ?)    ");
 
 			pstmt = con.prepareStatement(insertBooking.toString());
 			

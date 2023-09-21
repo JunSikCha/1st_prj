@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -20,18 +21,18 @@ import kr.co.sist.user.event.UserData;
 import kr.co.sist.user.vo.NotificateVO;
 
 @SuppressWarnings("serial")
-public class NotificateDesign extends JFrame {
+public class NotificateDesign extends JDialog {
 	
 	private JTextArea jtaNotifi;
 	private NotificateEvt noEvt = new NotificateEvt();
 
-    public NotificateDesign() {
-        super("알림톡");
+    public NotificateDesign(JFrame parent) {
+    	super(parent, "알림톡", true); // 모달 창으로 설정
         
         JLabel jlTitle = new JLabel("MYCAR");
         JLabel jlsubTitle = new JLabel("알림톡");
         try {
-			jtaNotifi = new JTextArea(noEvt.NotificateInfo());
+			jtaNotifi = new JTextArea(noEvt.notificateInfo());
 			jtaNotifi.setEditable(false);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -54,17 +55,13 @@ public class NotificateDesign extends JFrame {
         
         setBounds(500, 280, 500, 300);
         setVisible(true);
-
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // 창 닫기 동작 설정
     }
-    
 
 	public JTextArea getJtaNotifi() {
 		return jtaNotifi;
 	}
 
-	public static void main(String[] args) {
-		new NotificateDesign(); 
-    }
 }
 
 

@@ -62,28 +62,17 @@ public class BookingDesign extends JFrame {
 		jbtComplete = new JButton("예약");
 		jbtCancel = new JButton("취소");
 		
-		
-		String[] BranchName= {"강남점","분당점","부산점"};
-		String[] YearName= {"2023","2024","2025"};
-		String[] MonthName= {"1","2","3"};
-		String[] DayName= {"1","2","3"};
-		String[] TimeName= {"2PM","3PM","4PM"};
-	
 		dcbmjcbBranch=new DefaultComboBoxModel<String>();
 		dcbmjcbBookYear=new DefaultComboBoxModel<String>();
 		dcbmjcbBookMonth=new DefaultComboBoxModel<String>();
 		dcbmjcbBookday=new DefaultComboBoxModel<String>();
 		dcbmjcbBookTime=new DefaultComboBoxModel<String>();
-		jcbBranch= new JComboBox<String>(BranchName);
-		jcbBookYear= new JComboBox<String>(YearName);
-		jcbBookMonth= new JComboBox<String>(MonthName);
-		jcbBookDay= new JComboBox<String>(DayName);
-		jcbBookTime= new JComboBox<String>(TimeName);
-		dtmjcbBranch = new DefaultTableModel(null,BranchName);
-		dtmjcbBookYear = new DefaultTableModel(null,YearName);
-		dtmjcbBookMonth = new DefaultTableModel(null,MonthName);
-		dtmjcbBookDay = new DefaultTableModel(null,DayName);
-		dtmjcbBookTime = new DefaultTableModel(null,TimeName);
+		jcbBranch= new JComboBox<String>();
+		jcbBookYear= new JComboBox<String>();
+		jcbBookMonth= new JComboBox<String>();
+		jcbBookDay= new JComboBox<String>();
+		jcbBookTime= new JComboBox<String>();
+		
 		 jtBranch = new JTable(dtmjcbBranch);
 		 jtBookYear = new JTable(dtmjcbBookYear);
 		 jtBookMonth = new JTable(dtmjcbBookMonth);
@@ -157,6 +146,13 @@ public class BookingDesign extends JFrame {
 	      add(jbtCancel);
 	      
 	      bdEvt = new  BookingEvt (this);
+	      
+	      jcbBranch.addActionListener(bdEvt);
+	      jcbBookYear.addActionListener(bdEvt);
+	      jcbBookMonth.addActionListener(bdEvt);
+	      jcbBookDay.addActionListener(bdEvt);
+	      jcbBookTime.addActionListener(bdEvt);
+	      
 	      jbtComplete.addActionListener(bdEvt);
 		  jbtCancel.addActionListener(bdEvt);
 		 
@@ -316,6 +312,11 @@ public class BookingDesign extends JFrame {
 
 	public JButton getJbtComplete() {
 		return jbtComplete;
+	}
+
+
+	public void setJcbBookDay(JComboBox<String> jcbBookDay) {
+		this.jcbBookDay = jcbBookDay;
 	}
 
 

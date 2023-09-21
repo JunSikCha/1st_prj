@@ -1,7 +1,5 @@
 package kr.co.sist.user.vo;
 
-import java.util.Date;
-
 public class NotificateVO {
 
 	private String id, username, bstatus, reason, ctname, bdate, outbound;

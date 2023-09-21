@@ -1,8 +1,5 @@
 package kr.co.sist.user.vo;
 
-import java.sql.Date;
-
-
 public class LoginResultVO {
 	private String name;
 

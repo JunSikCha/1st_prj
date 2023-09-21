@@ -10,7 +10,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import kr.co.sist.user.dao.RegistCarDAO;
-import kr.co.sist.user.design.LoginDesign;
 import kr.co.sist.user.design.RegistCarDesign;
 import kr.co.sist.user.vo.RegistCarVO;
 

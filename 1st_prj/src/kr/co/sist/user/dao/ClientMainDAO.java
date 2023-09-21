@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import kr.co.sist.user.dbconn.DbConn;
 import kr.co.sist.user.vo.ClientMainVO;
@@ -40,7 +38,7 @@ public class ClientMainDAO {
 			
 			StringBuilder selectCarInfo = new StringBuilder();
 			selectCarInfo
-			.append("		SELECT uci.carno, ci.mName, ci.modelno")
+			.append("		SELECT uci.carno, ci.mName, ci.modelno, ci.mimage")
 			.append("		FROM user_info ui, USER_CAR_INFO uci, CAR_INFO ci")
 			.append("		WHERE ui.carno = uci.carno and uci.modelno = ci.modelno and ui.user_id =?");
 			
@@ -51,7 +49,7 @@ public class ClientMainDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				cmVO = new ClientMainVO(rs.getString("carno"),rs.getString("mName"),rs.getString("modelno"));
+				cmVO = new ClientMainVO(rs.getString("carno"),rs.getString("mName"),rs.getString("modelno"),rs.getString("mimage"));
 //				cmList.add(cmVO);
 			}//end if
 			

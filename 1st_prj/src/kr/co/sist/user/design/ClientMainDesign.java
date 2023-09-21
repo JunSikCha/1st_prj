@@ -25,6 +25,7 @@ public class ClientMainDesign extends JFrame {
 	private JLabel jlCarname;
 	private JLabel jlCarNo;
 	private JLabel jlDefaultimg;
+	private ImageIcon dft;
 
 	private JButton jbtRegist;
 	private JButton jbtModify;
@@ -34,30 +35,8 @@ public class ClientMainDesign extends JFrame {
 	private JButton jbtRecall;
 	private JButton jbtNotify;
 
-	public ClientMainDesign(String id) {
+	public ClientMainDesign() {
 		super("메인화면");
-
-		String userCarName = null;
-		String userCarNo = null;
-
-		try {
-			ClientMainDAO cmDAO = ClientMainDAO.getInstance();
-
-			ClientMainVO cmVO = cmDAO.selectCarInfo(id);
-
-			if (cmVO != null) {
-				userCarName = cmVO.getUserCarName();
-				userCarNo = cmVO.getUserCarNo();
-				UserData.carno = cmVO.getUserCarNo();
-				UserData.modelno = cmVO.getUserModelNo();
-			} else {
-				userCarName = "차량을 등록해주세요";
-				userCarNo = "";
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} // end catch
 
 		// 타이틀
 		JLabel jlTitle = new JLabel("마이카 관리");
@@ -67,15 +46,15 @@ public class ClientMainDesign extends JFrame {
 		ImageIcon logoImg = new ImageIcon("E:/dev/workspace/first_project/src/kr/co/sist/image/logo.png");
 		JLabel jlLogo = new JLabel(logoImg); // 로고
 
-		jlCarname = new JLabel(userCarName);// 차량 이름
+		jlCarname = new JLabel();// 차량 이름
 		Font carnameFont = new Font(null, Font.BOLD, 25);
 		jlCarname.setFont(carnameFont);
 
-		jlCarNo = new JLabel(userCarNo); // 차량 번호
+		jlCarNo = new JLabel(); // 차량 번호
 
 		// 차량이미지
-		ImageIcon dft = new ImageIcon("E:/dev/workspace/first_project/src/kr/co/sist/image/default.png");
-		jlDefaultimg = new JLabel(dft);
+		dft = new ImageIcon();
+		jlDefaultimg = new JLabel();
 
 		// 버튼
 		jbtRecall = new JButton("리콜 확인");
@@ -130,6 +109,7 @@ public class ClientMainDesign extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}// ClientMainDesign
+	
 
 	public ClientMainEvt getCmEvt() {
 		return cmEvt;
@@ -141,6 +121,10 @@ public class ClientMainDesign extends JFrame {
 
 	public JLabel getJlCarNo() {
 		return jlCarNo;
+	}
+	
+	public ImageIcon getDft() {
+		return dft;
 	}
 
 	public JLabel getJlDefaultimg() {

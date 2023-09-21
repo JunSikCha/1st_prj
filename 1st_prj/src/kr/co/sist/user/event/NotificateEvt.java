@@ -1,5 +1,7 @@
 package kr.co.sist.user.event;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,12 +9,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 import kr.co.sist.user.dao.NotificateDAO;
+import kr.co.sist.user.design.NotificateDesign;
 import kr.co.sist.user.vo.NotificateVO;
 
-public class NotificateEvt {
+public class NotificateEvt extends WindowAdapter {
+	
+	private NotificateDesign nd;
 
 	// 알림창에 들어갈 내용
-	public String NotificateInfo() throws ParseException {
+	public String notificateInfo() throws ParseException {
 
 		StringBuilder sbBi = new StringBuilder();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -30,10 +35,16 @@ public class NotificateEvt {
 			NotificateDAO noDAO = NotificateDAO.getInstance();
 			NotificateVO boVO = noDAO.selectBookingInfo(UserData.id); // 예약정보VO
 			NotificateVO hiVO = noDAO.selectHistoryInfo(UserData.id); // 정비내역VO
-
+			
 			// 예약여부
 			if (boVO != null) {
-				if (boVO.getBstatus().equals("y")) { // 예약이 수락되었을 경우
+				
+				if (boVO.getBstatus()==null) { // 예약이 처리되기 이전인 경우
+					sbBi
+					.append("안녕하세요, " + UserData.name + " 고객님!\n")
+					.append("BMW자동차 " + boVO.getCtname() + " 예약센터입니다.\n")
+					.append("["+boVO.getBdate() + "] 예약이 처리중이오니 잠시만 기다려주세요.");
+				}else if (boVO.getBstatus().equals("y")) { // 예약이 수락되었을 경우
 					sbBi
 					.append("안녕하세요, " + UserData.name + " 고객님!\n")
 					.append("BMW자동차 " + boVO.getCtname() + " 예약센터입니다.\n")
@@ -79,6 +90,13 @@ public class NotificateEvt {
 		String BookInfo = sbBi.toString();
 		return BookInfo;
 	}// NotificateInfo
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		nd.dispose();
+	}
+	
+	
 
 //	public static void main(String[] args) {
 ////		new NotificateDesign();

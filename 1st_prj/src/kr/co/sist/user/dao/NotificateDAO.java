@@ -99,5 +99,13 @@ public class NotificateDAO {
 		
 		return noVO;
 	}
+	
+	public static void main(String args[]) {
+		try {
+			System.out.println(new NotificateDAO().selectHistoryInfo("kim2"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }// class
