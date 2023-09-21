@@ -11,6 +11,7 @@ import kr.co.sist.user.event.ModifyPassEvt;
 
 @SuppressWarnings("serial")
 public class ModifyPassDesign extends JFrame{
+	private ModifyDesign md;
 	
 	private ModifyPassEvt mpdEvt;
 	
@@ -19,8 +20,8 @@ public class ModifyPassDesign extends JFrame{
 	private JTextField jtfconfirmPwd;
 	private JButton jbtComplete;
 	
-	public ModifyPassDesign() {
-		super("비밀번호변경");
+	public ModifyPassDesign(ModifyDesign md) {
+		this.md=md;
 		
 		JLabel jlModifyPass = new JLabel("비밀번호 변경");
 		JLabel jlcurPwd = new JLabel("기존 비밀번호");
@@ -32,36 +33,36 @@ public class ModifyPassDesign extends JFrame{
 		
 		jbtComplete = new JButton("비밀번호 변경");
 		
-		Font titleFont = new Font(null, Font.BOLD, 20);
+		Font titleFont = new Font(null, Font.BOLD, 25);
 		 jlModifyPass.setFont(titleFont);
-		 Font labelFont = new Font(null, Font.BOLD, 15);
+		 Font labelFont = new Font(null, Font.BOLD, 18);
 		 jlcurPwd.setFont(labelFont);
 		 jlnewPwd.setFont(labelFont);
 		 jlconfirmPwd.setFont(labelFont);
 		 
-		jlModifyPass.setBounds(180, 0, 150, 100);
-		jlcurPwd.setBounds(70, 60, 150, 100);
-		jtfcurPwdField.setBounds(70, 130, 350, 40);
-		jlnewPwd.setBounds(70, 160, 150, 100);
-		jtfnewPwdField.setBounds(70, 240, 350, 40);
-		jlconfirmPwd.setBounds(70, 270,150, 100);
-		jtfconfirmPwd.setBounds(70, 340, 350, 40);
-		jbtComplete.setBounds(170,420,150,30);
+		 jlModifyPass.setBounds(120, 10, 180, 100);
+			jlcurPwd.setBounds(70, 70, 150, 100);
+			jtfcurPwdField.setBounds(70, 140, 250, 40);
+			jlnewPwd.setBounds(70, 160, 150, 100);
+			jtfnewPwdField.setBounds(70, 240, 250, 40);
+			jlconfirmPwd.setBounds(70, 270,150, 100);
+			jtfconfirmPwd.setBounds(70, 340, 250, 40);
+			jbtComplete.setBounds(120,420,150,30);
 		
-		setLayout(null);
-		add(jlModifyPass);
-		add(jlcurPwd);
-		add(jtfcurPwdField);
-		add(jlnewPwd);
-		add(jtfnewPwdField);
-		add(jlconfirmPwd);
-		add(jtfconfirmPwd);
-		add(jbtComplete);
+			setLayout(null);
+			add(jlModifyPass);
+			add(jlcurPwd);
+			add(jtfcurPwdField);
+			add(jlnewPwd);
+			add(jtfnewPwdField);
+			add(jlconfirmPwd);
+			add(jtfconfirmPwd);
+			add(jbtComplete);
 		
 		mpdEvt = new ModifyPassEvt(this);
 		jbtComplete.addActionListener(mpdEvt);
 		
-		setBounds(400,400,500,500);
+		setBounds(md.getX()+0,md.getY()-50,400,500);
 		setVisible(true);
 		 
 	}

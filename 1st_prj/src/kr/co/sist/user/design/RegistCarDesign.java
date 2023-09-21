@@ -20,6 +20,7 @@ import kr.co.sist.user.event.RegistCarEvt;
 
 @SuppressWarnings("serial")
 public class RegistCarDesign extends JFrame {
+	private ClientMainDesign cmd;
 	
 	private  RegistCarEvt rcEvt;
 	private JLabel jlModel;
@@ -30,13 +31,12 @@ public class RegistCarDesign extends JFrame {
 	private JScrollPane jspRegisterCarDesign;
 	private JTextField jtfCarnum;
 	private JTextField jtfDistance;
-	private JButton jbtCancel;
 	private JButton jbtComplete;
 	private DefaultTableModel dtmRegisterCarDesign;
 	private JTable jtRegisterCarDesign;
 	
-	public RegistCarDesign() {
-		super("차량 등록");
+	public RegistCarDesign(ClientMainDesign cmd) {
+		this.cmd=cmd;
 		JLabel jlRegist = new JLabel("차량 정보 등록");
 		JLabel jlModel = new JLabel("모델명");
 		JLabel jlCarnum = new JLabel("차량번호");
@@ -45,7 +45,6 @@ public class RegistCarDesign extends JFrame {
 		jtfCarnum = new JTextField();
 		jtfDistance = new JTextField();		
 		jbtComplete = new JButton("완료");
-		jbtCancel = new JButton("X");
 		
 		dcbmModel = new DefaultComboBoxModel<String>();
 		jcbModel = new JComboBox<String>(dcbmModel);
@@ -57,19 +56,19 @@ public class RegistCarDesign extends JFrame {
 		JPanel jpNorth = new JPanel();
 		jpNorth.add(jcbModel);
 		
-		 jlRegist.setBounds(10, 2, 200, 50);
-		 jlModel.setBounds(100, 40, 100, 100);
-		 jcbModel.setBounds(100, 110, 200, 30);
-		 jlCarnum.setBounds(100, 140, 100, 100);
-		 jtfCarnum.setBounds(100, 200, 200, 30);
-		 jlDistance.setBounds(100, 260, 200, 30);
-		 jtfDistance.setBounds(100, 290, 200, 30);
-		 jbtComplete.setBounds(0, 413, 400, 50);
-		 jbtCancel.setBounds(334, 2, 50, 30);
+		 jlRegist.setBounds(105, 50, 200, 50);
+		 jlModel.setBounds(100, 100, 100, 100);
+		 jcbModel.setBounds(90, 170, 200, 30);
+		 jlCarnum.setBounds(100, 180, 100, 100);
+		 jtfCarnum.setBounds(90, 250, 200, 30);
+		 jlDistance.setBounds(100, 290, 200, 30);
+		 jtfDistance.setBounds(90, 320, 200, 30);
+		 jbtComplete.setBounds(140, 400, 80, 30);
 		
-		 Font titleFont = new Font("SansSerif", Font.BOLD, 18);
+		
+		 Font titleFont = new Font("SansSerif", Font.BOLD, 23);
 	      jlRegist.setFont(titleFont);
-	      Font labelFont = new Font("SansSerif", Font.BOLD, 13);
+	      Font labelFont = new Font("SansSerif", Font.BOLD, 17);
 	      jlModel.setFont(labelFont);
 	      jlCarnum.setFont(labelFont);
 	      jlDistance.setFont(labelFont);
@@ -87,13 +86,11 @@ public class RegistCarDesign extends JFrame {
 		 add(jlDistance);
 		 add(jtfDistance);
 		 add(jbtComplete);
-		 add(jbtCancel);
 		 
 		 rcEvt= new RegistCarEvt(this);
 		 jbtComplete.addActionListener(rcEvt);
-		 jbtCancel.addActionListener(rcEvt);
 		
-		setBounds(700,280,400,500);
+		 setBounds(cmd.getX()+300,cmd.getY()+30,380,500);
 		setVisible(true);
 		addWindowListener(new WindowAdapter() {
 
@@ -230,21 +227,6 @@ public class RegistCarDesign extends JFrame {
 
 
 
-	public JButton getJbtCancel() {
-		return jbtCancel;
-	}
-
-
-
-
-
-
-	public void setJbtCancel(JButton jbtCancel) {
-		this.jbtCancel = jbtCancel;
-	}
-
-
-
 
 
 
@@ -297,10 +279,5 @@ public class RegistCarDesign extends JFrame {
 		this.jtRegisterCarDesign = jtRegisterCarDesign;
 	}
 
-
-	public static void main(String[] args) {
-		new RegistCarDesign();
-	}
-	
 
 }//class

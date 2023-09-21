@@ -7,4 +7,5 @@ public class UserData {
 	public static String pass;
 	public static String carno;
 	public static String modelno;
+	public static String modelname;
 }

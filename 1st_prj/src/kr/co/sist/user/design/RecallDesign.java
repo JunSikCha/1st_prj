@@ -2,8 +2,6 @@ package kr.co.sist.user.design;
 
 import java.awt.Font;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -11,10 +9,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import kr.co.sist.user.event.RecallEvt;
-import kr.co.sist.user.event.UserData;
 
 @SuppressWarnings("serial")
 public class RecallDesign extends JFrame {
+	private ClientMainDesign cmd;
 	private RecallEvt rEvt;
 	private JLabel jlTitle;
 	private JLabel jlSubTitle;
@@ -32,8 +30,8 @@ public class RecallDesign extends JFrame {
 	private JTable jtRecall;
 	
 	
-	public RecallDesign() {
-		super("리콜여부");
+	public RecallDesign(ClientMainDesign cmd) {
+		this.cmd=cmd;
 		JLabel jlTitle = new JLabel("리콜여부확인");
 		JLabel jlSubTitle = new JLabel("대상자동차: ");
 		JLabel  jlCarModel = new JLabel("BMW i4 M50");
@@ -51,21 +49,12 @@ public class RecallDesign extends JFrame {
 	    
 	  
 	    
-	    jspRecallDesign.setBounds(110,400,700,500);
-	    add(jspRecallDesign);
-	    
+	    jspRecallDesign.setBounds(20,100,600,200);
+	    add(jspRecallDesign);	    
 	    
 	    setLayout(null);
         add(jlTitle);
-        add(jlSubTitle);
-        add(jlCarModel);
-        add(jlCarModel2);
-        add(jlRecallImg);
         add(jlCarname);
-        add(jlRecallReason);
-        add(jlRecallReason2);
-        add(jlRecallDate);
-        add(jlRecallDate2);
         
         JLabel imgLabel = new JLabel();
 //        ImageIcon icon = new ImageIcon(RecallDesign.class.getResource("/project/bmw.JPG"));
@@ -73,7 +62,7 @@ public class RecallDesign extends JFrame {
         imgLabel.setBounds(150, 150, 300, 200);
         imgLabel.setHorizontalAlignment(JLabel.LEFT);
         getContentPane().add(imgLabel);
-
+        
         JLabel imgLabel2 = new JLabel(); // imgLabel2 생성
 //        ImageIcon icon2 = new ImageIcon(RecallDesign.class.getResource("/project/recall.JPG"));
 //        imgLabel2.setIcon(icon2); // imgLabel2에 이미지 아이콘 설정
@@ -83,20 +72,19 @@ public class RecallDesign extends JFrame {
         
         rEvt = new RecallEvt(this);
         
-        jlTitle.setBounds(430, 15, 180, 50);
+        jlTitle.setBounds(250, 30, 180, 50);
         Font titleFont = new Font("SansSerif", Font.BOLD, 28);
         jlTitle.setFont(titleFont);
-        jlSubTitle.setBounds(150, 80, 180, 50);
-        jlCarModel.setBounds(300, 80, 200, 50);
+        jlSubTitle.setBounds(80, 80, 180, 50);
+        jlCarModel.setBounds(230, 80, 200, 50);
         jlCarModel2.setBounds(150, 500, 200, 50);
-        jlRecallImg.setBounds(600, 80, 200, 50);
+        jlRecallImg.setBounds(500, 80, 200, 50);
         jlCarname.setBounds(150, 450, 140, 50);
         jlRecallReason.setBounds(450, 450, 140, 50);
         jlRecallReason2.setBounds(450, 500, 140, 50);
         jlRecallDate.setBounds(700, 450, 140, 50);
         jlRecallDate2.setBounds(700, 500, 140, 50);
         Font subTitleFont = new Font("SansSerif", Font.BOLD, 25);
-        jlSubTitle.setFont(subTitleFont);
         jlCarModel.setFont(subTitleFont);
         jlCarModel2.setFont(subTitleFont);
         jlRecallImg.setFont(subTitleFont);
@@ -107,7 +95,7 @@ public class RecallDesign extends JFrame {
         jlRecallDate2.setFont(subTitleFont);
         Font btnFont = new Font("SansSerif", Font.BOLD, 20);
         
-		setBounds(600,350,1000,700);
+		setBounds(cmd.getX()+150, cmd.getY()+100, 650, 350);
 		setVisible(true);
 		
 	}

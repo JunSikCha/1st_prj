@@ -12,6 +12,7 @@ import kr.co.sist.user.event.JoinDesignEvt;
 
 
 public class JoinDesign extends JFrame {
+	private LoginDesign lg;
 	private JoinDesignEvt jdEvt;
 	
 	private JTextField jtfId;
@@ -25,8 +26,8 @@ public class JoinDesign extends JFrame {
 	private JButton jbtCancel;
 	
 	
-	public JoinDesign() {
-		super("회원가입");
+	public JoinDesign(LoginDesign lg) {
+		this.lg=lg;
 		JLabel jlTitle = new JLabel("회원가입");
 		JLabel jlId = new JLabel("아이디");
 	    jtfId = new JTextField();
@@ -45,25 +46,25 @@ public class JoinDesign extends JFrame {
 	    jbtOk =new JButton("등록");
 	    jbtCancel =new JButton("취소");
 	    
-	    jlTitle.setBounds(300, 10, 80, 100);
-	    jlId.setBounds(400, 40, 80, 100);
-        jtfId.setBounds(400, 100, 200, 30);
-        jlblPass.setBounds(400, 105, 80, 100);
-        jpwPass.setBounds(400, 165, 200, 30);
-        jlblCheckPass.setBounds(400, 175, 80, 100);
-        jtfCheckPass.setBounds(400, 235, 200, 30);
-        jlblName.setBounds(400, 245, 80, 100);
-        jtfName.setBounds(400, 305, 200, 30);
-        jlblPhNum.setBounds(400, 315, 80, 100);
-        jtfPhNum.setBounds(400, 375, 200, 30);
-        jlblEmail.setBounds(400, 385, 80, 100);
-        jtfEmail.setBounds(400, 445, 200, 30);
+	    jlTitle.setBounds(200, 10, 100, 100);
+	    jlId.setBounds(150, 40, 80, 100);
+        jtfId.setBounds(150, 100, 200, 30);
+        jlblPass.setBounds(150, 105, 80, 100);
+        jpwPass.setBounds(150, 165, 200, 30);
+        jlblCheckPass.setBounds(150, 175, 80, 100);
+        jtfCheckPass.setBounds(150, 235, 200, 30);
+        jlblName.setBounds(150, 245, 80, 100);
+        jtfName.setBounds(150, 305, 200, 30);
+        jlblPhNum.setBounds(150, 315, 80, 100);
+        jtfPhNum.setBounds(150, 375, 200, 30);
+        jlblEmail.setBounds(150, 385, 80, 100);
+        jtfEmail.setBounds(150, 445, 200, 30);
 
-        jbtldCheck.setBounds(620, 100, 100, 30);
-        jbtOk.setBounds(400, 500, 80, 30);
-        jbtCancel.setBounds(520, 500, 80, 30);
+        jbtldCheck.setBounds(365, 100, 100, 30);
+        jbtOk.setBounds(150, 500, 80, 30);
+        jbtCancel.setBounds(270, 500, 80, 30);
         
-        Font labelFont = new Font("SansSerif", Font.BOLD, 16);
+        Font labelFont = new Font("SansSerif", Font.BOLD, 22);
         jlTitle.setFont(labelFont);
         
         jdEvt = new JoinDesignEvt(this);
@@ -92,7 +93,7 @@ public class JoinDesign extends JFrame {
 		add(jbtOk);
 		add(jbtCancel);
 	    
-		 setBounds(800, 500, 1000, 700);
+		 setBounds(lg.getX()+130, lg.getY()-0, 500, 600);
 	     setVisible(true);
 	}
 
@@ -147,8 +148,5 @@ public class JoinDesign extends JFrame {
 	}
 
 
-	public static void main(String[] args) {
-		new JoinDesign();
-	}
 
 }

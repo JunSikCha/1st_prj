@@ -19,6 +19,8 @@ import kr.co.sist.user.vo.ClientMainVO;
 
 @SuppressWarnings("serial")
 public class ClientMainDesign extends JFrame {
+	
+	private LoginDesign ld;
 
 	private ClientMainEvt cmEvt;
 
@@ -35,8 +37,8 @@ public class ClientMainDesign extends JFrame {
 	private JButton jbtRecall;
 	private JButton jbtNotify;
 
-	public ClientMainDesign() {
-		super("메인화면");
+	public ClientMainDesign(LoginDesign ld) {
+		this.ld=ld;
 
 		// 타이틀
 		JLabel jlTitle = new JLabel("마이카 관리");
@@ -67,18 +69,18 @@ public class ClientMainDesign extends JFrame {
 
 		jlTitle.setBounds(30, 0, 150, 50);
 		jlLogo.setBounds(80, 50, 100, 100);
-		jlCarname.setBounds(200, 50, 300, 60);
-		jlCarNo.setBounds(210, 75, 150, 100);
+		jlCarNo.setBounds(140,10,150,100);
+		jlCarname.setBounds(140,65,300,60);
 		jlDefaultimg.setBounds(90, 180, 600, 360);
 
-		jbtRecall.setBounds(850, 30, 100, 30);
-		jbtNotify.setBounds(1000, 30, 100, 30);
-		jbtRegist.setBounds(750, 160, 350, 60);
-		jbtModify.setBounds(750, 240, 350, 60);
-		jbtHistory.setBounds(750, 320, 350, 60);
-		jbtBook.setBounds(750, 400, 350, 60);
-		jbtBookCheck.setBounds(750, 480, 350, 60);
-
+		jbtRecall.setBounds(650,90,100,30);
+		jbtNotify.setBounds(800,90,100,30);
+		jbtRegist.setBounds(650, 130, 250, 60);
+		jbtModify.setBounds(650, 200, 250, 60);
+		jbtHistory.setBounds(650, 270, 250, 60);
+		jbtBook.setBounds(650, 340, 250, 60);
+		jbtBookCheck.setBounds(650, 410, 250, 60);
+		
 		setLayout(null);
 
 		add(jlTitle);
@@ -104,7 +106,7 @@ public class ClientMainDesign extends JFrame {
 		jbtRecall.addActionListener(cmEvt);
 		jbtNotify.addActionListener(cmEvt);
 
-		setBounds(300, 150, 1200, 700);
+		setBounds(ld.getX()+0,ld.getY()+50,950,550);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

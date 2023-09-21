@@ -11,22 +11,23 @@ import javax.swing.JLabel;
 import kr.co.sist.user.event.ModifyEvt;
 
 public class ModifyDesign extends JFrame {
+	private ClientMainDesign cmd;
 
 	private ModifyEvt mdEvt;
 	private JButton jbtModifyUserDesign;
 	private JButton jbtModifyPassDesign;
 
-	public ModifyDesign() {
-		super("정보수정");
+	public ModifyDesign(ClientMainDesign cmd) {
+		this.cmd=cmd;
 		JLabel jlModify = new JLabel("정보수정");
 		jbtModifyUserDesign = new JButton("회원정보수정");
 		jbtModifyPassDesign = new JButton("비밀번호변경");
 
 		ModifyEvt mde = new ModifyEvt(this);
 
-		jlModify.setBounds(240, 40, 150, 100);
-		jbtModifyUserDesign.setBounds(110, 140, 150, 100);
-		jbtModifyPassDesign.setBounds(330, 140, 150, 100);
+		jlModify.setBounds(140, 30, 150, 100);
+		jbtModifyUserDesign.setBounds(30, 150, 150, 70);
+		jbtModifyPassDesign.setBounds(210, 150, 150, 70);
 
 		Font titleFont = new Font("SansSerif", Font.BOLD, 25);
 		jlModify.setFont(titleFont);
@@ -43,7 +44,7 @@ public class ModifyDesign extends JFrame {
 		add(jbtModifyPassDesign);
 		add(jbtModifyUserDesign);
 
-		setBounds(400, 350, 600, 400);
+		setBounds(cmd.getX()+250, cmd.getY()+130, 400, 300);
 		setVisible(true);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -63,10 +64,6 @@ public class ModifyDesign extends JFrame {
 
 	public JButton getJbtModifyPassDesign() {
 		return jbtModifyPassDesign;
-	}
-
-	public static void main(String args[]) {
-		new ModifyDesign();
 	}
 
 }// class

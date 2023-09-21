@@ -15,6 +15,7 @@ import kr.co.sist.user.event.HistoryEvt;
 
 @SuppressWarnings("serial")
 public class HistoryDesign extends JFrame {
+	private ClientMainDesign cmd;
 	
 	private HistoryEvt hdEvt;
 	
@@ -25,30 +26,30 @@ public class HistoryDesign extends JFrame {
 	private JButton jbtMonthlyChk;
 	private JButton jbtChk;
 	private JButton jbtMain;
-	private JButton jbtDetail;
 	private JButton jbtNext;
 	private JTextField jtfStartDate;
 	private JTextField jtfEndDate;
 	private JScrollPane jspHistoryDesign;
 	private DefaultTableModel dtmHistoryDesign;
 	private JTable jtHistoryDesign;
+	private JButton jbtDetail;
 	
 	
 	
-	public HistoryDesign() {
-		super("차량 정비 내역");
+	public HistoryDesign(ClientMainDesign cmd) {
+		this.cmd=cmd;
 		JLabel  jlTitle = new JLabel("차량정비내역");
 		JLabel  jlHistoryPeriod = new JLabel("조회기간");
 		JLabel  jlHistory = new JLabel("조회내역");
+		JLabel jltilde  = new JLabel("~");
 		jbtToday = new JButton("오늘");
 		jbt7days = new JButton("7일");
 		jbt1month = new JButton("1개월");
 		jbt3month = new JButton("3개월");
 		jbtMonthlyChk = new JButton("월별조회");
 		jbtChk = new JButton("조회");
-		jbtMain = new JButton("메인화면으로");
-		jbtDetail = new JButton("상세보기");
-		jbtNext = new JButton("next >");
+		jbtMain = new JButton("닫 기");
+		jbtDetail = new JButton("상세내역");
 		
 		jtfStartDate= new JTextField();
 		jtfEndDate= new JTextField();
@@ -70,41 +71,41 @@ public class HistoryDesign extends JFrame {
 	    jpNorth.add(jtfStartDate);
 	    jpSouth.add(jtfEndDate);
 	    
-	    jlTitle.setBounds(10, 5, 150, 100);
-		jlHistoryPeriod.setBounds(80, 130, 100, 30);
-		jlHistory.setBounds(350, 180, 100, 100);
-		jspHistoryDesign.setBounds(80,240,600,300);
-		add(jspHistoryDesign);
-		jtfStartDate.setBounds(200, 150, 150, 30);
-		jtfEndDate.setBounds(380, 150, 150, 30);
-		jbtToday.setBounds(200, 100, 80, 30);
-		jbt7days.setBounds(300, 100, 80, 30);
-		jbt1month.setBounds(400, 100, 80, 30);
-		jbt3month.setBounds(500, 100, 80, 30);
-		jbtMonthlyChk.setBounds(600, 100, 120, 30);
-		jbtChk.setBounds(550, 150, 100, 30);
-		jbtMain.setBounds(300, 600, 150, 30);
-		jbtNext.setBounds(400, 550, 100, 30);
-		jbtDetail.setBounds(250, 550, 100, 30);
+	    jlTitle.setBounds(310, 5, 180, 100);
+			jlHistoryPeriod.setBounds(80, 130, 100, 30);
+			jlHistory.setBounds(340, 165, 100, 100);
+			jspHistoryDesign.setBounds(80,240,600,300);
+			add(jspHistoryDesign);
+			jtfStartDate.setBounds(200, 150, 150, 30);
+			jtfEndDate.setBounds(380, 150, 150, 30);
+			jltilde.setBounds(360, 150, 150, 30);
+			jbtToday.setBounds(200, 100, 100, 30);
+			jbt7days.setBounds(310, 100, 100, 30);
+			jbt1month.setBounds(430, 100, 100, 30);
+			jbt3month.setBounds(550, 100, 100, 30);
+			jbtChk.setBounds(550, 150, 100, 30);
+			jbtMain.setBounds(320, 620, 100, 30);
+			jbtDetail.setBounds(250, 570, 100, 30);
 	    
-		Font titleFont = new Font("SansSerif", Font.BOLD, 22);
-		jlTitle.setFont(titleFont);
-		Font labelFont = new Font("SansSerif", Font.BOLD, 13);
-		jbtToday.setFont(labelFont);
-		jbt7days.setFont(labelFont);
-		jbt1month.setFont(labelFont);
-		jbt3month.setFont(labelFont);
-		jbtMonthlyChk.setFont(labelFont);
-		jbtChk.setFont(labelFont);
-		Font btnFont = new Font("SansSerif", Font.BOLD, 17);
-		jlHistoryPeriod.setFont(btnFont);
-		jlHistory.setFont(btnFont);
-		jbtMain.setFont(btnFont);
+			Font titleFont = new Font("SansSerif", Font.BOLD, 28);
+			jlTitle.setFont(titleFont);
+			Font labelFont = new Font("SansSerif", Font.BOLD, 17);
+			jbtToday.setFont(labelFont);
+			jbt7days.setFont(labelFont);
+			jbt1month.setFont(labelFont);
+			jbt3month.setFont(labelFont);
+			jbtChk.setFont(labelFont);
+			Font btnFont = new Font("SansSerif", Font.BOLD, 20);
+			jlHistoryPeriod.setFont(btnFont);
+			jbtMain.setFont(btnFont);
+			Font btn2Font = new Font("SansSerif", Font.BOLD, 20);
+			jlHistory.setFont(btn2Font);
 		
 		setLayout(null);
 		add(jlTitle);
 		add(jlHistoryPeriod);
 		add(jlHistory);
+		add(jltilde);
 		add(jtfStartDate);
 		add(jtfEndDate);
 		add(jbtToday);
@@ -114,23 +115,20 @@ public class HistoryDesign extends JFrame {
 		add(jbtMonthlyChk);
 		add(jbtChk);
 		add(jbtMain);
-		add(jbtNext);
 		add(jbtDetail);
 		
 	    hdEvt = new HistoryEvt(this);
-		jbtToday.addActionListener(hdEvt);
-		jbt7days.addActionListener(hdEvt);
-		jbt1month.addActionListener(hdEvt);
-		jbt3month.addActionListener(hdEvt);
-		jbtMonthlyChk.addActionListener(hdEvt);
-		jbtChk.addActionListener(hdEvt);
-		jbtNext.addActionListener(hdEvt);
-		jbtDetail.addActionListener(hdEvt);
-		jbtMain.addActionListener(hdEvt);
+			jbtToday.addActionListener(hdEvt);
+			jbt7days.addActionListener(hdEvt);
+			jbt1month.addActionListener(hdEvt);
+			jbt3month.addActionListener(hdEvt);
+			jbtChk.addActionListener(hdEvt);
+			jbtDetail.addActionListener(hdEvt);
+			jbtMain.addActionListener(hdEvt);
 		
 		
 	    
-		setBounds(600, 350, 800, 700);
+			setBounds(cmd.getX()+100, cmd.getY()-100, 800, 700);
 		setVisible(true);
 	}//HistoryDesign
 
@@ -196,10 +194,6 @@ public class HistoryDesign extends JFrame {
 
 	public JTable getJtHistoryDesign() {
 		return jtHistoryDesign;
-	}
-
-	public static void main(String args[]) {
-		new HistoryDesign();
 	}
 
 

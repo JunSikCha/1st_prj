@@ -14,6 +14,7 @@ import kr.co.sist.user.event.UserData;
 
 @SuppressWarnings("serial")
 public class ModifyUserDesign extends JFrame {
+	private ModifyDesign md;
 
 	private ModifyUserEvt mudEvt;
 	private JLabel jlOrName;
@@ -21,8 +22,8 @@ public class ModifyUserDesign extends JFrame {
 	private JTextField jtfEmail;
 	private JButton jbtComplete;
 	
-	public ModifyUserDesign() {
-		super("회원정보 수정");
+	public ModifyUserDesign(ModifyDesign md) {
+		this.md=md;
 		
 		JLabel jlUserModfiy = new JLabel("회원정보수정");
 		JLabel jlName = new JLabel("사용자명");
@@ -35,22 +36,25 @@ public class ModifyUserDesign extends JFrame {
 		
 		jbtComplete = new JButton("완료");
 		
-		Font titleFont = new Font(null, Font.BOLD, 20);
+		Font titleFont = new Font(null, Font.BOLD, 25);
 		jlUserModfiy.setFont(titleFont);
 		
-		Font labelFont = new Font(null, Font.BOLD, 15);
+		Font labelFont = new Font(null, Font.BOLD, 18);
 		jlName.setFont(labelFont);
 		jlPhoneNum.setFont(labelFont);
 		jlEmail.setFont(labelFont);
 		
-		jlUserModfiy.setBounds(180, 0, 150, 100);
-		jlName.setBounds(70, 60, 150, 100);
-		jlOrName.setBounds(70, 130, 350, 40);
-		jlPhoneNum.setBounds(70, 160, 150, 100);
-		jtfPhoneNum.setBounds(70, 240, 350, 40);
-		jlEmail.setBounds(70, 270,150, 100);
-		jtfEmail.setBounds(70, 340, 350, 40);
-		jbtComplete.setBounds(200,420,100,30);
+		Font labelFont2 = new Font(null, Font.BOLD, 20);
+		jlOrName.setFont(labelFont2);
+		
+		jlUserModfiy.setBounds(120, 30, 180, 100);
+		jlName.setBounds(70, 110, 150, 100);
+		jlOrName.setBounds(70, 165, 250, 40);
+		jlPhoneNum.setBounds(70, 180, 150, 100);
+		jtfPhoneNum.setBounds(70, 250, 250, 40);
+		jlEmail.setBounds(70, 280,150, 100);
+		jtfEmail.setBounds(70, 350, 250, 40);
+		jbtComplete.setBounds(140,420,100,30);
 		
 		setLayout(null);
 		add(jlUserModfiy);
@@ -65,7 +69,7 @@ public class ModifyUserDesign extends JFrame {
 		mudEvt = new ModifyUserEvt(this);
 		jbtComplete.addActionListener(mudEvt);
 		
-		setBounds(400,400,500,500);
+		setBounds(md.getX()+0,md.getY()-50,400,500);
 		setVisible(true);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -96,8 +100,5 @@ public class ModifyUserDesign extends JFrame {
 		return jbtComplete;
 	}
 
-	public static void main(String args[]) {
-		new ModifyDesign();
-	}
 
 }

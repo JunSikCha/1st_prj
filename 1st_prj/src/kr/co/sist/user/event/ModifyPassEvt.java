@@ -36,9 +36,9 @@ public class ModifyPassEvt extends WindowAdapter implements ActionListener {
 			System.out.println(cnt);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}//end catch
 
-	}
+	}//modifyPass
 
 	//비밀번호 확인 메소드
 	public void pwCheck() {

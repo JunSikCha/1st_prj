@@ -18,6 +18,7 @@ import kr.co.sist.user.vo.LoginVO;
 
 public class LoginEvt extends WindowAdapter implements ActionListener {
 
+	
 	LoginVO lVO = new LoginVO();
 
 	private LoginDesign lg;
@@ -38,7 +39,7 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 			chkEmpty();
 		}
 		if (ae.getSource() == lg.getJbjoin()) {
-			new JoinDesign();
+			new JoinDesign(lg);
 		}
 	}// actionPerformed
 
@@ -89,13 +90,14 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 				return;
 			}
 			JOptionPane.showMessageDialog(lg, lrVO.getName() + "님으로 로그인 되었습니다.");
-			lg.dispose();
+			lg.dispose(); //로그인 성공 시 로그인 화면이 종료된다.
+			
 			UserData.id = lVO.getId();
 			UserData.name = lrVO.getName();
-			UserData.pass = lVO.getPassword();
-//		System.out.println(lVO.getId());
-			ClientMainDesign cmd = new ClientMainDesign();
-			new NotificateDesign(cmd);
+			UserData.pass = lVO.getPassword(); //로그인시 유저id, 이름, 패스워드 정보가 UserData 클래스 내의 static 변수에 저장된다.
+			
+			ClientMainDesign cmd = new ClientMainDesign(lg); //로그인 성공 시 메인 화면에 접속한다.
+			new NotificateDesign(cmd); //알림톡 화면도 동시에 나타난다.
 			
 
 		} catch (SQLException e) {

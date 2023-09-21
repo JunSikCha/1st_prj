@@ -37,11 +37,6 @@ public class RegistCarEvt extends WindowAdapter implements ActionListener {
 			}
 		}
 
-		//취소 버튼
-		if (ae.getSource() == rcd.getJbtCancel()) {
-			rcd.dispose();
-		}
-
 	}
 
 	@Override
@@ -69,10 +64,13 @@ public class RegistCarEvt extends WindowAdapter implements ActionListener {
 		try {
 
 			rcVO = new RegistCarVO();
+			
+			//textfield에 입력된 값들을 VO에 저장
 			rcVO.setCarModel(rcDAO.selectModelno(rcd.getJcbModel().getSelectedItem().toString()));
 			rcVO.setCarNo(rcd.getJtfCarnum().getText());
 			rcVO.setDistance(Integer.parseInt(rcd.getJtfDistance().getText()));
 
+			//DAO적용
 			RegistCarDAO rDAO = RegistCarDAO.getInstance();
 			rDAO.insertCarinfo(rcVO);
 

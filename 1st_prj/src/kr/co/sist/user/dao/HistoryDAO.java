@@ -42,9 +42,9 @@ public class HistoryDAO {
 			
 			StringBuilder selectHistory = new StringBuilder();
 			selectHistory
-			.append("	SELECT to_char(ht.hinbound,'yyyy-mm-dd') hinbound, ht.hdetail, ht.historyno ,pi.sunitprice+pi.sprice total	")
+			.append("	SELECT distinct to_char(ht.hinbound,'yyyy-mm-dd') hinbound, ht.hdetail, ht.historyno ,pi.sunitprice+pi.sprice total	")
 			.append("	FROM user_info ui, history ht, used_parts up, parts_info pi	")
-			.append("	WHERE (ui.carno=ht.carno and ht.carno=up.carno and up.sn=pi.sn) and ui.user_id=?	");
+			.append("	WHERE (ui.modelno=ht.modelno and ht.historyno=up.historyno and up.sn=pi.sn) and ui.user_id=?	");
 			
 			if(!strDate.equals("")) {
 				selectHistory.append("	and	hinbound between TO_DATE(?, 'YYYY-MM-DD') and TO_DATE(?, 'YYYY-MM-DD') ");

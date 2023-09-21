@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import kr.co.sist.user.design.ClientMainDesign;
 import kr.co.sist.user.event.BookingCheckEvt;
 
 
@@ -19,6 +20,8 @@ import kr.co.sist.user.event.BookingCheckEvt;
 public class BookingCheckDesign extends JFrame  {
 
 	private BookingCheckEvt bcdEvt;
+	
+	private ClientMainDesign cmd;
 
 	private JButton jbtToday;
 	private JButton jbt7days;
@@ -33,11 +36,12 @@ public class BookingCheckDesign extends JFrame  {
 	private DefaultTableModel dtmBookingCheckDesign;
 	private JTable jtBookingCheckDesign;
 
-	public BookingCheckDesign() {
-		super("예약 조회");
+	public BookingCheckDesign(ClientMainDesign cmd) {
+		this.cmd=cmd;
 		JLabel jlBookingCheckDesign = new JLabel("예약조회");
 		JLabel jlBookingPeriod = new JLabel("조회기간");
 		JLabel jlviewHistory = new JLabel("조회내역");
+		JLabel jltilde  = new JLabel("~");
 		jbtToday = new JButton("오늘");
 		jbt7days = new JButton("7일");
 		jbt1month = new JButton("1개월");
@@ -62,34 +66,35 @@ public class BookingCheckDesign extends JFrame  {
 		
 		///////////////////////////////////////////////////
 
-		jlBookingCheckDesign.setBounds(10, 5, 150, 100);
+		jltilde.setBounds(350, 150, 150, 30);
+		jlBookingCheckDesign.setBounds(350, 5, 150, 100);
 		jlBookingPeriod.setBounds(80, 130, 100, 30);
-		jlviewHistory.setBounds(350, 180, 100, 100);
+		jlviewHistory.setBounds(350, 170, 100, 100);
 		
 		//////////////////////////////////////////////////////
 		jspBookingCheckDesign.setBounds(45,240,700,350);
 		add(jspBookingCheckDesign);
 		///////////////////////////////////////////////////////
-		jbtToday.setBounds(200, 100, 80, 30);
-		jbt7days.setBounds(300, 100, 80, 30);
-		jbt1month.setBounds(400, 100, 80, 30);
-		jbt3month.setBounds(500, 100, 80, 30);
-		jbtMonthlyChk.setBounds(600, 100, 120, 30);
-		jbtChk.setBounds(550, 150, 100, 30);
-		jbtMain.setBounds(320, 600, 140, 30);
-		jtfStartDate.setBounds(200, 150, 150, 30);
-		jtfEndDate.setBounds(380, 150, 150, 30);
+		jbtToday.setBounds(200, 100, 100, 30);
+		jbt7days.setBounds(310, 100, 100, 30);
+		jbt1month.setBounds(420, 100, 100, 30);
+		jbt3month.setBounds(530, 100, 100, 30);
+		jbtChk.setBounds(530, 150, 100, 30);
+		jbtMain.setBounds(350, 600, 100, 30);
+		jtfStartDate.setBounds(200, 150, 130, 30);
+		jtfEndDate.setBounds(380, 150, 130, 30);
 
-		Font titleFont = new Font("SansSerif", Font.BOLD, 22);
+		Font titleFont = new Font("SansSerif", Font.BOLD, 25);
 		jlBookingCheckDesign.setFont(titleFont);
-		jlBookingPeriod.setFont(titleFont);
-		Font labelFont = new Font("SansSerif", Font.BOLD, 17);
+		Font subtitleFont = new Font("SansSerif", Font.BOLD, 22);
+		jlBookingPeriod.setFont(subtitleFont);
+		Font labelFont = new Font("SansSerif", Font.BOLD, 20);
 		jlviewHistory.setFont(labelFont);
+		
 		jbtToday.setFont(labelFont);
 		jbt7days.setFont(labelFont);
 		jbt1month.setFont(labelFont);
 		jbt3month.setFont(labelFont);
-		jbtMonthlyChk.setFont(labelFont);
 		jbtChk.setFont(labelFont);
 		
 		Font btnFont = new Font("SansSerif", Font.BOLD, 13);
@@ -101,11 +106,11 @@ public class BookingCheckDesign extends JFrame  {
 		add(jlBookingCheckDesign);
 		add(jlBookingPeriod);
 		add(jlviewHistory);
+		add(jltilde);
 		add(jbtToday);
 		add(jbt7days);
 		add(jbt1month);
 		add(jbt3month);
-		add(jbtMonthlyChk);
 		add(jbtChk);
 		add(jbtMain);
 
@@ -114,11 +119,10 @@ public class BookingCheckDesign extends JFrame  {
 		jbt7days.addActionListener(bcdEvt);
 		jbt1month.addActionListener(bcdEvt);
 		jbt3month.addActionListener(bcdEvt);
-		jbtMonthlyChk.addActionListener(bcdEvt);
 		jbtChk.addActionListener(bcdEvt);
 		jbtMain.addActionListener(bcdEvt);
 
-		setBounds(600, 350, 800, 700);
+		setBounds(cmd.getX()+100, cmd.getY()-50, 800, 700);
 		setVisible(true);
 	}
 	
@@ -202,9 +206,6 @@ public class BookingCheckDesign extends JFrame  {
 
 
 
-	public static void main(String args[]) {
-		new BookingCheckDesign();
-	}
 
 
 

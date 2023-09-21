@@ -29,26 +29,24 @@ public class ClientMainEvt extends WindowAdapter implements ActionListener {
 	}// ClientMainEvt
 	
 	public void setMainInfo() {
-		String userCarName = null;
-		String userCarNo = null;
-		String carImage = null;
+		String userCarName;
+		String userCarNo;
+		String carImage;
 
 		try {
 			ClientMainDAO cmDAO = ClientMainDAO.getInstance();
 			ClientMainVO cmVO = cmDAO.selectCarInfo(UserData.id);
 
-			if (cmVO != null) {
+			if (cmVO != null) { //cmVO가 null일 경우 예외 처리
 				userCarName = cmVO.getUserCarName();
 				userCarNo = cmVO.getUserCarNo();
 				carImage = cmVO.getMimage();
-				System.out.println(userCarName);
-				cmd.getJlCarname().setText(userCarName); 
-				cmd.getJlCarNo().setText(userCarNo);
-				cmd.getJlDefaultimg().setIcon(new ImageIcon(carImage));
 				
-				UserData.carno = cmVO.getUserCarNo();
-				UserData.modelno = cmVO.getUserModelNo();
-			} else {
+				cmd.getJlCarname().setText(userCarName); 
+				cmd.getJlCarNo().setText(userCarNo); //유저의 차량명, 차량번호가 메인화면에 나타난다.
+				cmd.getJlDefaultimg().setIcon(new ImageIcon(carImage)); //유저의 차량의 이미지가 메인화면에 나타난다.
+				
+			} else { //차량을 등록하지 않았을 시 "차량을 등록해주세요"라는 문구가 나타난다.
 				userCarName = "차량을 등록해주세요";
 				userCarNo = "";
 			}
@@ -64,32 +62,32 @@ public class ClientMainEvt extends WindowAdapter implements ActionListener {
 
 		//차량 정보 등록 창 실행
 		if (ae.getSource() == cmd.getJbtRegist()) {
-			new RegistCarDesign();
+			new RegistCarDesign(cmd);
 		} // end if
 		
 		//정보 수정 창 실행
 		if (ae.getSource() == cmd.getJbtModify()) {
-			new ModifyDesign();
+			new ModifyDesign(cmd);
 		}
 		
 		//정비 내역 창 실행
 		if (ae.getSource() == cmd.getJbtHistory()) {
-			new HistoryDesign();
+			new HistoryDesign(cmd);
 		}
 		
 		//정비 예약 창 실행
 		if(ae.getSource() == cmd.getJbtBook()) {
-			new BookingDesign();
+			new BookingDesign(cmd);
 		}
 		
 		//예약 내역 창 실행
 		if(ae.getSource() == cmd.getJbtBookCheck()) {
-			new BookingCheckDesign();
+			new BookingCheckDesign(cmd);
 		}
 		
 		//리콜 여부 확인 창 실행
 		if(ae.getSource() == cmd.getJbtRecall()) {
-			new RecallDesign();
+			new RecallDesign(cmd);
 		}
 		
 		//알림 창 실행

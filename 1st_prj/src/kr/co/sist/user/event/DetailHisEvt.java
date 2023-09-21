@@ -80,10 +80,7 @@ public class DetailHisEvt implements ActionListener {
 			    System.out.println(hiVO.getSunitprice());
 			    System.out.println(hiVO.getSprice());
 			    System.out.println(hiVO.getUpamount());
-//			    System.out.println(arrRow[0]);
-//			    System.out.println(arrRow[1]);
-//			    System.out.println(arrRow[2]);
-//			    System.out.println(arrRow[3]);
+
 			}
 
 			int total = 0;
