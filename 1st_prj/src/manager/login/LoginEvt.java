@@ -15,18 +15,19 @@ import manager.carmanager.CarManager;
 
 public class LoginEvt extends WindowAdapter implements ActionListener {
 
-	LoginVO lVO = new LoginVO();
+	private LoginVO lVO;
 
 	private LoginDesign lg;
 
 	public LoginEvt(LoginDesign lg) {
 		this.lg = lg;
+		lVO = new LoginVO();
 		
-		// 아이디 필드에 액션 이벤트 리스너 추가
-        lg.getJtfId().addActionListener(this);
-
-        // 비밀번호 필드에 액션 이벤트 리스너 추가
-        lg.getJpwPass().addActionListener(this);
+//		// 아이디 필드에 액션 이벤트 리스너 추가
+//        lg.getJtfId().addActionListener(this);
+//
+//        // 비밀번호 필드에 액션 이벤트 리스너 추가
+//        lg.getJpwPass().addActionListener(this);
 	}
 
 	@Override
@@ -34,8 +35,8 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 		if (ae.getSource() == lg.getJbLogin()) {
 			chkEmpty();
 		}
-		if (ae.getSource() == lg.getJbjoin()) {
-//			new JoinDesign();
+		if(ae.getSource()==lg.getJpwPass()) {
+			lg.getJbLogin().doClick();
 		}
 	}// actionPerformed
 

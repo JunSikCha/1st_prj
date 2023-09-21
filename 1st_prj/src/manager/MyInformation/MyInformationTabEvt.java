@@ -8,19 +8,33 @@ import manager.login.LoginVO;
 
 public class MyInformationTabEvt implements ActionListener {
 	private MyInformationTab mit;
+	private  LoginVO lVO;
 	
-	CarManager cm;
+	public MyInformationTabEvt(MyInformationTab mit,LoginVO lVO) {
+		this.mit = mit;
+		this.lVO = lVO;
+		setEmpInfo();
+	}
 	
-	public MyInformationTabEvt(MyInformationTab mit, CarManager cm) {
-		this.mit=mit;
-		this.cm = cm;
-		LoginVO lVO = this.cm.getlVO();
+	public void setEmpInfo() {
+		mit.getJtfBranchName().setText(lVO.getCtname());
+		mit.getJtfBranchAddr().setText(lVO.getCtaddr());
+		mit.getJtfBranchNo().setText(lVO.getCenterNo());
+		mit.getJtfManagerPhone().setText(lVO.getEmptel());
+		
+		mit.getJtfManagerEmail().setText(lVO.getEmpemail());
+		mit.getJlMIMessage().setText(lVO.getEmpname()+"님 안녕하세요.");
+		mit.getJtfEmpNo().setText(lVO.getEmpno());
+		
 		
 	}
 	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==mit.getJbinfoModify()) {
+			new MyInformationSubWindow(mit);
+		}
 	}
 
 }

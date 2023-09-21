@@ -98,6 +98,7 @@ public class InventoryManagerSubWindow extends JDialog{
 		//클릭 이벤트
 		InventoryManagerSubWindowEvt imswe = new InventoryManagerSubWindowEvt(imt,this);
 		jbOk.addActionListener(imswe);
+		jbCancle.addActionListener(imswe);
 		
 		
 		
@@ -140,12 +141,18 @@ public class InventoryManagerSubWindow extends JDialog{
 		
 		
 	}
-	
 
 	public JLabel getJlTitle() {
 		return jlTitle;
 	}
 
+	public DefaultComboBoxModel<String> getModel() {
+		return model;
+	}
+
+	public JTextField getJtfPartName() {
+		return jtfPartName;
+	}
 
 	public JTextField getJtfPartNo() {
 		return jtfPartNo;
@@ -194,6 +201,8 @@ public class InventoryManagerSubWindow extends JDialog{
 	public InventoryManagerSubWindowEvt getImswEvt() {
 		return imswEvt;
 	}
+	
+
 
 	
 } //class

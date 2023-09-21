@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import manager.login.LoginVO;
+
 public class InventoryManagerTab extends JPanel implements ActionListener {
 	// 주석은 시진핑
 	private InventoryManagerTabEvt imtEvt;
@@ -27,11 +29,13 @@ public class InventoryManagerTab extends JPanel implements ActionListener {
 	private JButton jbPartNameSearch;
 
 	private JButton jbAdd;
-
+	private JButton jbRefresh;
+	
+	
 	private DefaultTableModel dtm;
 
 	
-	public InventoryManagerTab() {
+	public InventoryManagerTab(LoginVO lVO) {
 
 		// 재고 게시판
 		dtm = new DefaultTableModel() {
@@ -68,6 +72,7 @@ public class InventoryManagerTab extends JPanel implements ActionListener {
 		// 부품명, 검색
 		jtfPartName = new JTextField();
 		jbPartNameSearch = new JButton("검색");
+		jbRefresh = new JButton("새로고침");
 
 		jbAdd = new JButton("추가");
 
@@ -79,15 +84,16 @@ public class InventoryManagerTab extends JPanel implements ActionListener {
 
 		add("Center", jtfPartName);
 		add("Center", jbPartNameSearch);
+		add("Center", jbRefresh);
 
 		add("Center", jbAdd);
 
 		// 클릭 이벤트
-		imtEvt = new InventoryManagerTabEvt(this);
+		imtEvt = new InventoryManagerTabEvt(this, lVO);
 
 		jbPartNameSearch.addActionListener(imtEvt);
 		jbAdd.addActionListener(imtEvt);
-
+		jbRefresh.addActionListener(imtEvt);
 		// 크기 조정 및 배치
 		iMName.setBounds(70, 56, 140, 20);
 		scrollPane.setBounds(70, 90, 800, 450);
@@ -96,6 +102,7 @@ public class InventoryManagerTab extends JPanel implements ActionListener {
 		jbPartNameSearch.setBounds(260, 560, 70, 30);
 
 		jbAdd.setBounds(750, 560, 120, 30);
+		jbRefresh.setBounds(600, 560, 120, 30);
 
 		scrollPane.setVisible(true);
 		setVisible(true);
@@ -129,6 +136,11 @@ public class InventoryManagerTab extends JPanel implements ActionListener {
 
 	public JButton getJbAdd() {
 		return jbAdd;
+	}
+	
+
+	public JButton getJbRefresh() {
+		return jbRefresh;
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class BookingManagerDAO {
 		return bmDAO;
 	}
 	
-	public List<BookingManagerVO> selectBooking(String strDate, String endDate,String status) throws SQLException{
+	public List<BookingManagerVO> selectBooking(String strDate, String endDate,String status,String certerNo, String isnull) throws SQLException{
 		List<BookingManagerVO> list = new ArrayList<BookingManagerVO>();
 		
 		BookingManagerVO bmVO = null;
@@ -42,7 +42,7 @@ public class BookingManagerDAO {
 			sb
 			.append("		select  booking_no, to_char(booking_date,'yyyy-mm-dd HH:mi') booking_date, ci.mname,issue,  bstatus, ui.user_id, ui.user_name, reason	")
 			.append("		from booking b, car_info ci, user_info ui	")
-			.append("		where b.modelno=ci.modelno and ui.carno=b.carno	");
+			.append("		where centerno = ? and  b.modelno=ci.modelno and ui.carno=b.carno  	");
 			
 			if(!strDate.equals("")) {
 				sb.append("	and	booking_date between TO_DATE(?, 'YYYY-MM-DD') and TO_DATE(?, 'YYYY-MM-DD') ");
@@ -50,13 +50,19 @@ public class BookingManagerDAO {
 			if(status!=null&&status.equals("Y")) {
 				sb.append("		and bstatus = 'y'	");
 			}
+			if(isnull!=null) {
+				sb.append("	and bstatus is null	");
+			}
+			
 			sb
 			.append("		order by booking_no desc	");
 			pstmt = con.prepareStatement(sb.toString());
 			
+			pstmt.setString(1, certerNo);
+			
 			if(!strDate.equals("")) {
-				pstmt.setString(1, strDate);
-				pstmt.setString(2, endDate);
+				pstmt.setString(2, strDate);
+				pstmt.setString(3, endDate);
 			}//end if
 			
 			
@@ -85,16 +91,70 @@ public class BookingManagerDAO {
 		return list;
 	}
 	
-	public int updateAccept(List<String> no) {
-		int count =0;
+
+	//신청을 수락하는 메소드(수락버튼을 누를때)
+	public int updateAccept(List<String> no) throws SQLException {
+		int cnt=0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		DbConn db = DbConn.getInstance();
 		
-		return count;
+		try {
+		con=db.getConnection("192.168.10.150", "manager", "1234");
+		StringBuilder sb = new StringBuilder();
+		sb
+		.append("		update  booking 	")
+		.append("		set  bstatus='y' 	")
+		.append("		where  booking_no = ? 	");
+		
+		pstmt = con.prepareStatement(sb.toString());
+		
+		//매개변수 no의 개수만큼 반복쿼리
+		for(int i=0; i<no.size(); i++) {
+			pstmt.setInt(1, Integer.valueOf(no.get(i)));
+			System.out.println(Integer.valueOf(no.get(i)));
+			cnt += pstmt.executeUpdate();
+			System.out.println(cnt);
+			pstmt.clearParameters();
+			}
+		} finally {
+			db.dbClose(null, pstmt, con);
+		}
+		return cnt;
 	}
 	
-	public int updateRefusal(List<String> no,String reasons) {
-		int count =0;
+	//신청을 거절하는 메소드
+	public int updateRefusal(List<String> no,String reasons) throws SQLException {
+		int cnt =0;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		
-		return count;
+		DbConn db = DbConn.getInstance();
+		
+		try {
+		con=db.getConnection("192.168.10.150", "manager", "1234");
+		StringBuilder sb = new StringBuilder();
+		sb
+		.append("		update booking 	")
+		.append("		set bstatus= 'n' , reason= ?   	")
+		.append("		where booking_no = ? 	");
+		
+		pstmt = con.prepareStatement(sb.toString());
+		
+		for(int i=0; i<no.size(); i++) {
+			pstmt.setString(1, reasons);
+			pstmt.setString(2, no.get(i));
+			
+			cnt += pstmt.executeUpdate();
+			pstmt.clearParameters();
+			}
+		
+		} finally {
+			db.dbClose(null, pstmt, con);
+		}
+		
+		return cnt;
 	}
 
 }

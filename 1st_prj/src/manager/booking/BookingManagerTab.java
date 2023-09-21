@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import manager.login.LoginVO;
+
 public class BookingManagerTab extends JPanel implements ActionListener {
 	private BookingManagerEvt bmtEvt;
 
@@ -36,7 +38,7 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 
 	private DefaultTableModel dtm;
 
-	public BookingManagerTab() {
+	public BookingManagerTab(LoginVO lVO) {
 
 		// 예약 게시판
 		dtm = new DefaultTableModel() {
@@ -44,8 +46,10 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 
 			@Override
 			public boolean isCellEditable(int row, int column) {
+				if(column==8) {
+					return true;
+				}
 				return false;
-
 			}
 
 			// isCellEditable
@@ -134,7 +138,7 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		add("Center", jbReservationManage);
 		add("Center", jbSave);
 
-		bmtEvt = new BookingManagerEvt(this);
+		bmtEvt = new BookingManagerEvt(this,lVO);
 		// 클릭 이벤트
 		jtfStartDate.addActionListener(bmtEvt);
 		jtfEndDate.addActionListener(bmtEvt);
@@ -142,6 +146,9 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		jbReservation.addActionListener(bmtEvt);
 		jbReservationManage.addActionListener(bmtEvt);
 		jbSave.addActionListener(bmtEvt);
+		jbAccept.addActionListener(bmtEvt);
+		jbRefusal.addActionListener(bmtEvt);
+		
 
 		// 크기 조정 및 배치
 		jlBMName.setBounds(70, 56, 140, 20);
@@ -149,16 +156,17 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 
 		jtfStartDate.setBounds(70, 560, 140, 30);
 		omMiddle.setBounds(220, 560, 20, 20);
-		jtfEndDate.setBounds(240, 560, 140, 30);
+		jtfEndDate.setBounds(240, 560, 140, 30); 
 		jbDateSearch.setBounds(390, 560, 70, 30);
 
-		jbAccept.setBounds(500, 560, 120, 30);
-		jbRefusal.setBounds(625, 560, 120, 30);
-		jbReservation.setBounds(750, 560, 120, 30);
+		jbAccept.setBounds(495, 560, 120, 30);
+		jbRefusal.setBounds(620, 560, 120, 30);
+		jbReservation.setBounds(745, 560, 120, 30);
+		
+		jbSave.setBounds(620, 560, 120, 30);
+		jbReservationManage.setBounds(745, 560, 120, 30);
 
-		jbSave.setBounds(625, 560, 120, 30);
-		jbReservationManage.setBounds(750, 560, 120, 30);
-
+		
 		scrollPane.setVisible(true);
 		setVisible(true);
 

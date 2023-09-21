@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import manager.login.LoginVO;
+
 public class OrderManagerTab extends JPanel implements ActionListener {
 
 	private OrderManagerEvt omEvt;
@@ -31,20 +33,18 @@ public class OrderManagerTab extends JPanel implements ActionListener {
 	private JButton jbOrder;
 	private DefaultTableModel dtm;
 
-	public OrderManagerTab() {
+	public OrderManagerTab(LoginVO lVO) {
 
 		// 발주 게시판
 		dtm = new DefaultTableModel() {
-			//전체 수정 불가
+			// 전체 수정 불가
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
-
 			}
 
 			// isCellEditable
 		};
-		
 
 		// 페이지 이름
 		jlOMName = new JLabel("부품 발주 관리");
@@ -91,7 +91,7 @@ public class OrderManagerTab extends JPanel implements ActionListener {
 
 		// 클릭 이벤트
 
-		omEvt = new OrderManagerEvt(this);
+		omEvt = new OrderManagerEvt(this,lVO);
 		jbDateSearch.addActionListener(omEvt);
 		jbOrder.addActionListener(omEvt);
 
@@ -111,10 +111,14 @@ public class OrderManagerTab extends JPanel implements ActionListener {
 
 	} // OrderManagerTab
 
-	
 	// getter
+	
 	public DefaultTableModel getDtm() {
 		return dtm;
+	}
+
+	public OrderManagerEvt getOmEvt() {
+		return omEvt;
 	}
 
 	public JLabel getoMName() {

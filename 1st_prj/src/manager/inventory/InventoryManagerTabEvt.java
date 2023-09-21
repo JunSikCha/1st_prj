@@ -6,14 +6,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 import manager.carmanager.CarManagerVO;
+import manager.login.LoginVO;
 
 public class InventoryManagerTabEvt implements ActionListener {
 	
 	private InventoryManagerTab imt;
+	private LoginVO lVO;
 	
-	public InventoryManagerTabEvt( InventoryManagerTab imt) {
+	public InventoryManagerTabEvt( InventoryManagerTab imt,LoginVO lVO) {
 		this.imt=imt;
+		this.lVO = lVO;
 		setInventoryTable();
+		
 	}
 	
 	public void setInventoryTable() {
@@ -21,8 +25,10 @@ public class InventoryManagerTabEvt implements ActionListener {
 		List<InventoryManagerVO> list = null;
 		
 		String partName = imt.getJtfPartName().getText();
+		String certerNo = lVO.getCenterNo();
+		
 		try {
-			list = imDAO.selectInventoryInfo(partName);
+			list = imDAO.selectInventoryInfo(partName,certerNo);
 			
 			//JTable의 칼럼이 0개라면 칼럼명 추가
 			if(imt.getJtbInventoryInfoTable().getColumnCount()==0) {
@@ -67,6 +73,9 @@ public class InventoryManagerTabEvt implements ActionListener {
 		}
 		if(e.getSource()==imt.getJbAdd()) {
 			new InventoryManagerSubWindow(imt);
+		}
+		if(e.getSource()==imt.getJbRefresh()) {
+			setInventoryTable();
 		}
 	}
 

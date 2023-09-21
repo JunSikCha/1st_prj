@@ -36,9 +36,9 @@ public class LoginDAO {
 			
 			StringBuilder selectLogin = new StringBuilder();
 			selectLogin
-			.append("		select empname, empemail, emptel,centerno  ")
-			.append("		from emp_info   ")
-			.append("		where empno=? and emppw=? ");
+			.append("		select empname, empemail, emptel,ei.centerno, ctname, ctaddr  ")
+			.append("		from emp_info ei, center_info ci  ")
+			.append("		where empno=? and emppw=? and ei.centerno=ci.centerno ");
 			
 			pstmt = con.prepareStatement(selectLogin.toString());
 			
@@ -53,6 +53,8 @@ public class LoginDAO {
 				lVO.setEmptel(rs.getString("emptel"));
 				lVO.setCenterNo(rs.getString("centerno"));
 				lVO.setEmpname(rs.getString("empname"));
+				lVO.setCtname(rs.getString("ctname"));
+				lVO.setCtaddr(rs.getString("ctaddr"));
 				
 			}
 			

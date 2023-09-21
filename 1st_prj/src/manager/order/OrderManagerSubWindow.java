@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import manager.login.LoginVO;
+
 
 public class OrderManagerSubWindow extends JDialog{
 
@@ -35,7 +37,7 @@ public class OrderManagerSubWindow extends JDialog{
 
 	
 	
-	public OrderManagerSubWindow(OrderManagerTab omt) {
+	public OrderManagerSubWindow(OrderManagerTab omt, LoginVO lVO) {
 		
 		this.omt=omt;
 		
@@ -87,8 +89,10 @@ public class OrderManagerSubWindow extends JDialog{
 		
       	
 		//클릭 이벤트
-      	OrderManagerSubWindowEvt  omswe= new OrderManagerSubWindowEvt(omt,this);
-//		jbOk.addActionListener(omswe);
+      	OrderManagerSubWindowEvt  omswe= new OrderManagerSubWindowEvt(omt,this,lVO);
+		jbOk.addActionListener(omswe);
+		jtfPartName.addActionListener(omswe);
+		jbCancle.addActionListener(omswe);
 		
 		
 		//크기 조정 및 배치
@@ -132,6 +136,12 @@ public class OrderManagerSubWindow extends JDialog{
 	public JLabel getJlTitle() {
 		return jlTitle;
 	}
+
+	public DefaultComboBoxModel<String> getModel() {
+		return model;
+	}
+
+
 
 	public JComboBox getJtfPartName() {
 		return jtfPartName;

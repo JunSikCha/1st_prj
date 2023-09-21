@@ -16,15 +16,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import manager.login.LoginVO;
+
 public class MyInformationTab extends JPanel implements ActionListener {
 	
 	private MyInformationTabEvt mifEvt;
-	private DefaultTableModel dtm;
 	
 	//좌측테이블
 	private JLabel jlMIMessage;
 	private JPanel jpMIMessage;
-	
 	//우측 테이블
 	private JPanel jpBranchName;
 	private JPanel jpBranchNo;
@@ -37,13 +37,13 @@ public class MyInformationTab extends JPanel implements ActionListener {
 	private JTextField jtfManagerPhone;
 	private JTextField jtfManagerEmail;
 	private JTextField jtfBranchAddr;
+	private JTextField jtfEmpNo;
 	
 	private JButton jbMIHome;
 	private JButton jbinfoModify;
 
 	
-	public MyInformationTab() {
-		dtm = new DefaultTableModel();
+	public MyInformationTab(LoginVO lVO) {
 		setLayout(null);
 		
 		//왼쪽
@@ -53,7 +53,7 @@ public class MyInformationTab extends JPanel implements ActionListener {
 		
 		//게시판 형식, 배경색
 //		JLabel lMIMessage = new JLabel(empName + "(" + empNo + ")" + "님 안녕하세요?");
-		JLabel jlMIMessage = new JLabel("안녕하세요?",JLabel.CENTER);
+		jlMIMessage = new JLabel("안녕하세요?",JLabel.CENTER);
 		jpMIMessage = new JPanel();
 		jpMIMessage.setLayout(new BorderLayout());
 		jpMIMessage.add(jlMIMessage);
@@ -93,15 +93,22 @@ public class MyInformationTab extends JPanel implements ActionListener {
 		
 		
 		//하단 버튼
-		jbMIHome = new JButton("홈화면");
+//		jbMIHome = new JButton("홈화면");
 		jbinfoModify = new JButton("정보수정");
 		
 		//게시판 수정 가능 영역
 		jtfBranchName = new JTextField();
+		jtfBranchName.setEditable(false);
 		jtfBranchNo = new JTextField();
+		jtfBranchNo.setEditable(false);
 		jtfManagerPhone = new JTextField();
+		jtfManagerPhone.setEditable(false);
 		jtfManagerEmail = new JTextField();
+		jtfManagerEmail.setEditable(false);
 		jtfBranchAddr = new JTextField();
+		jtfBranchAddr.setEditable(false);
+		
+		jtfEmpNo = new JTextField();
 		
 		
 		//추가
@@ -122,13 +129,15 @@ public class MyInformationTab extends JPanel implements ActionListener {
 		add("Center",jtfBranchAddr);
 		
 		
-		add("Center", jbMIHome);
+//		add("Center", jbMIHome);
 		add("Center", jbinfoModify);
 		
-		//클릭 이벤트
-		mifEvt = new MyInformationTabEvt(this);
+		add("Center",jtfEmpNo);
 		
-		jbMIHome.addActionListener(mifEvt);
+		//클릭 이벤트
+		mifEvt = new MyInformationTabEvt(this,lVO);
+		
+//		jbMIHome.addActionListener(mifEvt);
 		jbinfoModify.addActionListener(mifEvt);
 		
 		//사이즈
@@ -147,7 +156,7 @@ public class MyInformationTab extends JPanel implements ActionListener {
 		jtfManagerEmail.setBounds(590, 290, 209, 58);
 		jtfBranchAddr.setBounds(590, 350, 209, 58);
 		
-		jbMIHome.setBounds(250, 520, 120, 30);
+//		jbMIHome.setBounds(250, 520, 120, 30);
 		jbinfoModify.setBounds(570, 520, 120, 30);
 		
 
@@ -164,14 +173,23 @@ public class MyInformationTab extends JPanel implements ActionListener {
 	}
 
 
+
 	public MyInformationTabEvt getMifEvt() {
 		return mifEvt;
 	}
 
 
-	public DefaultTableModel getDtm() {
-		return dtm;
+
+	public JTextField getJtfEmpNo() {
+		return jtfEmpNo;
 	}
+
+
+
+	public JButton getJbinfoModify() {
+		return jbinfoModify;
+	}
+
 
 
 	public JLabel getJlMIMessage() {
@@ -179,72 +197,37 @@ public class MyInformationTab extends JPanel implements ActionListener {
 	}
 
 
-	public JPanel getpMIMessage() {
-		return jpMIMessage;
-	}
 
-
-
-
-	public JPanel getJpBranchName() {
-		return jpBranchName;
-	}
-
-
-	public JPanel getJpBranchNo() {
-		return jpBranchNo;
-	}
-
-
-	public JPanel getJpManagerPhone() {
-		return jpManagerPhone;
-	}
-
-
-	public JPanel getJpManagerEmail() {
-		return jpManagerEmail;
-	}
-
-
-	public JPanel getJpBranchAddr() {
-		return jpBranchAddr;
-	}
-
-
-	public JTextField getJtaBranchName() {
+	public JTextField getJtfBranchName() {
 		return jtfBranchName;
 	}
 
 
-	public JTextField getJtaBranchNo() {
+
+	public JTextField getJtfBranchNo() {
 		return jtfBranchNo;
 	}
 
 
-	public JTextField getJtaManagerPhone() {
+
+	public JTextField getJtfManagerPhone() {
 		return jtfManagerPhone;
 	}
 
 
-	public JTextField getJtaManagerEmail() {
+
+	public JTextField getJtfManagerEmail() {
 		return jtfManagerEmail;
 	}
 
 
-	public JTextField getJtaBranchAddr() {
+
+	public JTextField getJtfBranchAddr() {
 		return jtfBranchAddr;
 	}
 
 
-	public JButton getJbMIHome() {
-		return jbMIHome;
-	}
 
-
-	public JButton getJbinfoModify() {
-		return jbinfoModify;
-	}
-	
 	
 	
 }//class	

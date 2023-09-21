@@ -9,12 +9,15 @@ import java.util.regex.Pattern;
 
 import manager.carmanager.CarManagerDAO;
 import manager.carmanager.CarManagerVO;
+import manager.login.LoginVO;
 
 public class OrderManagerEvt implements ActionListener {
 	private OrderManagerTab omt;
+	private LoginVO lVO;
 	
-	public OrderManagerEvt(OrderManagerTab omt) {
+	public OrderManagerEvt(OrderManagerTab omt,LoginVO lVO) {
 		this.omt = omt;
+		this.lVO = lVO;
 		setOrderTable();
 	}
 	
@@ -40,9 +43,10 @@ public class OrderManagerEvt implements ActionListener {
 			strDate = "";
 			endDate = "";
 		} // end if
+		String certerNo = lVO.getCenterNo();
 
 		try {
-			list = omDAO.selectOrderInfo(strDate, endDate);
+			list = omDAO.selectOrderInfo(strDate, endDate,certerNo);
 
 			// JTable의 칼럼이 0개라면 칼럼명 추가
 			if (omt.getJtbOrderInfoTable().getColumnCount() == 0) {
@@ -57,7 +61,7 @@ public class OrderManagerEvt implements ActionListener {
 			omt.getDtm().setRowCount(0);
 
 			// JTable 행 정보 추가
-			String[] arrRow = new String[7];
+			String[] arrRow = new String[8];
 			for (int i = 0; i < list.size(); i++) {
 				OrderManagerVO omVO = list.get(i);
 				arrRow[0] = String.valueOf(omVO.getOrderNo());
@@ -67,6 +71,7 @@ public class OrderManagerEvt implements ActionListener {
 				arrRow[4] = String.valueOf(omVO.getOrderQuantity());
 				arrRow[5] = omVO.getPartUnit();
 				arrRow[6] = String.valueOf(omVO.getPartCost());
+				arrRow[7] = String.valueOf(omVO.getOrderQuantity()*omVO.getPartCost());
 				omt.getDtm().addRow(arrRow);
 			} // end for
 
@@ -84,7 +89,7 @@ public class OrderManagerEvt implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==omt.getJbOrder()){
-			new OrderManagerSubWindow(omt);
+			new OrderManagerSubWindow(omt,lVO);
 		}
 		
 		

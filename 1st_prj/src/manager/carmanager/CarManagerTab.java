@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import manager.login.LoginVO;
+
 public class CarManagerTab extends JPanel implements ActionListener { // 차량관리탭
 	// 아오 다영시치
 	private CarManagerTabEvt cmtEvt;
@@ -25,12 +27,15 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 	
 	private JTable jtbCarInfoTable;
 	private JScrollPane jspCarInfoTable; //입고 차량 관리
+	private DefaultTableModel dtmCarInfo;
 	
 	private JTable jtbWaitTable;
 	private JScrollPane jspWaitTable;//대기 차량 관리
+	private DefaultTableModel dtmWait;
 	
 	private JTable jtbOutputTable;
 	private JScrollPane jspOutputTable;//출고 차량 관리
+	private DefaultTableModel dtmOutput;
 
 	private JTextField jtfStartDate;
 	private JTextField jtfEndDate;
@@ -38,21 +43,36 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 	private JButton jbCarAdd; //입고
 	private JButton jbCarOut; //출고
-	private JButton jbCarInfo; //차량정보
+//	private JButton jbCarInfo; //차량정보
 	private JButton jbCarInfoModify; //정보수정
 	private JButton jbCarRepairEnd; //수리완료
 
-	private DefaultTableModel dtm;
 
-	public CarManagerTab() {
+
+
+
+	public CarManagerTab(LoginVO lVO) {
 		
-		boolean[] flag = {false,false,false,true,false};
 
-		dtm = new DefaultTableModel() {
+		dtmCarInfo = new DefaultTableModel() {
 			// 테이블 읽기전용으로 설정
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return flag[2];
+				return false;
+			}
+		};
+		dtmOutput = new DefaultTableModel() {
+			// 테이블 읽기전용으로 설정
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		dtmWait = new DefaultTableModel() {
+			// 테이블 읽기전용으로 설정
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
 			}
 		};
 
@@ -74,13 +94,13 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 		
 		// 중앙 상단 입고 차량관리
-		jtbCarInfoTable = new JTable(dtm);
+		jtbCarInfoTable = new JTable(dtmCarInfo);
 		jspCarInfoTable = new JScrollPane(jtbCarInfoTable);
 		//좌측 하단 대기 차랑관리
-		jtbWaitTable = new JTable(dtm);
+		jtbWaitTable = new JTable(dtmWait);
 		jspWaitTable = new JScrollPane(jtbWaitTable);
 		//우측 하단 출고 차량관리
-		jtbOutputTable = new JTable(dtm);
+		jtbOutputTable = new JTable(dtmOutput);
 		jspOutputTable = new JScrollPane(jtbOutputTable);
 		
 		
@@ -133,7 +153,7 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		jbCarAdd = new JButton("입고");
 		jbCarOut = new JButton("출고");
 		
-		jbCarInfo = new JButton("차량 정보");
+//		jbCarInfo = new JButton("차량 정보");
 		jbCarInfoModify = new JButton("정보 수정");
 		jbCarRepairEnd = new JButton("수리 완료");
 
@@ -156,11 +176,11 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 		add("Center", jbCarAdd);
 		add("Center", jbCarOut);
-		add("Center", jbCarInfo);
+//		add("Center", jbCarInfo);
 		add("Center", jbCarInfoModify);
 		add("Center", jbCarRepairEnd);
 
-		cmtEvt = new CarManagerTabEvt(this);
+		cmtEvt = new CarManagerTabEvt(this,lVO);
 
 		// 클릭 이벤트
 		jtfStartDate.addActionListener(cmtEvt);
@@ -170,7 +190,7 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		jbCarAdd.addActionListener(cmtEvt);
 		jbCarOut.addActionListener(cmtEvt);
 		
-		jbCarInfo.addActionListener(cmtEvt);
+//		jbCarInfo.addActionListener(cmtEvt);
 		jbCarInfoModify.addActionListener(cmtEvt);
 		jbCarRepairEnd.addActionListener(cmtEvt);
 
@@ -192,7 +212,7 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		jbCarAdd.setBounds(320, 250, 120, 30);
 		jbCarOut.setBounds(740, 250, 120, 30);
 		
-		jbCarInfo.setBounds(490, 560, 120, 30);
+//		jbCarInfo.setBounds(490, 560, 120, 30);
 		jbCarInfoModify.setBounds(615, 560, 120, 30);
 		jbCarRepairEnd.setBounds(740, 560, 120, 30);
 
@@ -202,12 +222,29 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 	} // CarManagerTap1
 
 	
-	//getter
-	public DefaultTableModel getDtm() {
-		return dtm;
-	}
 
 	
+	public DefaultTableModel getDtmCarInfo() {
+		return dtmCarInfo;
+	}
+
+
+
+
+	public DefaultTableModel getDtmWait() {
+		return dtmWait;
+	}
+
+
+
+
+	public DefaultTableModel getDtmOutput() {
+		return dtmOutput;
+	}
+
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -291,9 +328,9 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 	}
 
 
-	public JButton getJbCarInfo() {
-		return jbCarInfo;
-	}
+//	public JButton getJbCarInfo() {
+//		return jbCarInfo;
+//	}
 
 
 	public JButton getJbCarInfoModify() {
