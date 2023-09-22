@@ -1,7 +1,5 @@
 package manager.login;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -12,31 +10,30 @@ import javax.swing.JOptionPane;
 
 import manager.carmanager.CarManager;
 
-
 public class LoginEvt extends WindowAdapter implements ActionListener {
 
 	private LoginVO lVO;
 
 	private LoginDesign lg;
+	boolean flag;
 
 	public LoginEvt(LoginDesign lg) {
 		this.lg = lg;
 		lVO = new LoginVO();
-		
-//		// 아이디 필드에 액션 이벤트 리스너 추가
-//        lg.getJtfId().addActionListener(this);
-//
-//        // 비밀번호 필드에 액션 이벤트 리스너 추가
-//        lg.getJpwPass().addActionListener(this);
+		flag = true;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == lg.getJbLogin()) {
 			chkEmpty();
+			System.out.println("login");
 		}
-		if(ae.getSource()==lg.getJpwPass()) {
-			lg.getJbLogin().doClick();
+		if (flag) {
+			if (ae.getSource() == lg.getJpwPass()) {
+				chkEmpty();
+				flag = false;
+			}
 		}
 	}// actionPerformed
 
@@ -62,8 +59,8 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 		}
 
 		// 그렇지 않으면 loginCheck()를 호출한다.
-		String ijId=injectionBlock(id);//id와 비밀번호에 SQLInjection해당 하는 값이 존재하면 삭제시킨다 
-		String ijPass=injectionBlock(pass);
+		String ijId = injectionBlock(id);// id와 비밀번호에 SQLInjection해당 하는 값이 존재하면 삭제시킨다
+		String ijPass = injectionBlock(pass);
 		LoginVO lVO = new LoginVO();
 		lVO.setEmpno(ijId);
 		lVO.setPassword(ijPass);
@@ -88,10 +85,10 @@ public class LoginEvt extends WindowAdapter implements ActionListener {
 				JOptionPane.showMessageDialog(lg, "아이디 혹은 비밀번호를 확인해주세요!");
 				return;
 			}
-			JOptionPane.showMessageDialog(lg, lVO.getEmpname() + "님으로 로그인 되었습니다.");
-			
-			new CarManager(lVO);
+
 			lg.dispose();
+			JOptionPane.showMessageDialog(lg, lVO.getEmpname() + "님으로 로그인 되었습니다.");
+			new CarManager(lVO);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(lg, "아이디나 비밀번호를 입력해주세요");
 			e.printStackTrace();

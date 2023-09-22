@@ -11,9 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import manager.inventory.InventoryManagerSubWindowEvt;
-import manager.order.OrderManagerSubWindowEvt;
-
+@SuppressWarnings("serial")
 public class MyInformationSubWindow extends JDialog{
 
 	private JLabel jlTitle;
@@ -106,7 +104,7 @@ public class MyInformationSubWindow extends JDialog{
 				
 		setBounds(mit.getX()+650, mit.getY()+190, 400, 600);
 				
-				
+		setModal(true);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);		
 		

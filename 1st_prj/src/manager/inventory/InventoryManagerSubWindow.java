@@ -4,7 +4,6 @@ import java.awt.Font;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -15,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 
+@SuppressWarnings("serial")
 public class InventoryManagerSubWindow extends JDialog{
 	//임시주석
 	private JLabel jlTitle;
@@ -135,7 +135,7 @@ public class InventoryManagerSubWindow extends JDialog{
 		scrollPane.setVisible(true);
 		jbCancle.setVisible(true);
 		jbOk.setVisible(true);
-		
+		setModal(true);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		

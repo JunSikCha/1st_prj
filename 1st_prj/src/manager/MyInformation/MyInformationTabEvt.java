@@ -3,7 +3,6 @@ package manager.MyInformation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import manager.carmanager.CarManager;
 import manager.login.LoginVO;
 
 public class MyInformationTabEvt implements ActionListener {

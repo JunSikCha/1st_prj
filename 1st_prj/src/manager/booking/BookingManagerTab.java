@@ -17,6 +17,7 @@ import javax.swing.table.JTableHeader;
 
 import manager.login.LoginVO;
 
+@SuppressWarnings("serial")
 public class BookingManagerTab extends JPanel implements ActionListener {
 	private BookingManagerEvt bmtEvt;
 
@@ -34,7 +35,7 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 	private JButton jbReservation;
 
 	private JButton jbReservationManage;
-	private JButton jbSave;
+//	private JButton jbSave;
 
 	private DefaultTableModel dtm;
 
@@ -61,7 +62,7 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		jlBMName.setFont(bmNameFont);
 
 		
-		// 재고 게시판
+		// 예약 게시판
 		jtbOrderInfoTable = new JTable(dtm) {
 			@Override
 			public Class<?> getColumnClass(int column) {
@@ -116,9 +117,9 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 
 		jbAccept = new JButton("수락");
 		jbRefusal = new JButton("거절");
-		jbReservation = new JButton("예약 사항");
-		jbReservationManage = new JButton("예약 신청 관리");
-		jbSave = new JButton("저장");
+		jbReservation = new JButton("예약 신청 관리");
+		jbReservationManage = new JButton("예약 사항");
+//		jbSave = new JButton("저장");
 
 		// 추가
 		setLayout(null);
@@ -136,7 +137,7 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		add("Center", jbReservation);
 
 		add("Center", jbReservationManage);
-		add("Center", jbSave);
+//		add("Center", jbSave);
 
 		bmtEvt = new BookingManagerEvt(this,lVO);
 		// 클릭 이벤트
@@ -145,13 +146,13 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		jbDateSearch.addActionListener(bmtEvt);
 		jbReservation.addActionListener(bmtEvt);
 		jbReservationManage.addActionListener(bmtEvt);
-		jbSave.addActionListener(bmtEvt);
+//		jbSave.addActionListener(bmtEvt);
 		jbAccept.addActionListener(bmtEvt);
 		jbRefusal.addActionListener(bmtEvt);
 		
 
 		// 크기 조정 및 배치
-		jlBMName.setBounds(70, 56, 140, 20);
+		jlBMName.setBounds(70, 56, 250, 40);
 		scrollPane.setBounds(70, 90, 800, 450);
 
 		jtfStartDate.setBounds(70, 560, 140, 30);
@@ -163,7 +164,7 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		jbRefusal.setBounds(620, 560, 120, 30);
 		jbReservation.setBounds(745, 560, 120, 30);
 		
-		jbSave.setBounds(620, 560, 120, 30);
+//		jbSave.setBounds(620, 560, 120, 30);
 		jbReservationManage.setBounds(745, 560, 120, 30);
 
 		
@@ -276,13 +277,13 @@ public class BookingManagerTab extends JPanel implements ActionListener {
 		this.dtm = dtm;
 	}
 
-	public JButton getJbSave() {
-		return jbSave;
-	}
-
-	public void setJbSave(JButton jbSave) {
-		this.jbSave = jbSave;
-	}
+//	public JButton getJbSave() {
+//		return jbSave;
+//	}
+//
+//	public void setJbSave(JButton jbSave) {
+//		this.jbSave = jbSave;
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

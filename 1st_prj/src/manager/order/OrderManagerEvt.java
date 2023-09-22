@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import manager.carmanager.CarManagerDAO;
-import manager.carmanager.CarManagerVO;
 import manager.login.LoginVO;
 
 public class OrderManagerEvt implements ActionListener {

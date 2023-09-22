@@ -17,6 +17,7 @@ import javax.swing.table.JTableHeader;
 
 import manager.login.LoginVO;
 
+@SuppressWarnings("serial")
 public class InventoryManagerTab extends JPanel implements ActionListener {
 	// 주석은 시진핑
 	private InventoryManagerTabEvt imtEvt;

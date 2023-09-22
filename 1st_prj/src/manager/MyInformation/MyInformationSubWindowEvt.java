@@ -8,8 +8,6 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
-import manager.login.LoginDAO;
-
 public class MyInformationSubWindowEvt implements ActionListener {
 
 	private MyInformationSubWindow misw;

@@ -20,6 +20,7 @@ import manager.inventory.InventoryManagerDAO;
 import manager.inventory.InventoryManagerVO;
 import manager.inventory.PartInfoVO;
 import manager.login.LoginVO;
+import manager.order.OrderManagerDAO;
 
 public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 
@@ -31,7 +32,7 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 	private CarManagerVO cmVO;
 	private LoginVO lVO;
 
-	public CarManagerSubWindowEvt(CarManagerTab cmt, CarManagerSubWindow cmsw, String mode,LoginVO lVO) {
+	public CarManagerSubWindowEvt(CarManagerTab cmt, CarManagerSubWindow cmsw, String mode, LoginVO lVO) {
 		this.cmt = cmt;
 		this.cmsw = cmsw;
 		this.mode = mode;
@@ -39,14 +40,21 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 
 		// 눌린 버튼에 따라 subwindow설정변경
 		if (mode.equals("정보수정")) {
-			setOneCarInfo();
+			List<PartInfoVO> listPiVO = setOneCarInfo();
 			partInfoConbo();
 			modifyBtnValue();
+			// 파트테이블 칼럼설정
+			partTableCol();
+			// 파트테이블 값설정(기존에 사용된 부품 불러오기
+			partTableSet(listPiVO);
 		} else if (mode.equals("입고")) {
 			addBtnWindow();
+			partTableCol();
 			this.cmVO = addBtnValue();
 		} else if (mode.equals("출고")) {
-			
+			List<PartInfoVO> listPiVO = outBtnTable();
+			partTableCol();
+			partTableSet(listPiVO);
 			outBtnSet();
 		} // end else
 	}// CarManagerSubWindowEvt
@@ -56,22 +64,27 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 		// 기능버튼 클릭시
 		if (e.getSource() == cmsw.getJbFunction()) {
 			if (mode.equals("정보수정")) {
-				// 출고일 update
+				// 수리내역, 비고 업데이트
 				modifyBtnRenew();
+				// Table 새로고침
+				cmt.getCmtEvt().setAddTable();
 				cmt.getCmtEvt().setCarInfoTable();
 				cmsw.dispose();
-				// partTable update
-//				partTableChanged();
-//				useUpdatePart();
 			} else if (mode.equals("입고")) {
+				// 예약 상태 업데이트
 				addBtnInput();
 				// Table 새로고침
 				cmt.getCmtEvt().setAddTable();
 				cmt.getCmtEvt().setCarInfoTable();
+				cmsw.dispose();
 
 			} else if (mode.equals("출고")) {
-
-//				addCarMethod();
+				// 출고일 업데이트
+				outBtnRenew();
+				// Table 새로고침
+				cmt.getCmtEvt().setCarInfoTable();
+				cmt.getCmtEvt().setOutTable();
+				cmsw.dispose();
 			}
 		} // end if
 
@@ -169,15 +182,14 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 			cmsw.getJtfreceiveDay().setText(todayFormatted);
 
 			// emp 콤보박스 설정
-			List<MyInformationVO> list = cmDAO.selectEmpInfo();
+			String centerNo = lVO.getCenterNo();
+			List<MyInformationVO> list = cmDAO.selectEmpInfo(centerNo);
 			StringBuilder emp = new StringBuilder();
 			for (int i = 0; i < list.size(); i++) {
 				emp.append(list.get(i).getEmpName()).append("[").append(list.get(i).getEmpNo()).append("]");
 				cmsw.getEmpModel().addElement(emp.toString());
 				emp.setLength(0);
 			} // end for
-
-			partTableCol();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -213,7 +225,7 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 		//////////////////////////////////////////////////////////////////////////////////////////
 
 	// 차량관리테이블
-	public void setOneCarInfo() {
+	public List<PartInfoVO> setOneCarInfo() {
 		CarManagerDAO cmDAO = CarManagerDAO.getInstance();
 		CarManagerVO cmVO = new CarManagerVO();
 		List<PartInfoVO> listPiVO = new ArrayList<PartInfoVO>();
@@ -265,14 +277,10 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 			cmsw.getJtfModelNo().setText(cmVO.getModelNo());
 			cmsw.getJtfEmpNo().setText(String.valueOf(cmVO.getEmpNo()));
 
-			// 파트테이블 칼럼설정
-			partTableCol();
-			// 파트테이블 값설정(기존에 사용된 부품 불러오기
-			partTableSet(listPiVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end catch
-
+		return listPiVO;
 	}// setOneCarInfo
 		// 정보수정 창
 
@@ -294,17 +302,27 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 			cnt = cmDAO.updateInfoModify(hno, maintenanceDetail, note);
 			if (cnt == 1) {
 				JOptionPane.showMessageDialog(cmsw, "수정되었습니다.");
-			}//end if
+			} // end if
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}//catch
-	}//modifyBtnRenew
+		} // catch
+	}// modifyBtnRenew
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////
+	// 출고차량 관리 창 셋팅
+	public void outBtnSet() {
+		cmsw.getJbFunction().setText("출고");
+		cmsw.getJtfempName().setVisible(false);
+		cmsw.getJbPartAdd().setVisible(false);
+		cmsw.getJbPartRemove().setVisible(false);
+		cmsw.getJlPartName().setVisible(false);
+		cmsw.getJtfPartName().setVisible(false);
+		cmsw.getJpPartName().setVisible(false);
+	}
 
 	// 출고차량 관리 테이블
-	public void outBtnSet() {
+	public List<PartInfoVO> outBtnTable() {
 		int row = cmt.getJtbOutputTable().getSelectedRow();
 		int historyNo = Integer.parseInt(cmt.getJtbOutputTable().getValueAt(row, 0).toString());
 		String carNo = cmt.getJtbOutputTable().getValueAt(row, 1).toString();
@@ -314,10 +332,11 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 		CarManagerVO cmVO = new CarManagerVO();
 		cmVO.setMaintenanceNo(historyNo);
 		cmVO.setCarNo(carNo);
-		
+
 		LocalDate today = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String todayFormatted = today.format(formatter);
+		List<PartInfoVO> listPiVO = null;
 
 		try {
 			cmVO = cmDAO.selectOneCarInfo(cmVO);
@@ -335,15 +354,35 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 			cmsw.getJtfFaultDetail().setText(cmVO.getFaultDetail());
 			cmsw.getJtfMaintenanceDetail().setText(cmVO.getMaintenanceDetail());
 			cmsw.getJtfNote().setText(cmVO.getNote());
-			List<PartInfoVO> listPiVO = new ArrayList<PartInfoVO>();
 			listPiVO = cmDAO.selectOnePartInfo(historyNo);
 
-			partTableSet(listPiVO);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // catch
+		return listPiVO;
 	}// outBtnSet
+
+	// 출고버튼 클릭시 출고일 업데이트
+	public void outBtnRenew() {
+
+		String hno = cmsw.getJtfMaintenencrNo().getText();
+		String outputDate = cmsw.getJtfReleaseDay().getText();
+		String carNo = cmsw.getJtfCarNo().getText();
+		int temp = JOptionPane.showConfirmDialog(cmsw, "차량번호 [" + carNo + "] 의 출고일을" + outputDate + "으로 입력하시겠습니까?");
+
+		if (temp == 0) {
+			CarManagerDAO cmDAO = CarManagerDAO.getInstance();
+			try {
+				cmDAO.updateCarInfo(hno, outputDate);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			JOptionPane.showMessageDialog(cmsw, "취소했습니다.");
+		}
+
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////
@@ -354,7 +393,7 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 		List<InventoryManagerVO> VOlist = null;
 		String certerNo = lVO.getCenterNo();
 		try {
-			VOlist = imDAO.selectInventoryInfo("",certerNo);
+			VOlist = imDAO.selectInventoryInfo("", certerNo);
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < VOlist.size(); i++) {
 				sb.append(VOlist.get(i).getPartName()).append(" [").append(VOlist.get(i).getPartNo()).append("]");
@@ -405,13 +444,19 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 		upVO.setEmpNo(Integer.parseInt(cmsw.getJtfEmpNo().getText()));
 
 		CarManagerDAO cmDAO = CarManagerDAO.getInstance();
+		OrderManagerDAO omDAO = OrderManagerDAO.getInstance();
+		String centerNo = lVO.getCenterNo();
 		try {
-			// 값이 1이 아니면 오류 발생이니 오류해결 기능 추가하기
-			int cnt = cmDAO.insertPartInfo(upVO);
+			cmDAO.insertPartInfo(upVO);
+
+			piVO = omDAO.selectPartInfo(upVO.getSn(), centerNo);
+
+			int changedStock = Integer.parseInt(piVO.getPartStock()) - 1;
+			omDAO.updateStock(upVO.getSn(), changedStock, centerNo);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}//end catch
+		} // end catch
 	}// partAddABtnDb
 
 	// 테이블에 선택된 정보 제거
@@ -456,6 +501,9 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 		if (ChangedValue != null) {
 			table.setValueAt(ChangedValue, row, 4);
 			CarManagerDAO cmDAO = CarManagerDAO.getInstance();
+			OrderManagerDAO omDAO = OrderManagerDAO.getInstance();
+
+			String centerNo = lVO.getCenterNo();
 			try {
 				int cnt = cmDAO.updatePartInfo(ChangedValue, sn, historyNo);
 				if (cnt > 0) {
@@ -463,28 +511,18 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 				} else {
 					JOptionPane.showMessageDialog(cmsw, "변경에 실패하였습니다.\n 입력값을 확인해주세요.");
 				} // end else
+				PartInfoVO piVO = omDAO.selectPartInfo(sn, centerNo);
+
+				// partTable수량 변경시 재고DB업데이트 메소드
+				int changedStock = Integer.parseInt(piVO.getPartStock()) - Integer.parseInt(ChangedValue);
+				omDAO.updateStock(sn, changedStock, centerNo);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} // catch
 		} // end if
 	}// partDataModify
-	
-	//partTable수량 변경시 재고DB업데이트 메소드
-	public void stockdataModify() {
-		JTable table = cmsw.getJtPartTable();
-		int row = table.getSelectedRow();
-		int value = Integer.parseInt(table.getValueAt(row, 4).toString());
-//		520
-		
-		
-	}
 
-//	public void partDataRemove() {
-//		JTable table = cmsw.getJtPartTable();
-//		int row = table.getSelectedRow();
-//	}// remove
-
-	//파트테이블 칼럼명 설정
+	// 파트테이블 칼럼명 설정
 	public void partTableCol() {
 		if (cmsw.getJtPartTable().getColumnCount() == 0) {
 
@@ -499,7 +537,7 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 		column.setMinWidth(0);
 		column.setMaxWidth(0);
 		column.setPreferredWidth(0);
-	}//partTableCol
+	}// partTableCol
 
 	// 파트테이블 데이터 셋팅
 	public void partTableSet(List<PartInfoVO> listPiVO) {
@@ -530,4 +568,4 @@ public class CarManagerSubWindowEvt implements ActionListener, MouseListener {
 		cmsw.getJtfTotal().setText(String.valueOf(total));
 	}// partTableSet
 
-}//class
+}// class

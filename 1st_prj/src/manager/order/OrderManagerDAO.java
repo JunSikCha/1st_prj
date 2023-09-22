@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dbConn.DbConn;
-import manager.carmanager.CarManagerVO;
 import manager.inventory.PartInfoVO;
 
 public class OrderManagerDAO {
@@ -82,7 +81,7 @@ public class OrderManagerDAO {
 	}
 	
 	//현 재고와 단위조회
-	public PartInfoVO selectPartInfo(String partNo) throws SQLException{
+	public PartInfoVO selectPartInfo(String partNo, String centerNo) throws SQLException{
 		
 		PartInfoVO piVO = new PartInfoVO();
 		Connection con = null;
@@ -99,11 +98,12 @@ public class OrderManagerDAO {
 			sb
 			.append("		select  pi.sn, sname, amount   , sunit	")
 			.append("		from 	parts_info pi, stock s	")
-			.append("		where 	pi.sn = ? and pi.sn = s. sn 	");
+			.append("		where 	pi.sn = ? and pi.sn = s. sn and s.centerno = ?	");
 			
 			pstmt = con.prepareStatement(sb.toString());
 			
 			pstmt.setString(1, partNo);
+			pstmt.setString(2, centerNo);
 			
 			rs = pstmt.executeQuery();
 			

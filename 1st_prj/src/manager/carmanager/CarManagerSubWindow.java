@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import manager.login.LoginVO;
 
+@SuppressWarnings("serial")
 public class CarManagerSubWindow extends JDialog {
 
 	private CarManagerTab cmt;

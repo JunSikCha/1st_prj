@@ -8,7 +8,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import manager.inventory.InventoryManagerDAO;
-import manager.inventory.InventoryManagerTabEvt;
 import manager.inventory.InventoryManagerVO;
 import manager.inventory.PartInfoVO;
 import manager.login.LoginVO;
@@ -49,9 +48,10 @@ public class OrderManagerSubWindowEvt implements ActionListener {
 		String partName = omsw.getJtfPartName().getSelectedItem().toString();
 		String partNo = partName.substring(partName.indexOf("[")+1,partName.indexOf("]"));
 		OrderManagerDAO omDAO = OrderManagerDAO.getInstance();
+		String centerNo = lVO.getCenterNo();
 		
 		try {
-			PartInfoVO piVO = omDAO.selectPartInfo(partNo);
+			PartInfoVO piVO = omDAO.selectPartInfo(partNo,centerNo);
 			omsw.getJtfPartStock().setText(piVO.getPartStock());
 			omsw.getJtfPartUnit().setText(piVO.getPartUnit());
 		} catch (SQLException e) {
@@ -84,9 +84,8 @@ public class OrderManagerSubWindowEvt implements ActionListener {
 				return;
 			}
 			JOptionPane.showMessageDialog(omsw, partName+" 제품을 " + amount + "개 발주시켰습니다.");
-			
 			//재고테이블 업데이트
-			PartInfoVO piVO = omDAO.selectPartInfo(partNo);
+			PartInfoVO piVO = omDAO.selectPartInfo(partNo,centerNo);
 			int totalAmount = Integer.parseInt(piVO.getPartStock()) + amount;
 			System.out.println(totalAmount);
 			

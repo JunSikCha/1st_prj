@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dbConn.DbConn;
-import manager.login.LoginVO;
 
 public class MyInformationDAO {
 	private static MyInformationDAO miDAO;

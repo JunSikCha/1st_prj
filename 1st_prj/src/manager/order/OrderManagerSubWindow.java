@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import manager.login.LoginVO;
 
 
+@SuppressWarnings("serial")
 public class OrderManagerSubWindow extends JDialog{
 
 	private JLabel jlTitle;
@@ -120,7 +121,7 @@ public class OrderManagerSubWindow extends JDialog{
 		
 		jbCancle.setVisible(true);
 		jbOk.setVisible(true);
-		
+		setModal(true);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		

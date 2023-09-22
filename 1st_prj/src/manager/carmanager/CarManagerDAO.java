@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 
 import dbConn.DbConn;
@@ -131,6 +128,7 @@ public class CarManagerDAO {
 		return cmVO;
 	}//selectOneCarInfo
 	
+	//정비번호 최대값 조회
 	public int selectHistoryNoMAX() throws SQLException {
 		int max = 0;
 		
@@ -149,7 +147,6 @@ public class CarManagerDAO {
 			.append("		from 	history	");
 			
 			pstmt = con.prepareStatement(sb.toString());
-			
 			
 			rs = pstmt.executeQuery();
 			
@@ -203,7 +200,7 @@ public class CarManagerDAO {
 		return cmVO;
 	}
 	
-	public List<MyInformationVO> selectEmpInfo() throws SQLException {
+	public List<MyInformationVO> selectEmpInfo(String centerNo) throws SQLException {
 		List<MyInformationVO> list = new ArrayList<MyInformationVO>();
 		
 		Connection con = null;
@@ -218,9 +215,12 @@ public class CarManagerDAO {
 			
 			sb
 			.append("		select  empno, empname	")
-			.append("		from 	emp_info	");
+			.append("		from 	emp_info	")
+			.append("		where centerno = ?		");
 			
 			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, centerNo);
 			
 			
 			rs = pstmt.executeQuery();
@@ -515,35 +515,6 @@ public class CarManagerDAO {
 		return cnt;
 	}//updatePartInfo
 	
-	//부품 테이블 수량변경시 재고 업데이트
-//	public int updatestock() {
-//		int cnt = 0;
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		
-//		DbConn db = DbConn.getInstance();
-//		try {
-//			con=db.getConnection("192.168.10.150", "manager", "1234");
-//			StringBuilder sb = new StringBuilder();
-//			
-//			sb
-//			.append("		update  used_parts	")
-//			.append("		set     upamount	= ?			")
-//			.append("		where 	sn = ? and historyno = ?		");
-//			
-//			pstmt = con.prepareStatement(sb.toString());
-//			
-//			pstmt.setString(1, ChangedValue);
-//			pstmt.setString(2, sn);
-//			pstmt.setString(3, historyNo);
-//			
-//			cnt = pstmt.executeUpdate();
-//		}finally {
-//			db.dbClose(null, pstmt, con);
-//		}//finally
-//		return cnt;
-//		
-//	}
 	
 	//파트테이블 부품 제거시 제거 메소드
 	public int deletePartTable(String sn,String historyNo) throws SQLException {
@@ -571,6 +542,7 @@ public class CarManagerDAO {
 		}
 		return rowCnt;
 	}
+	
 	
 	public int updateCarStatus(String historyNo) throws SQLException {
 		int cnt = 0;
@@ -600,34 +572,7 @@ public class CarManagerDAO {
 		
 	}
 	
-//	public static void main(String[] args) {
-//		CarManagerDAO dao = new CarManagerDAO();
-//		List<CarManagerVO> list = new ArrayList<CarManagerVO>();
-//		
-//		try {
-//			list = dao.selectCarInfo("2022-09-04", "2022-09-05");
-//			
-//			for(CarManagerVO str : list) {
-//				System.out.println(str);
-//			}//
-//			System.out.println( list.size());
-//			
-//			for(int i=0;i<list.size();i++) {
-//				System.out.print(list.get(i).getCarNo()+"\t");
-//				System.out.print(list.get(i).getCarName()+"\t");
-//				System.out.print(list.get(i).getMaintenanceDetail()+"\t");
-//				System.out.print(list.get(i).getReceivedDay()+"\t");
-//				System.out.print(list.get(i).getReleaseDay()+"\n");
-//				
-//			}
-//			
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
+	
 	
 
 }//class

@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +16,7 @@ import javax.swing.table.JTableHeader;
 
 import manager.login.LoginVO;
 
+@SuppressWarnings("serial")
 public class CarManagerTab extends JPanel implements ActionListener { // 차량관리탭
 	// 아오 다영시치
 	private CarManagerTabEvt cmtEvt;
@@ -37,13 +37,8 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 	private JScrollPane jspOutputTable;//출고 차량 관리
 	private DefaultTableModel dtmOutput;
 
-	private JTextField jtfStartDate;
-	private JTextField jtfEndDate;
-	private JButton jbDateSearch;
-
 	private JButton jbCarAdd; //입고
 	private JButton jbCarOut; //출고
-//	private JButton jbCarInfo; //차량정보
 	private JButton jbCarInfoModify; //정보수정
 	private JButton jbCarRepairEnd; //수리완료
 
@@ -78,12 +73,12 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 
 		// 페이지 이름
-		jlCMNameL = new JLabel("대기 차량 관리");
+		jlCMNameL = new JLabel("입고 대기 차량");
 		Font cmNameFontL = new Font(null, Font.BOLD, 20);
 		jlCMNameL.setFont(cmNameFontL);
 
 		
-		jlCMNameR = new JLabel("출고 차량 관리");
+		jlCMNameR = new JLabel("출고 대기 차량");
 		Font cmNameFontR = new Font(null, Font.BOLD, 20);
 		jlCMNameR.setFont(cmNameFontR);
 		
@@ -140,20 +135,11 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		renderer3.setHorizontalAlignment(SwingConstants.CENTER); // 데이터 가운데 정렬
 
 		
-		// 날짜, 검색
-		JLabel cmMiddle = new JLabel("~");
-		Font cmMiddleFont = new Font(null, Font.BOLD, 14);
-		cmMiddle.setFont(cmMiddleFont);
 
-		jtfStartDate = new JTextField();
-		jtfEndDate = new JTextField();
-		
-		jbDateSearch = new JButton("검색");
 
 		jbCarAdd = new JButton("입고");
 		jbCarOut = new JButton("출고");
 		
-//		jbCarInfo = new JButton("차량 정보");
 		jbCarInfoModify = new JButton("정보 수정");
 		jbCarRepairEnd = new JButton("수리 완료");
 
@@ -169,10 +155,6 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		add("Center", jspWaitTable);
 		add("Center", jspOutputTable);
 
-		add("Center", jtfStartDate);
-		add("Center", cmMiddle);
-		add("Center", jtfEndDate);
-		add("Center", jbDateSearch);
 
 		add("Center", jbCarAdd);
 		add("Center", jbCarOut);
@@ -183,9 +165,6 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		cmtEvt = new CarManagerTabEvt(this,lVO);
 
 		// 클릭 이벤트
-		jtfStartDate.addActionListener(cmtEvt);
-		jtfEndDate.addActionListener(cmtEvt);
-		jbDateSearch.addActionListener(cmtEvt);
 
 		jbCarAdd.addActionListener(cmtEvt);
 		jbCarOut.addActionListener(cmtEvt);
@@ -195,19 +174,15 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 		jbCarRepairEnd.addActionListener(cmtEvt);
 
 		// 크기 조정 및 배치
-		jlCMNameL.setBounds(60, 56, 140, 20);
-		jlCMNameR.setBounds(480, 56, 140, 20);
-		jlCMNameM.setBounds(60, 320, 140, 20);
+		jlCMNameL.setBounds(60, 56, 320, 20);
+		jlCMNameR.setBounds(480, 56, 320, 20);
+		jlCMNameM.setBounds(60, 320, 320, 20);
 		
 		
 		jspWaitTable.setBounds(60, 90, 380, 140);
 		jspOutputTable.setBounds(480, 90, 380, 140);
 		jspCarInfoTable.setBounds(60, 350, 800, 190);
 
-		jtfStartDate.setBounds(60, 560, 140, 30);
-		cmMiddle.setBounds(205, 560, 20, 20);
-		jtfEndDate.setBounds(225, 560, 140, 30);
-		jbDateSearch.setBounds(375, 560, 70, 30);
 		
 		jbCarAdd.setBounds(320, 250, 120, 30);
 		jbCarOut.setBounds(740, 250, 120, 30);
@@ -300,21 +275,6 @@ public class CarManagerTab extends JPanel implements ActionListener { // 차량�
 
 	public JScrollPane getJspOutputTable() {
 		return jspOutputTable;
-	}
-
-
-	public JTextField getJtfStartDate() {
-		return jtfStartDate;
-	}
-
-
-	public JTextField getJtfEndDate() {
-		return jtfEndDate;
-	}
-
-
-	public JButton getJbDateSearch() {
-		return jbDateSearch;
 	}
 
 

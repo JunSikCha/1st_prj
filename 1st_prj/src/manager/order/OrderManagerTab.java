@@ -17,6 +17,7 @@ import javax.swing.table.JTableHeader;
 
 import manager.login.LoginVO;
 
+@SuppressWarnings("serial")
 public class OrderManagerTab extends JPanel implements ActionListener {
 
 	private OrderManagerEvt omEvt;

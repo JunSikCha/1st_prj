@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
-import manager.carmanager.CarManagerVO;
 import manager.login.LoginVO;
 
 public class InventoryManagerTabEvt implements ActionListener {

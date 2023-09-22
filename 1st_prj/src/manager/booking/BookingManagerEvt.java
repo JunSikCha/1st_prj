@@ -28,13 +28,13 @@ public class BookingManagerEvt implements ActionListener {
 
 	// 예약 신청관리창 셋팅
 	public void reservationManageDesign() {
+		bmt.getJlBMName().setText("예약 신청 관리");
 		bmt.getJbReservationManage().setVisible(true);
 		bmt.getJbAccept().setVisible(true);
 		bmt.getJbRefusal().setVisible(true);
 
 		bmt.getJbReservation().setVisible(false);
-		bmt.getJbSave().setVisible(false);
-	}
+	}// reservationManageDesign
 
 	// 예약 신청관리창 테이터 입력
 	public void reservationManage() {
@@ -59,12 +59,12 @@ public class BookingManagerEvt implements ActionListener {
 			strDate = "";
 			endDate = "";
 		} // end if
-		
+
 		String certerNo = lVO.getCenterNo();
 		String isnull = "";
-		
+
 		try {
-			list = bmDAO.selectBooking(strDate, endDate, null,certerNo,isnull);
+			list = bmDAO.selectBooking(strDate, endDate, null, certerNo, isnull);
 
 			// JTable의 칼럼이 0개라면 칼럼명 추가
 			if (bmt.getJtbOrderInfoTable().getColumnCount() == 0) {
@@ -111,15 +111,15 @@ public class BookingManagerEvt implements ActionListener {
 		} // end catch
 	}// reservationManage
 
-	// 예약 사항창 셋팅
+	// 예약 내역창 셋팅
 	public void reservationDesign() {
+		bmt.getJlBMName().setText("전체 예약 내역 관리");
 		bmt.getJbReservationManage().setVisible(false);
 		bmt.getJbAccept().setVisible(false);
 		bmt.getJbRefusal().setVisible(false);
 
 		bmt.getJbReservation().setVisible(true);
-		bmt.getJbSave().setVisible(true);
-	}
+	}// reservationDesign
 
 	public void reservation() {
 
@@ -146,10 +146,10 @@ public class BookingManagerEvt implements ActionListener {
 		} // end if
 
 		try {
-			
+
 			String certerNo = lVO.getCenterNo();
-			
-			list = bmDAO.selectBooking(strDate, endDate, null,certerNo,null);
+
+			list = bmDAO.selectBooking(strDate, endDate, null, certerNo, null);
 
 			// JTable의 칼럼이 0개라면 칼럼명 추가
 			if (bmt.getJtbOrderInfoTable().getColumnCount() == 0) {
@@ -196,74 +196,68 @@ public class BookingManagerEvt implements ActionListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} // end catch
-	}
+	}// reservation
 
-	//DAO에 updateSuccess를 호출
+	// DAO에 updateSuccess를 호출
 	public void accept() {
 		BookingManagerDAO bmDAO = BookingManagerDAO.getInstance();
-		int cnt=0;
+		int cnt = 0;
 
-		//JTable에서 해당 컬럼의 값 얻기
+		// JTable에서 해당 컬럼의 값 얻기
 		JTable table = bmt.getJtbOrderInfoTable();
-		
+
 		List<String> bookingNo = new ArrayList<String>();
-		Object obj=" ";
-		
-		//부킹번호추출
-		for(int i =0; i<table.getRowCount(); i++) {
-			obj=table.getValueAt(i, 8);
-			System.out.println(obj);
-			if(obj != null) {
-					bookingNo.add(table.getValueAt(i, 0).toString());
-					System.out.println(table.getValueAt(i, 0).toString());
+		Object obj = " ";
+
+		// 부킹번호추출
+		for (int i = 0; i < table.getRowCount(); i++) {
+			obj = table.getValueAt(i, 8);
+			if (obj != null) {
+				bookingNo.add(table.getValueAt(i, 0).toString());
 			}
 		}
-		
-		try{
-			cnt=bmDAO.updateAccept(bookingNo);
+
+		try {
+			cnt = bmDAO.updateAccept(bookingNo);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		JOptionPane.showMessageDialog(bmt, cnt+" 건의 예약신청이 수락되었습니다.");
+		JOptionPane.showMessageDialog(bmt, cnt + " 건의 예약신청이 수락되었습니다.");
 	}
-	
-	//DAO에 updateRefusal 을 호출
+
+	// DAO에 updateRefusal 을 호출
 	public void refusal() {
-			BookingManagerDAO bmDAO = BookingManagerDAO.getInstance();
-			
-			String reason=JOptionPane.showInputDialog("거절 사유를 입력해 주세요.");
-			int cnt=0;
-			
-			//JTable
-			JTable table = bmt.getJtbOrderInfoTable();
-			List<String> bookingNo = new ArrayList<String>();
-			Object obj=" ";
-			
-			//부킹번호추출
-			for(int i =0; i<table.getRowCount(); i++) {
-				obj=table.getValueAt(i, 8);
-				System.out.println(obj);
-				if(obj != null) {
-						bookingNo.add(table.getValueAt(i, 0).toString());
-						System.out.println(table.getValueAt(i, 0).toString());
-				}
+		BookingManagerDAO bmDAO = BookingManagerDAO.getInstance();
+
+		String reason = JOptionPane.showInputDialog("거절 사유를 입력해 주세요.");
+		int cnt = 0;
+
+		// JTable
+		JTable table = bmt.getJtbOrderInfoTable();
+		List<String> bookingNo = new ArrayList<String>();
+		Object obj = " ";
+
+		// 부킹번호추출
+		for (int i = 0; i < table.getRowCount(); i++) {
+			obj = table.getValueAt(i, 8);
+			System.out.println(obj);
+			if (obj != null) {
+				bookingNo.add(table.getValueAt(i, 0).toString());
+				System.out.println(table.getValueAt(i, 0).toString());
 			}
-			
-			try{
-				cnt=bmDAO.updateRefusal(bookingNo,reason);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		JOptionPane.showMessageDialog(bmt, cnt+" 건의 예약신청이 거절되었습니다.");
+		}
+
+		try {
+			cnt = bmDAO.updateRefusal(bookingNo, reason);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JOptionPane.showMessageDialog(bmt, cnt + " 건의 예약신청이 거절되었습니다.");
 	}
-		
-	
-	
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == bmt.getJbReservation()) {
-			String isnull = "";
 			reservationManageDesign();
 			reservationManage();
 		}
@@ -271,17 +265,16 @@ public class BookingManagerEvt implements ActionListener {
 			reservationDesign();
 			reservation();
 		}
-		
-		//수락버튼을 눌렸을때.
-		if(e.getSource()==bmt.getJbAccept()){
+
+		// 수락버튼을 눌렸을때.
+		if (e.getSource() == bmt.getJbAccept()) {
 			accept();
 		}
-		//거절버튼을 눌렀을때.
-		if(e.getSource()==bmt.getJbRefusal()){
+		// 거절버튼을 눌렀을때.
+		if (e.getSource() == bmt.getJbRefusal()) {
 			refusal();
 		}
-	
-	
+
 	}
 
 }

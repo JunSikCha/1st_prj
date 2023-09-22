@@ -12,6 +12,7 @@ import manager.inventory.InventoryManagerTab;
 import manager.login.LoginVO;
 import manager.order.OrderManagerTab;
 
+@SuppressWarnings("serial")
 public class CarManager extends JFrame {//
 
 	private JTabbedPane jtp;
@@ -34,7 +35,7 @@ public class CarManager extends JFrame {//
 		jtp.add(cmt2, "재 고 관 리");
 		jtp.add(cmt3, "발 주 관 리");
 		jtp.add(cmt4, "예 약 관 리");
-		jtp.add(cmt5, " 정    산 ");
+//		jtp.add(cmt5, "출 고 내 역");
 		jtp.add(cmt6, "내   정 보");
 
 		add("Center", jtp);

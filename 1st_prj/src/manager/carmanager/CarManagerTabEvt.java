@@ -3,11 +3,7 @@ package manager.carmanager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
@@ -38,10 +34,6 @@ public class CarManagerTabEvt implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// 날짜검색 클릭 이벤트
-		if (e.getSource() == cmt.getJbDateSearch()) {
-			setCarInfoTable();
-		} // end if
 
 		// 입고 클릭 이벤트
 		if (e.getSource() == cmt.getJbCarAdd()) {
@@ -71,6 +63,7 @@ public class CarManagerTabEvt implements ActionListener {
 			try {
 				new CarManagerSubWindow(cmt, str,lVO);
 			} catch (ArrayIndexOutOfBoundsException ae) {
+				ae.getStackTrace();
 				JOptionPane.showMessageDialog(null, "출고할 차량을 선택하세요");
 			} // end catch
 		}
@@ -80,6 +73,8 @@ public class CarManagerTabEvt implements ActionListener {
 			try {
 			repairComplete();
 			setCarInfoTable();
+			setOutTable();
+			
 			} catch (ArrayIndexOutOfBoundsException ae) {
 				JOptionPane.showMessageDialog(null, "수리완료할 차량을 선택하세요");
 			} // end catch
@@ -90,25 +85,7 @@ public class CarManagerTabEvt implements ActionListener {
 	public void setCarInfoTable() {
 		CarManagerDAO cmDAO = CarManagerDAO.getInstance();
 
-		String strDate = cmt.getJtfStartDate().getText();
-		String endDate = cmt.getJtfEndDate().getText();
 		List<CarManagerVO> list = null;
-
-		// "YYYY-MM-DD" 형식의 정규식
-		String regex = "\\d{4}-\\d{2}-\\d{2}";
-
-		// 정규식 패턴을 컴파일합니다.
-		Pattern pattern = Pattern.compile(regex);
-
-		// 입력 문자열과 패턴을 매칭합니다.
-		Matcher strMatcher = pattern.matcher(strDate);
-		Matcher endMatcher = pattern.matcher(endDate);
-
-		// 정규식 패턴에 일치하지 않으면 ""으로 처리
-		if (!strMatcher.matches() || !endMatcher.matches()) {
-			strDate = "";
-			endDate = "";
-		} // end if
 
 		String centerNo = lVO.getCenterNo();
 
@@ -151,17 +128,17 @@ public class CarManagerTabEvt implements ActionListener {
 		BookingManagerDAO bmDAO = BookingManagerDAO.getInstance();
 		List<BookingManagerVO> list = null;
 		// 현재 날짜 구하기
-		LocalDate today = LocalDate.now();
+//		LocalDate today = LocalDate.now();
 
-		// +7일 후의 날짜 계산
-		LocalDate plus7Days = today.plusDays(999999);
-		// -7일 후의 날짜 계산
-		LocalDate minus7Days = today.minusDays(999999);
-
-		// 날짜를 원하는 형식으로 포맷팅
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String plus7DaysFormatted = plus7Days.format(formatter);
-		String minus7DaysFormatted = minus7Days.format(formatter);
+//		// +7일 후의 날짜 계산
+//		LocalDate plus7Days = today.plusDays(999999);
+//		// -7일 후의 날짜 계산
+//		LocalDate minus7Days = today.minusDays(999999);
+//
+//		// 날짜를 원하는 형식으로 포맷팅
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		String plus7DaysFormatted = plus7Days.format(formatter);
+//		String minus7DaysFormatted = minus7Days.format(formatter);
 
 		String certerNo = lVO.getCenterNo();
 

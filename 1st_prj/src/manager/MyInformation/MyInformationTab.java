@@ -4,7 +4,6 @@ package manager.MyInformation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,12 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 import manager.login.LoginVO;
 
+@SuppressWarnings("serial")
 public class MyInformationTab extends JPanel implements ActionListener {
 	
 	private MyInformationTabEvt mifEvt;
@@ -39,7 +37,6 @@ public class MyInformationTab extends JPanel implements ActionListener {
 	private JTextField jtfBranchAddr;
 	private JTextField jtfEmpNo;
 	
-	private JButton jbMIHome;
 	private JButton jbinfoModify;
 
 	
