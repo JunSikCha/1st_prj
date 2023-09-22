@@ -85,7 +85,7 @@ public class HistoryDesign extends JFrame {
 			jbt3month.setBounds(550, 100, 100, 30);
 			jbtChk.setBounds(550, 150, 100, 30);
 			jbtMain.setBounds(320, 620, 100, 30);
-			jbtDetail.setBounds(250, 570, 100, 30);
+			jbtDetail.setBounds(320, 570, 100, 30);
 	    
 			Font titleFont = new Font("SansSerif", Font.BOLD, 28);
 			jlTitle.setFont(titleFont);

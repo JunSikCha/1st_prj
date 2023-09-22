@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import kr.co.sist.user.dao.RegistCarDAO;
+import kr.co.sist.user.design.ClientMainDesign;
 import kr.co.sist.user.design.RegistCarDesign;
 import kr.co.sist.user.vo.RegistCarVO;
 
@@ -17,9 +18,11 @@ public class RegistCarEvt extends WindowAdapter implements ActionListener {
 
 	private RegistCarVO rcVO;
 	private RegistCarDesign rcd;
+	private ClientMainDesign cmd;
 
-	public RegistCarEvt(RegistCarDesign rcd) {
+	public RegistCarEvt(RegistCarDesign rcd,ClientMainDesign cmd) {
 		this.rcd = rcd;
+		this.cmd = cmd;
 		setModelNo();
 	}
 
@@ -27,13 +30,16 @@ public class RegistCarEvt extends WindowAdapter implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		// 확인버튼을 눌렀을 때
 		if (ae.getSource() == rcd.getJbtComplete()) {
-
+			
 			// 유효성 검증
 			if (rcValidate() == true) {
 				// 정보 등록 실행
 				addCarInfo();
 				modifyUserCar();
+				cmd.getJlCarNo().setText(rcd.getJtfCarnum().getText().toString());
+				cmd.getJlCarname().setText(rcd.getJcbModel().getSelectedItem().toString());
 				rcd.dispose();
+				
 			}
 		}
 

@@ -8,6 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import kr.co.sist.user.event.RegistCarEvt;
 
 @SuppressWarnings("serial")
-public class RegistCarDesign extends JFrame {
+public class RegistCarDesign extends JDialog {
 	private ClientMainDesign cmd;
 	
 	private  RegistCarEvt rcEvt;
@@ -36,6 +37,7 @@ public class RegistCarDesign extends JFrame {
 	private JTable jtRegisterCarDesign;
 	
 	public RegistCarDesign(ClientMainDesign cmd) {
+		super(cmd, "차량 정보 등록", true);
 		this.cmd=cmd;
 		JLabel jlRegist = new JLabel("차량 정보 등록");
 		JLabel jlModel = new JLabel("모델명");
@@ -52,7 +54,6 @@ public class RegistCarDesign extends JFrame {
 		jspRegisterCarDesign = new JScrollPane(jtRegisterCarDesign);
 		
 		
-		jcbModel.addActionListener(rcEvt);
 		JPanel jpNorth = new JPanel();
 		jpNorth.add(jcbModel);
 		
@@ -87,8 +88,9 @@ public class RegistCarDesign extends JFrame {
 		 add(jtfDistance);
 		 add(jbtComplete);
 		 
-		 rcEvt= new RegistCarEvt(this);
+		 rcEvt= new RegistCarEvt(this,cmd);
 		 jbtComplete.addActionListener(rcEvt);
+		 jcbModel.addActionListener(rcEvt);
 		
 		 setBounds(cmd.getX()+300,cmd.getY()+30,380,500);
 		setVisible(true);
@@ -97,6 +99,7 @@ public class RegistCarDesign extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				dispose();
+				
 			}
 			
 		});

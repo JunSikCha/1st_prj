@@ -41,18 +41,22 @@ public class ClientMainDesign extends JFrame {
 		this.ld=ld;
 
 		// 타이틀
-		JLabel jlTitle = new JLabel("마이카 관리");
-		Font titleFont = new Font(null, Font.BOLD, 20);
-		jlTitle.setFont(titleFont);
+//		JLabel jlTitle = new JLabel("마이카 관리");
+//		Font titleFont = new Font(null, Font.BOLD, 20);
+//		jlTitle.setFont(titleFont);
 
 		ImageIcon logoImg = new ImageIcon("E:/dev/workspace/first_project/src/kr/co/sist/image/logo.png");
 		JLabel jlLogo = new JLabel(logoImg); // 로고
+		
 
+		jlCarNo = new JLabel(); //차량 번호
 		jlCarname = new JLabel();// 차량 이름
-		Font carnameFont = new Font(null, Font.BOLD, 25);
+		
+		Font carnoFont = new Font(null, Font.BOLD, 25);
+		jlCarNo.setFont(carnoFont);
+		Font carnameFont = new Font(null, Font.PLAIN, 20);
 		jlCarname.setFont(carnameFont);
 
-		jlCarNo = new JLabel(); // 차량 번호
 
 		// 차량이미지
 		dft = new ImageIcon();
@@ -67,11 +71,11 @@ public class ClientMainDesign extends JFrame {
 		jbtBook = new JButton("정비 예약");
 		jbtBookCheck = new JButton("예약 조회");
 
-		jlTitle.setBounds(30, 0, 150, 50);
-		jlLogo.setBounds(80, 50, 100, 100);
-		jlCarNo.setBounds(140,10,150,100);
+//		jlTitle.setBounds(30, 0, 150, 50);
+		jlLogo.setBounds(0,30,150,100);
+		jlCarNo.setBounds(130,30,300,60);
 		jlCarname.setBounds(140,65,300,60);
-		jlDefaultimg.setBounds(90, 180, 600, 360);
+		jlDefaultimg.setBounds(30,130,600,338);
 
 		jbtRecall.setBounds(650,90,100,30);
 		jbtNotify.setBounds(800,90,100,30);
@@ -83,7 +87,7 @@ public class ClientMainDesign extends JFrame {
 		
 		setLayout(null);
 
-		add(jlTitle);
+//		add(jlTitle);
 		add(jlLogo);
 		add(jlCarname);
 		add(jlCarNo);
@@ -111,6 +115,13 @@ public class ClientMainDesign extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}// ClientMainDesign
+	
+	// 컴포넌트의 내용이 변경되었을 때 화면을 갱신하는 메서드
+	public void refresh() {
+	    // 변경된 내용을 반영하기 위해 해당 컴포넌트를 다시 그리고 다시 배치합니다.
+	    jlCarname.repaint();
+	    jlCarNo.revalidate();
+	}
 	
 
 	public ClientMainEvt getCmEvt() {

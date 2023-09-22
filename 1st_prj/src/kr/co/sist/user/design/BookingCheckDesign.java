@@ -29,7 +29,6 @@ public class BookingCheckDesign extends JFrame  {
 	private JButton jbt3month;
 	private JButton jbtMonthlyChk;
 	private JButton jbtChk;
-	private JButton jbtMain;
 	private JTextField jtfStartDate;
 	private JTextField jtfEndDate;
 	private JScrollPane jspBookingCheckDesign;
@@ -48,7 +47,6 @@ public class BookingCheckDesign extends JFrame  {
 		jbt3month = new JButton("3개월");
 		jbtMonthlyChk = new JButton("월별조회");
 		jbtChk = new JButton("조회");
-		jbtMain = new JButton("메인화면으로");
       
 		
 		jtfStartDate = new JTextField();
@@ -80,7 +78,6 @@ public class BookingCheckDesign extends JFrame  {
 		jbt1month.setBounds(420, 100, 100, 30);
 		jbt3month.setBounds(530, 100, 100, 30);
 		jbtChk.setBounds(530, 150, 100, 30);
-		jbtMain.setBounds(350, 600, 100, 30);
 		jtfStartDate.setBounds(200, 150, 130, 30);
 		jtfEndDate.setBounds(380, 150, 130, 30);
 
@@ -98,7 +95,6 @@ public class BookingCheckDesign extends JFrame  {
 		jbtChk.setFont(labelFont);
 		
 		Font btnFont = new Font("SansSerif", Font.BOLD, 13);
-		jbtMain.setFont(btnFont);
 
 		setLayout(null);
 		add(jtfStartDate);
@@ -112,7 +108,6 @@ public class BookingCheckDesign extends JFrame  {
 		add(jbt1month);
 		add(jbt3month);
 		add(jbtChk);
-		add(jbtMain);
 
 		bcdEvt = new BookingCheckEvt(this);
 		jbtToday.addActionListener(bcdEvt);
@@ -120,7 +115,6 @@ public class BookingCheckDesign extends JFrame  {
 		jbt1month.addActionListener(bcdEvt);
 		jbt3month.addActionListener(bcdEvt);
 		jbtChk.addActionListener(bcdEvt);
-		jbtMain.addActionListener(bcdEvt);
 
 		setBounds(cmd.getX()+100, cmd.getY()-50, 800, 700);
 		setVisible(true);
@@ -167,13 +161,6 @@ public class BookingCheckDesign extends JFrame  {
 	public JButton getJbtChk() {
 		return jbtChk;
 	}
-
-
-
-	public JButton getJbtMain() {
-		return jbtMain;
-	}
-
 
 
 	public JTextField getJtfStartDate() {

@@ -22,12 +22,14 @@ public class ModifyEvt extends WindowAdapter implements ActionListener {
 		if(ae.getSource() == md.getJbtModifyUserDesign()) {
 			ModifyUserDesign mud = new ModifyUserDesign(md);
 			mud.setVisible(true);
+			md.dispose();
 		}
 		
 		//비밀번호 변경
 		if(ae.getSource()  == md.getJbtModifyPassDesign()) {
 			ModifyPassDesign mpd = new ModifyPassDesign(md);
 			mpd.setVisible(true);
+			md.dispose();
 		}
 		
 

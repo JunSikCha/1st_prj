@@ -130,9 +130,6 @@ public class BookingCheckEvt implements ActionListener {
 			setBookInfoTable();
 		}
 
-		if (ae.getSource() == bcd.getJbtMain()) {
-			bcd.dispose();
-		}
 	}
 
 }
