@@ -80,7 +80,6 @@ public class RegistCarEvt extends WindowAdapter implements ActionListener {
 			RegistCarDAO rDAO = RegistCarDAO.getInstance();
 			rDAO.insertCarinfo(rcVO);
 
-			System.out.println(rcVO.getCarModel() + " 차량 추가 완료");
 			JOptionPane.showMessageDialog(rcd, "차량등록이 완료되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -101,7 +100,6 @@ public class RegistCarEvt extends WindowAdapter implements ActionListener {
 
 			rcDAO = RegistCarDAO.getInstance();
 			int cnt = rcDAO.updateUserCarInfo(rcVO);
-			System.out.println(cnt);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

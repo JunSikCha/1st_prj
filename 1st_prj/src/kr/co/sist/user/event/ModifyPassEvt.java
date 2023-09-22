@@ -33,7 +33,6 @@ public class ModifyPassEvt extends WindowAdapter implements ActionListener {
 			//dao 메소드 호출
 			ModifyPassDAO mpDAO = ModifyPassDAO.getInstance();
 			int cnt = mpDAO.updatePass(mpVO);
-			System.out.println(cnt);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}//end catch
@@ -47,7 +46,6 @@ public class ModifyPassEvt extends WindowAdapter implements ActionListener {
 			if (mpd.getJtfnewPwdField().getText().equals(mpd.getJtfconfirmPwd().getText())) { //비밀번호 확인 검증
 				modifyPass(); //비밀번호 수정 메소드 호출
 				JOptionPane.showMessageDialog(mpd, "변경이 완료되었습니다.");
-				System.out.println(mpd.getJtfcurPwdField().getText());
 			}else {
 				JOptionPane.showMessageDialog(mpd, "비밀번호 확인이 잘못되었습니다.");
 			}

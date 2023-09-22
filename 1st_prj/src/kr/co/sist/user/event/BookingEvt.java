@@ -105,15 +105,10 @@ public class BookingEvt implements ActionListener{
 	        LocalDate currentDate = LocalDate.now();
 	        //선택된 날짜 객체 생성
 	        int selectedYear = Integer.valueOf(bD.getJcbBookYear().getSelectedItem().toString());
-	        System.out.println(selectedYear);
 	        int selectedMonth = Integer.valueOf(bD.getJcbBookMonth().getSelectedItem().toString());
-	        System.out.println(selectedMonth);
 	        int selectedDay = Integer.valueOf(bD.getJcbBookDay().getSelectedItem().toString());
-	        System.out.println(selectedDay);
 	        
 	        LocalDate selectedDate= LocalDate.of(selectedYear,selectedMonth,selectedDay);//월은 1부터 시작한다. Calendar과 다르게
-	        System.out.println(selectedDate);
-	        System.out.println(currentDate.isBefore(selectedDate));
 	        
 	        // 오늘날짜보다 과거인지 검증.
 	       if(selectedDate.isBefore(currentDate)){
@@ -175,13 +170,9 @@ public class BookingEvt implements ActionListener{
 			if( e.getSource()==bD.getJcbBranch() ) {
 				//선택된 값의 인덱스 추출
 				int index=0;
-				System.out.println(index);
 				index = bD.getJcbBranch().getSelectedIndex();
 				//해당 인덱스값으로 지점번호 가져오기
 				CenterVO cVO = centerVOList.get(index);
-				System.out.println(cVO);
-				System.out.println(cVO.getCenterNo());
-				System.out.println(cVO.getcName());
 				bVO.setCenterno(cVO.getCenterNo());
 				bVO.setCentername(cVO.getcName());
 			}
@@ -231,7 +222,6 @@ public class BookingEvt implements ActionListener{
 				String time = bD.getJcbBookTime().getSelectedItem().toString();
 				StringBuilder bDate= new StringBuilder();
 				bDate.append(selectedYear).append("-").append(selectedMonth).append("-").append(selectedDay).append(" ").append(time);
-				System.out.println(bDate);
 				//VO객체에 시간 설정
 				bVO.setBdate(bDate.toString());
 			}
@@ -254,12 +244,6 @@ public class BookingEvt implements ActionListener{
 				bVO.setCarno(UserData.carno);
 				bVO.setModelno(UserData.modelno);
 				bVO.setIssue(bD.getJtaDetail().getText());
-				System.out.println(bVO.getCarno());
-				System.out.println(bVO.getModelno());
-				System.out.println(bVO.getIssue());
-				System.out.println(bVO.getBdate());
-				System.out.println(bVO.getCentername());
-				System.out.println(bVO.getCenterno());
 				
 				
 				

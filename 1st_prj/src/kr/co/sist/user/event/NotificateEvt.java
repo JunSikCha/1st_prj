@@ -95,12 +95,5 @@ public class NotificateEvt extends WindowAdapter {
 	public void windowClosing(WindowEvent e) {
 		nd.dispose();
 	}
-	
-	
-
-//	public static void main(String[] args) {
-////		new NotificateDesign();
-//		System.out.println(new NotificateEvt().NotificateInfo());
-//	}
 
 }

@@ -75,11 +75,6 @@ public class DetailHisEvt implements ActionListener {
 			    arrRow[3] = String.valueOf(hiVO.getUpamount());
 			    arrRow[4] = String.valueOf((hiVO.getSunitprice() + hiVO.getSprice()) * hiVO.getUpamount());
 			    dhd.getDtm().addRow(arrRow);
-			    System.out.println("-----------------");
-			    System.out.println(hiVO.getSname());
-			    System.out.println(hiVO.getSunitprice());
-			    System.out.println(hiVO.getSprice());
-			    System.out.println(hiVO.getUpamount());
 
 			}
 
@@ -98,7 +93,14 @@ public class DetailHisEvt implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		if(e.getSource() == dhd.getJbtOK()) {
+			dhd.dispose();
+		}
+		
+		if(e.getSource() == dhd.getJbtCancel()) {
+			dhd.dispose();
+		}
+		
 	}
 
 }

@@ -33,7 +33,6 @@ public class ModifyUserEvt extends WindowAdapter implements ActionListener {
 
 			ModifyUserDAO muDAO = ModifyUserDAO.getInstance();
 			int cnt = muDAO.updateUser(muVO);
-			System.out.println(cnt);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

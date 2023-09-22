@@ -357,6 +357,9 @@ public class DetailHisDesign extends JDialog {
 //		scrollPane.setVisible(true);
 		jlTitle.setVisible(true);
 
+		jbCancel.addActionListener(dhEvt);
+		jbtOk.addActionListener(dhEvt);
+		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
