@@ -14,7 +14,7 @@
 ![쌍용 1조 - 1번째 프로젝트ppt_page-0031](https://github.com/Gh-js/2nd_prj/assets/142857148/59703b87-9f4e-41e1-8121-da9e830aaf56)
 ![쌍용 1조 - 1번째 프로젝트ppt_page-0032](https://github.com/Gh-js/2nd_prj/assets/142857148/fbfddcbc-bb69-48c7-aedc-34abbcfaab81)
 
-### User
+### Manager
 
 ![쌍용 1조 - 1번째 프로젝트ppt_page-0033](https://github.com/Gh-js/2nd_prj/assets/142857148/5a1b7c20-55b6-44c3-8142-68200b7afe43)
 ![쌍용 1조 - 1번째 프로젝트ppt_page-0034](https://github.com/Gh-js/2nd_prj/assets/142857148/8a8a1e4a-2f03-4acd-839d-aef276510711)
