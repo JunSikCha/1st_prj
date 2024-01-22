@@ -26,7 +26,13 @@
 
 ## Back end
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### Database
+
+![쌍용 1조 - 1번째 프로젝트ppt_page-0022](https://github.com/Gh-js/2nd_prj/assets/142857148/301de5dc-e770-4ae9-9cd7-006cace35d4c)
+
+### Class Diagram
+
+![쌍용 1조 - 1번째 프로젝트ppt_page-0023](https://github.com/Gh-js/2nd_prj/assets/142857148/22f0a2ce-d05e-4e0e-a8fe-035326c2d712)
 
 ### Prerequisites
 
