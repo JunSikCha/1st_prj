@@ -1,7 +1,6 @@
-# 🛫 MyLittelTrip
+# 🛫 MyCar
 
-여행일정 추천받기  
-https://mylittletrip-4416.web.app
+자동차 정비 예약 시스템
 
 <br />
 
@@ -9,20 +8,11 @@ https://mylittletrip-4416.web.app
 
 ### 1. 제작기간
 
-> 2022.07.07 ~ 09.02
+> 2023.08.14 ~ 09.22
 
-### 2. 참여 인원
+### 2. 담당 역할
 
-> |                    Name                    |  Position   |
-> | :----------------------------------------: | :---------: |
-> | [김동우](https://github.com/kimphysicsman) | Back, Front |
-> |   [김진수](https://github.com/creamone)    |    Back     |
-> |     [박진우](https://github.com/J1NU2)     |    Back     |
-> |    [최민기](https://github.com/mankic)     |    Back     |
-
-### 3. 역할 분담
-
-> - 김동우 : 여행일정 추천 기능 + Front 구성
+> - 사용자 인터페이스 backend
 
 <br />
 
@@ -30,14 +20,13 @@ https://mylittletrip-4416.web.app
 
 ### 1. Back-end
 
-> python3  
-> Django  
-> Django-rest-framwork
+> Java11  
+> Oracle
+> JDBC
 
 ### 2. Front-end
 
-> React.js  
-> Node.js
+> JFC
 
 <br />
 
@@ -46,7 +35,7 @@ https://mylittletrip-4416.web.app
 <details>
 <summary>ERD</summary>
 <div markdown="1" style="padding-left: 15px;">
-<img src="https://user-images.githubusercontent.com/68724828/186067947-f255f9a4-d92d-45cd-ab7c-419ec92943f8.png" width="800px"/>
+<img src="https://github.com/Gh-js/2nd_prj/assets/142857148/301de5dc-e770-4ae9-9cd7-006cace35d4c" width="800px"/>
 </div>
 </details>
 
@@ -55,7 +44,7 @@ https://mylittletrip-4416.web.app
 <details>
 <summary>Structure</summary>
 <div markdown="1" style="padding-left: 15px;">
-<img src="https://user-images.githubusercontent.com/68724828/186079270-28793ba1-466e-421f-baf2-563b890c926f.png" />
+<img src="https://github.com/Gh-js/2nd_prj/assets/142857148/22f0a2ce-d05e-4e0e-a8fe-035326c2d712" />
 </div>
 </details>
 
@@ -75,37 +64,6 @@ https://mylittletrip-4416.web.app
 > [코드 보러가기](https://github.com/kimphysicsman/MyLittelTrip_backend/blob/5aa46e9ed2065045df17cc45baa41a9a2901b46b/recommend/functions/schedule.py#L14)
 
 <br />
-
-# 📕 기타 자료
-
-### 1. 기획문서
-
-> [MyLittleTrip - Notion](https://www.notion.so/kimphysicsman/MLT-My-Little-Trip-716433a2fc8940d9870bd83b63570646?v=0c42e849923d4449aade69046bf597d1)
-
-### 2. 여행추천 알고리즘
-
-> [Travel_recommedation - Github](https://github.com/kimphysicsman/Travel_recommedation)
-
-### 3. 발표영상
-
-<table>
-  <tbody>
-    <tr>
-      <td>
-        <p align="center"> 22.08.05 발표 </p>
-        <a href="https://www.youtube.com/watch?v=6B0DSjvsqj0&t=1s" title="MyLittleTrip 중간발표">
-          <img align="center" src="https://user-images.githubusercontent.com/68724828/186087151-e0f0ebed-08c1-4a99-9af0-a8c48c536205.png" width="300" >
-        </a>
-      </td>
-      <td>
-        <p align="center"> 22.08.16 발표 </p>
-        <a href="https://youtu.be/9eoYpRqTZUU" title="MyLittleTrip 최종발표">
-          <img align="center" src="https://user-images.githubusercontent.com/68724828/186087151-e0f0ebed-08c1-4a99-9af0-a8c48c536205.png" width="300" >
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 ----------------------------------------------------------
 # My Car
