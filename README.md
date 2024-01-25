@@ -20,8 +20,8 @@
 
 ### 1. Back-end
 
-> Java11  
-> Oracle
+> Java11  <br/>
+> Oracle  <br/>
 > JDBC
 
 ### 2. Front-end
